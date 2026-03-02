@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.almatroodlaw.sa/sitemap.xml
+
+# Block unnecessary files
+Disallow: /global-enhancements.js
+Disallow: /global-enhancements.css

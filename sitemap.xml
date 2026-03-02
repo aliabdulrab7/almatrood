@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- الصفحة الرئيسية / Home -->
+  <url>
+    <loc>https://www.almatroodlaw.sa/</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.almatroodlaw.sa/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.almatroodlaw.sa/"/>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- الخدمات / Services -->
+  <url>
+    <loc>https://www.almatroodlaw.sa/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.almatroodlaw.sa/services.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.almatroodlaw.sa/services.html"/>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- لماذا نحن / Why Us -->
+  <url>
+    <loc>https://www.almatroodlaw.sa/why-us.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.almatroodlaw.sa/why-us.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.almatroodlaw.sa/why-us.html"/>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- آلية العمل / Process -->
+  <url>
+    <loc>https://www.almatroodlaw.sa/process.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.almatroodlaw.sa/process.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.almatroodlaw.sa/process.html"/>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- الفريق / Consultant -->
+  <url>
+    <loc>https://www.almatroodlaw.sa/consultant.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.almatroodlaw.sa/consultant.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.almatroodlaw.sa/consultant.html"/>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- تواصل معنا / Contact -->
+  <url>
+    <loc>https://www.almatroodlaw.sa/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.almatroodlaw.sa/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.almatroodlaw.sa/contact.html"/>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>
