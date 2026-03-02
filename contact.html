@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تواصل معنا | مكتب المطرود للمحاماة</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A96E;--gold-light:#E8D5A3;--gold-dark:#9A7A45;--navy:#0A1628;--navy-mid:#122040;--navy-light:#1A2F55;--cream:#F8F4EE;--text-light:#A8B4C8;--font-body:'Tajawal',sans-serif;--font-display:'Amiri',serif;}
+[lang="en"]{--font-body:'Montserrat',sans-serif;--font-display:'Playfair Display',serif;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--navy);color:var(--cream);overflow-x:hidden;}
+.lang-toggle{display:flex;align-items:center;border:1px solid rgba(201,169,110,0.4);overflow:hidden;}
+.lang-btn{padding:0.4rem 0.85rem;font-size:0.65rem;font-weight:600;cursor:pointer;background:transparent;border:none;color:var(--text-light);transition:all 0.2s;}
+.lang-btn.active{background:var(--gold);color:var(--navy);}.lang-btn:not(.active):hover{color:var(--gold);}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s;}
+nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(10px);padding:1rem 4rem;border-bottom:1px solid rgba(201,169,110,0.2);}
+.nav-logo{font-family:var(--font-display);color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:0.75rem;}
+.logo-mark{width:40px;height:40px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;position:relative;flex-shrink:0;}
+.logo-mark::before{content:'';position:absolute;inset:3px;border:1px solid rgba(201,169,110,0.3);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.78rem;transition:color 0.3s;position:relative;}
+[lang="en"] .nav-links a{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+.nav-right{display:flex;align-items:center;gap:1.25rem;}
+.nav-cta{background:var(--gold);border:1px solid var(--gold);color:var(--navy);padding:0.6rem 1.4rem;font-family:var(--font-body);font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.3s;text-decoration:none;white-space:nowrap;}
+.nav-cta:hover{background:var(--gold-light);}
+.page-hero{min-height:50vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(201,169,110,0.08) 0%,transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;max-width:1400px;margin:0 auto;padding:0 4rem;padding-top:8rem;padding-bottom:4rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s ease 0.4s forwards;}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+.breadcrumb{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;font-size:0.72rem;color:var(--text-light);}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.15;color:var(--cream);margin-bottom:1.5rem;}
+.page-title em{font-style:italic;color:var(--gold);}
+.page-subtitle{max-width:650px;font-size:1rem;color:var(--text-light);line-height:1.9;font-weight:300;}
+.container{max-width:1400px;margin:0 auto;padding:0 4rem;}
+section{padding:7rem 0;}
+.section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.section-label-line{width:40px;height:1px;background:var(--gold);}
+.section-label-text{font-size:0.72rem;color:var(--gold);}
+[lang="en"] .section-label-text{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.2;color:var(--cream);margin-bottom:1.5rem;}
+.section-title em{font-style:italic;color:var(--gold);}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.15s;}.reveal-delay-2{transition-delay:0.3s;}
+
+/* CONTACT MAIN */
+#contact-main{background:var(--navy-mid);padding:7rem 0;}
+.contact-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start;}
+[lang="en"] .contact-layout{direction:ltr;}
+.ci-item{display:flex;gap:1.5rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+.ci-item:last-child{border-bottom:none;}
+.ci-icon{width:48px;height:48px;border:1px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;color:var(--gold);}
+.ci-label{font-size:0.65rem;color:var(--gold);margin-bottom:0.4rem;font-weight:700;}
+.ci-val{font-size:0.9rem;color:var(--cream);line-height:1.6;}
+.ci-sub{font-size:0.75rem;color:var(--text-light);margin-top:0.25rem;}
+.hours-table{margin-top:2rem;}
+.hours-row{display:flex;justify-content:space-between;padding:0.7rem 0;border-bottom:1px solid rgba(201,169,110,0.06);font-size:0.82rem;}
+.hours-row:last-child{border-bottom:none;}
+.hours-day{color:var(--text-light);}
+.hours-time{color:var(--cream);}
+.hours-closed{color:rgba(201,169,110,0.3);}
+
+/* FORM */
+.form-wrap{background:rgba(201,169,110,0.02);border:1px solid rgba(201,169,110,0.12);padding:3rem;}
+.form-main-title{font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;}
+.form-sub{font-size:0.85rem;color:var(--text-light);margin-bottom:2.5rem;line-height:1.75;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.form-group{display:flex;flex-direction:column;margin-bottom:1.5rem;}
+.form-label{font-size:0.65rem;color:var(--gold);margin-bottom:0.6rem;font-weight:700;}
+.form-label span{color:rgba(201,169,110,0.5);}
+.form-input,.form-select,.form-textarea{background:rgba(10,22,40,0.5);border:1px solid rgba(201,169,110,0.2);color:var(--cream);padding:0.9rem 1.2rem;font-family:var(--font-body);font-size:0.88rem;transition:border-color 0.3s;outline:none;width:100%;text-align:inherit;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);}
+.form-select{cursor:pointer;}.form-select option{background:var(--navy);}
+.form-textarea{resize:vertical;min-height:120px;}
+.form-consent{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;}
+.form-consent input[type="checkbox"]{width:18px;height:18px;flex-shrink:0;accent-color:var(--gold);margin-top:3px;}
+.form-consent label{font-size:0.75rem;color:var(--text-light);line-height:1.7;}
+.form-submit{background:var(--gold);color:var(--navy);border:none;padding:1rem 2.5rem;font-family:var(--font-body);font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.3s;width:100%;}
+.form-submit:hover{background:var(--gold-light);}
+.form-note{font-size:0.68rem;color:var(--text-light);text-align:center;margin-top:1rem;opacity:0.7;}
+.form-success{display:none;text-align:center;padding:3rem 2rem;}
+.success-icon{font-size:3rem;margin-bottom:1rem;}
+.success-title{font-family:var(--font-display);font-size:1.5rem;color:var(--gold);margin-bottom:0.75rem;}
+.success-text{font-size:0.88rem;color:var(--text-light);line-height:1.8;}
+
+/* MAP */
+#map-sec{background:var(--navy);padding:0;}
+.map-ph{width:100%;height:380px;background:var(--navy-light);display:flex;flex-direction:column;align-items:center;justify-content:center;border-top:1px solid rgba(201,169,110,0.1);border-bottom:1px solid rgba(201,169,110,0.1);position:relative;overflow:hidden;}
+.map-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.map-ring{width:50px;height:50px;border:2px solid rgba(201,169,110,0.4);border-radius:50%;position:absolute;animation:ping 2s ease infinite;}
+@keyframes ping{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(2.5);}}
+.map-dot{width:16px;height:16px;background:var(--gold);border-radius:50%;position:relative;z-index:1;}
+.map-label{position:relative;z-index:1;text-align:center;margin-top:2rem;}
+.map-title{font-family:var(--font-display);font-size:1.1rem;color:var(--cream);margin-bottom:0.35rem;}
+.map-addr{font-size:0.75rem;color:var(--text-light);}
+.map-note{margin-top:1.5rem;font-size:0.65rem;color:var(--text-light);opacity:0.4;}
+
+/* FAQ */
+#faq{background:var(--navy-mid);padding:7rem 0;}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem;}
+.faq-item{border:1px solid rgba(201,169,110,0.12);overflow:hidden;}
+.faq-q{padding:1.5rem 2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:background 0.3s;}
+.faq-q:hover{background:rgba(201,169,110,0.04);}
+.faq-q-text{font-size:0.87rem;color:var(--cream);font-weight:500;}
+.faq-icon{color:var(--gold);font-size:1.2rem;flex-shrink:0;transition:transform 0.3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-item.open .faq-a{max-height:200px;}
+.faq-a-inner{padding:0 2rem 1.5rem;font-size:0.82rem;color:var(--text-light);line-height:1.85;border-top:1px solid rgba(201,169,110,0.08);}
+
+footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);padding:4rem 0 2rem;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+.footer-brand p{font-size:0.85rem;color:var(--text-light);line-height:1.9;margin-top:1rem;max-width:280px;}
+.footer-heading{font-size:0.75rem;color:var(--gold);margin-bottom:1.5rem;font-weight:600;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.75rem;}
+.footer-links a{color:var(--text-light);text-decoration:none;font-size:0.82rem;transition:color 0.3s;}
+.footer-links a:hover{color:var(--cream);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.72rem;color:var(--text-light);opacity:0.6;}
+.footer-dual{font-size:0.72rem;color:var(--gold);opacity:0.6;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}nav.scrolled{padding:0.8rem 1.5rem;}
+  .nav-links,.nav-cta{display:none;}
+  .container{padding:0 1.5rem;}
+  .page-hero-content{padding:0 1.5rem;padding-top:7rem;padding-bottom:3rem;}
+  .contact-layout{grid-template-columns:1fr;gap:3rem;}
+  .form-wrap{padding:2rem;}
+  .form-row{grid-template-columns:1fr;}
+  .faq-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  #contact-main{padding:5rem 0;}
+  #faq{padding:5rem 0;}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark" data-ar="م" data-en="M">م</div>
+    <div>
+      <div style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold);" data-ar="مكتب المطرود" data-en="AL MATROOD">مكتب المطرود</div>
+      <div style="font-size:0.6rem;color:var(--text-light);" data-ar="للمحاماة والاستشارات" data-en="LAW FIRM">للمحاماة والاستشارات</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+    <li><a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+    <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
+    <li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
+    <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+    <li><a href="contact.html" class="active" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="contact.html" class="nav-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <span style="opacity:0.4;margin:0 0.25rem;">/</span>
+      <span data-ar="تواصل معنا" data-en="Contact">تواصل معنا</span>
+    </div>
+    <h1 class="page-title" data-ar="لنتحدث عن <em>قضيتك</em>" data-en="Let's Talk About <em>Your Case</em>">لنتحدث عن <em>قضيتك</em></h1>
+    <p class="page-subtitle" data-ar="استشارتك الأولى مجانية وسرية تماماً. تواصل معنا اليوم — فريقنا جاهز للاستماع والتوجيه." data-en="Your first consultation is completely free and confidential. Reach out today — our team is ready to listen and advise.">استشارتك الأولى مجانية وسرية تماماً. تواصل معنا اليوم — فريقنا جاهز للاستماع والتوجيه.</p>
+  </div>
+</div>
+
+<!-- CONTACT MAIN -->
+<section id="contact-main">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- INFO -->
+      <div class="reveal">
+        <div class="section-label"><div class="section-label-line"></div><span class="section-label-text" data-ar="بيانات التواصل" data-en="Get in Touch">بيانات التواصل</span></div>
+        <h2 class="section-title" style="font-size:2rem;" data-ar="<em>معلومات</em> التواصل" data-en="Contact <em>Details</em>"><em>معلومات</em> التواصل</h2>
+        <div class="ci-item">
+          <div class="ci-icon">📍</div>
+          <div><div class="ci-label" data-ar="عنوان المكتب" data-en="Office Address">عنوان المكتب</div><div class="ci-val" data-ar="طريق الملك فهد، حي العليا<br>الرياض ١٢٢١٥" data-en="King Fahd Road, Al Olaya District<br>Riyadh 12215">طريق الملك فهد، حي العليا<br>الرياض ١٢٢١٥</div><div class="ci-sub" data-ar="المملكة العربية السعودية" data-en="Kingdom of Saudi Arabia">المملكة العربية السعودية</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">📞</div>
+          <div><div class="ci-label" data-ar="الهاتف" data-en="Phone">الهاتف</div><div class="ci-val">+966 11 XXX XXXX</div><div class="ci-sub" data-ar="متاح خلال ساعات العمل" data-en="Available during office hours">متاح خلال ساعات العمل</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">📱</div>
+          <div><div class="ci-label" data-ar="واتساب" data-en="WhatsApp">واتساب</div><div class="ci-val">+966 5X XXX XXXX</div><div class="ci-sub" data-ar="للاستفسارات العاجلة وإرسال المستندات" data-en="For urgent inquiries & document sharing">للاستفسارات العاجلة وإرسال المستندات</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">✉️</div>
+          <div><div class="ci-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</div><div class="ci-val">info@almatroodlaw.sa</div><div class="ci-sub" data-ar="نرد خلال ٢٤ ساعة" data-en="We respond within 24 hours">نرد خلال ٢٤ ساعة</div></div>
+        </div>
+
+        <div class="section-label" style="margin-top:2rem;margin-bottom:0.75rem;"><div class="section-label-line"></div><span class="section-label-text" data-ar="ساعات العمل" data-en="Office Hours">ساعات العمل</span></div>
+        <div class="hours-table">
+          <div class="hours-row"><span class="hours-day" data-ar="الأحد" data-en="Sunday">الأحد</span><span class="hours-time" data-ar="٨ص – ٦م" data-en="8:00 AM – 6:00 PM">٨ص – ٦م</span></div>
+          <div class="hours-row"><span class="hours-day" data-ar="الاثنين" data-en="Monday">الاثنين</span><span class="hours-time" data-ar="٨ص – ٦م" data-en="8:00 AM – 6:00 PM">٨ص – ٦م</span></div>
+          <div class="hours-row"><span class="hours-day" data-ar="الثلاثاء" data-en="Tuesday">الثلاثاء</span><span class="hours-time" data-ar="٨ص – ٦م" data-en="8:00 AM – 6:00 PM">٨ص – ٦م</span></div>
+          <div class="hours-row"><span class="hours-day" data-ar="الأربعاء" data-en="Wednesday">الأربعاء</span><span class="hours-time" data-ar="٨ص – ٦م" data-en="8:00 AM – 6:00 PM">٨ص – ٦م</span></div>
+          <div class="hours-row"><span class="hours-day" data-ar="الخميس" data-en="Thursday">الخميس</span><span class="hours-time" data-ar="٨ص – ٦م" data-en="8:00 AM – 6:00 PM">٨ص – ٦م</span></div>
+          <div class="hours-row"><span class="hours-day" data-ar="الجمعة" data-en="Friday">الجمعة</span><span class="hours-closed" data-ar="إجازة" data-en="Closed">إجازة</span></div>
+          <div class="hours-row"><span class="hours-day" data-ar="السبت" data-en="Saturday">السبت</span><span class="hours-time" data-ar="٩ص – ٢م" data-en="9:00 AM – 2:00 PM">٩ص – ٢م</span></div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="reveal reveal-delay-1">
+        <div class="form-wrap" id="form-wrap">
+          <h3 class="form-main-title" data-ar="احجز استشارة مجانية" data-en="Book a Free Consultation">احجز استشارة مجانية</h3>
+          <p class="form-sub" data-ar="أكمل النموذج أدناه وسيتواصل معك أحد محامينا خلال ٢٤ ساعة لتحديد موعد استشارتك. جميع المعلومات تحظى بسرية مطلقة." data-en="Fill in the form below and one of our attorneys will contact you within 24 hours to schedule your consultation. All information is treated with strict confidentiality.">أكمل النموذج أدناه وسيتواصل معك أحد محامينا خلال ٢٤ ساعة لتحديد موعد استشارتك. جميع المعلومات تحظى بسرية مطلقة.</p>
+
+          <div id="the-form">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label"><span data-ar="الاسم الأول" data-en="First Name">الاسم الأول</span> <span>*</span></label><input type="text" class="form-input" id="fname" data-ar-placeholder="اسمك الأول" data-en-placeholder="Your first name" placeholder="اسمك الأول"></div>
+              <div class="form-group"><label class="form-label"><span data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</span> <span>*</span></label><input type="text" class="form-input" id="lname" data-ar-placeholder="اسم عائلتك" data-en-placeholder="Your last name" placeholder="اسم عائلتك"></div>
+            </div>
+            <div class="form-group"><label class="form-label"><span data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</span> <span>*</span></label><input type="email" class="form-input" id="email" data-ar-placeholder="بريدك@الإلكتروني.com" data-en-placeholder="your@email.com" placeholder="بريدك@الإلكتروني.com"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label"><span data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</span> <span>*</span></label><input type="tel" class="form-input" id="phone" placeholder="+966 5XX XXX XXXX"></div>
+              <div class="form-group">
+                <label class="form-label" data-ar="طريقة التواصل المفضلة" data-en="Preferred Contact">طريقة التواصل المفضلة</label>
+                <select class="form-select">
+                  <option data-ar="مكالمة هاتفية" data-en="Phone Call">مكالمة هاتفية</option>
+                  <option data-ar="واتساب" data-en="WhatsApp">واتساب</option>
+                  <option data-ar="بريد إلكتروني" data-en="Email">بريد إلكتروني</option>
+                  <option data-ar="حضورياً" data-en="In-Person">حضورياً</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span data-ar="مجال الخدمة" data-en="Practice Area">مجال الخدمة</span> <span>*</span></label>
+              <select class="form-select" id="practice">
+                <option value="" data-ar="اختر مجال الخدمة المناسب" data-en="Select the area most relevant to your matter">اختر مجال الخدمة المناسب</option>
+                <option data-ar="قانون الأعمال والشركات" data-en="Business & Corporate Law">قانون الأعمال والشركات</option>
+                <option data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</option>
+                <option data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</option>
+                <option data-ar="قضايا التعويضات والإصابات" data-en="Personal Injury">قضايا التعويضات والإصابات</option>
+                <option data-ar="غير متأكد — أحتاج توجيهاً" data-en="Not Sure — Need Guidance">غير متأكد — أحتاج توجيهاً</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-ar="طريقة الاجتماع المفضلة" data-en="Preferred Meeting Format">طريقة الاجتماع المفضلة</label>
+              <select class="form-select">
+                <option data-ar="حضورياً (مكتب الرياض)" data-en="In-Person (Riyadh Office)">حضورياً (مكتب الرياض)</option>
+                <option data-ar="استشارة هاتفية" data-en="Phone Consultation">استشارة هاتفية</option>
+                <option data-ar="مكالمة فيديو" data-en="Video Call">مكالمة فيديو</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label"><span data-ar="وصف مختصر للقضية" data-en="Brief Description">وصف مختصر للقضية</span> <span>*</span></label><textarea class="form-textarea" id="message" data-ar-placeholder="يرجى وصف قضيتك القانونية بإيجاز. جميع المعلومات المقدمة سرية تماماً..." data-en-placeholder="Please briefly describe your legal situation. All information shared is strictly confidential..." placeholder="يرجى وصف قضيتك القانونية بإيجاز. جميع المعلومات المقدمة سرية تماماً..."></textarea></div>
+            <div class="form-consent">
+              <input type="checkbox" id="consent">
+              <label for="consent" data-ar="أؤكد دقة المعلومات المقدمة وأوافق على التواصل من قِبَل مكتب المطرود للمحاماة، مع إدراكي أن جميع المراسلات تخضع للسرية المهنية المطلقة." data-en="I confirm that the information provided is accurate and I agree to be contacted by Al Matrood Law Firm. I understand all communications are strictly confidential.">أؤكد دقة المعلومات المقدمة وأوافق على التواصل من قِبَل مكتب المطرود للمحاماة، مع إدراكي أن جميع المراسلات تخضع للسرية المهنية المطلقة.</label>
+            </div>
+            <button class="form-submit" onclick="submitForm()" data-ar="إرسال طلب الاستشارة" data-en="Submit Consultation Request">إرسال طلب الاستشارة</button>
+            <p class="form-note" data-ar="🔒 معلوماتك محمية ولن تُشارك مع أي طرف ثالث" data-en="🔒 Your information is protected and never shared with third parties">🔒 معلوماتك محمية ولن تُشارك مع أي طرف ثالث</p>
+          </div>
+
+          <div class="form-success" id="success-msg">
+            <div class="success-icon">✅</div>
+            <div class="success-title" data-ar="تم استلام طلبك!" data-en="Request Received!">تم استلام طلبك!</div>
+            <p class="success-text" data-ar="شكراً لتواصلك مع مكتب المطرود للمحاماة. سيتواصل معك أحد أعضاء فريقنا خلال ٢٤ ساعة لتحديد موعد استشارتك المجانية.<br><br>للأمور العاجلة، يرجى الاتصال مباشرةً على <strong style='color:var(--gold)'>+966 11 XXX XXXX</strong>" data-en="Thank you for reaching out to Al Matrood Law Firm. A member of our team will contact you within 24 hours to schedule your free consultation.<br><br>For urgent matters, please call us directly at <strong style='color:var(--gold)'>+966 11 XXX XXXX</strong>">شكراً لتواصلك مع مكتب المطرود للمحاماة. سيتواصل معك أحد أعضاء فريقنا خلال ٢٤ ساعة لتحديد موعد استشارتك المجانية.<br><br>للأمور العاجلة، يرجى الاتصال مباشرةً على <strong style="color:var(--gold)">+966 11 XXX XXXX</strong></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div id="map-sec">
+  <div class="map-ph">
+    <div class="map-grid-bg"></div>
+    <div class="map-ring"></div>
+    <div class="map-dot"></div>
+    <div class="map-label">
+      <div class="map-title" data-ar="مكتب المطرود للمحاماة" data-en="Al Matrood Law Firm">مكتب المطرود للمحاماة</div>
+      <div class="map-addr" data-ar="طريق الملك فهد، حي العليا، الرياض" data-en="King Fahd Road, Al Olaya, Riyadh">طريق الملك فهد، حي العليا، الرياض</div>
+      <div class="map-note" data-ar="📍 استبدل هذا المقطع بخريطة جوجل المضمّنة مع إحداثياتك الدقيقة" data-en="📍 Replace with Google Maps embed using your exact coordinates">📍 استبدل هذا المقطع بخريطة جوجل المضمّنة مع إحداثياتك الدقيقة</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="الأسئلة الشائعة" data-en="Common Questions">الأسئلة الشائعة</span></div>
+    <h2 class="section-title reveal" data-ar="أسئلة <em>متكررة</em>" data-en="Frequently Asked <em>Questions</em>">أسئلة <em>متكررة</em></h2>
+    <div class="faq-grid">
+      <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text" data-ar="هل الاستشارة الأولى مجانية فعلاً؟" data-en="Is the initial consultation really free?">هل الاستشارة الأولى مجانية فعلاً؟</span><span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner" data-ar="نعم بالتأكيد. استشارتك الأولى مع أحد محامينا مجانية تماماً ولا تُلزمك بأي شيء. نؤمن أن لكل شخص الحق في الحصول على توجيه قانوني أولي دون حواجز مالية." data-en="Yes, absolutely. Your first consultation with one of our attorneys is completely free and carries no obligation. We believe everyone deserves initial legal guidance without financial barriers.">نعم بالتأكيد. استشارتك الأولى مع أحد محامينا مجانية تماماً ولا تُلزمك بأي شيء. نؤمن أن لكل شخص الحق في الحصول على توجيه قانوني أولي دون حواجز مالية.</div></div></div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text" data-ar="كم من الوقت يستغرق الحصول على موعد؟" data-en="How quickly can I get an appointment?">كم من الوقت يستغرق الحصول على موعد؟</span><span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner" data-ar="للاستشارات المعتادة، نحجز موعداً في غضون ٢-٣ أيام عمل. للأمور العاجلة — لا سيما الدفاع الجنائي — يمكننا غالباً ترتيب استشارة في نفس اليوم. اتصل بنا مباشرةً للطوارئ." data-en="For standard consultations, we typically schedule within 2–3 business days. For urgent matters — particularly criminal defense — we can often arrange a same-day consultation. Call us directly for emergencies.">للاستشارات المعتادة، نحجز موعداً في غضون ٢-٣ أيام عمل. للأمور العاجلة — لا سيما الدفاع الجنائي — يمكننا غالباً ترتيب استشارة في نفس اليوم. اتصل بنا مباشرةً للطوارئ.</div></div></div>
+      <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text" data-ar="هل ما أشاركه سيبقى سرياً؟" data-en="Is everything I share kept confidential?">هل ما أشاركه سيبقى سرياً؟</span><span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner" data-ar="نعم. جميع الاتصالات بينك وبين مكتب المطرود محمية بالسرية المهنية المطلقة. لن يُكشف عن أي شيء تشاركه معنا دون موافقتك الصريحة." data-en="Yes. All communications between you and Al Matrood Law Firm are protected by attorney-client privilege and strict professional confidentiality. Nothing you share will ever be disclosed without your consent.">نعم. جميع الاتصالات بينك وبين مكتب المطرود محمية بالسرية المهنية المطلقة. لن يُكشف عن أي شيء تشاركه معنا دون موافقتك الصريحة.</div></div></div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text" data-ar="هل تقدمون الاستشارات باللغة الإنجليزية؟" data-en="Do you offer consultations in English?">هل تقدمون الاستشارات باللغة الإنجليزية؟</span><span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner" data-ar="نعم. نحن ثنائيو اللغة بالكامل عربياً وإنجليزياً. يمكن إجراء جميع الاستشارات والوثائق والمراسلات بالإنجليزية بالكامل لعملائنا الدوليين." data-en="Yes. We are fully bilingual in Arabic and English. All consultations, documents, and correspondence can be conducted entirely in English for our international clients.">نعم. نحن ثنائيو اللغة بالكامل عربياً وإنجليزياً. يمكن إجراء جميع الاستشارات والوثائق والمراسلات بالإنجليزية بالكامل لعملائنا الدوليين.</div></div></div>
+      <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text" data-ar="هل أستطيع الاستشارة عبر الهاتف أو الفيديو؟" data-en="Can I consult by phone or video call?">هل أستطيع الاستشارة عبر الهاتف أو الفيديو؟</span><span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner" data-ar="بالطبع. نقدم استشارات عبر الهاتف ومكالمات الفيديو الآمنة للعملاء الذين لا يستطيعون زيارة مكتبنا في الرياض، بما في ذلك العملاء خارج المملكة." data-en="Absolutely. We offer consultations by phone and secure video call for clients who cannot visit our Riyadh office, including clients based outside Saudi Arabia.">بالطبع. نقدم استشارات عبر الهاتف ومكالمات الفيديو الآمنة للعملاء الذين لا يستطيعون زيارة مكتبنا في الرياض، بما في ذلك العملاء خارج المملكة.</div></div></div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text" data-ar="كيف تحسبون أتعابكم؟" data-en="How do you charge for your services?">كيف تحسبون أتعابكم؟</span><span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner" data-ar="تتنوع هياكل أتعابنا حسب طبيعة القضية: أتعاب ثابتة للمشاريع المحددة، ساعية للعمل الاستشاري المعقد، واحتجازية شهرية للعملاء المؤسسيين. يُتفق على جميع الأتعاب مسبقاً بشفافية كاملة." data-en="Our fee structures vary by matter type: fixed fees for defined projects, hourly rates for complex advisory work, and monthly retainers for ongoing corporate clients. All fees are agreed upfront with full transparency.">تتنوع هياكل أتعابنا حسب طبيعة القضية: أتعاب ثابتة للمشاريع المحددة، ساعية للعمل الاستشاري المعقد، واحتجازية شهرية للعملاء المؤسسيين. يُتفق على جميع الأتعاب مسبقاً بشفافية كاملة.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark" data-ar="م" data-en="M">م</div>
+          <div><div style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold);" data-ar="مكتب المطرود للمحاماة" data-en="AL MATROOD LAW FIRM">مكتب المطرود للمحاماة</div></div>
+        </a>
+        <p data-ar="شريككم القانوني الموثوق في المملكة العربية السعودية. نُقدّم العدالة بنزاهة ودقة وتفانٍ." data-en="A trusted legal partner in the Kingdom of Saudi Arabia. Delivering justice with integrity, precision, and dedication.">شريككم القانوني الموثوق في المملكة العربية السعودية. نُقدّم العدالة بنزاهة ودقة وتفانٍ.</p>
+      </div>
+      <div><div class="footer-heading" data-ar="خدماتنا" data-en="Services">خدماتنا</div><ul class="footer-links"><li><a href="services.html" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</a></li><li><a href="services.html" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</a></li><li><a href="services.html" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</a></li><li><a href="services.html" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</a></li></ul></div>
+      <div><div class="footer-heading" data-ar="المكتب" data-en="The Firm">المكتب</div><ul class="footer-links"><li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Choose Us">لماذا نحن</a></li><li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li><li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li></ul></div>
+      <div><div class="footer-heading" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</div><ul class="footer-links"><li><a href="contact.html" data-ar="احجز استشارة" data-en="Book Consultation">احجز استشارة</a></li><li><a href="mailto:info@almatroodlaw.sa">info@almatroodlaw.sa</a></li><li><a href="#">+966 11 XXX XXXX</a></li><li><a href="#" data-ar="الرياض، المملكة العربية السعودية" data-en="Riyadh, Saudi Arabia">الرياض، المملكة العربية السعودية</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-ar="© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة. | مُرخّص من وزارة العدل" data-en="© 2025 Al Matrood Law Firm. All rights reserved. | Licensed by the Saudi Ministry of Justice">© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة. | مُرخّص من وزارة العدل</div>
+      <div class="footer-dual">AL MATROOD LAW FIRM — مكتب المطرود للمحاماة</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const LANG_KEY='almatrood_lang';
+function setLang(lang){localStorage.setItem(LANG_KEY,lang);applyLang(lang);}
+function applyLang(lang){
+  const html=document.documentElement;
+  html.setAttribute('lang',lang);
+  html.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-ar][data-en]').forEach(el=>{const t=el.getAttribute('data-'+lang);if(t!==null)el.innerHTML=t;});
+  document.querySelectorAll('[data-ar-placeholder]').forEach(el=>{el.placeholder=el.getAttribute('data-'+lang+'-placeholder')||'';});
+  document.querySelectorAll('select option[data-ar]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang)||'';});
+  document.querySelectorAll('.lang-btn').forEach(btn=>{btn.classList.toggle('active',btn.getAttribute('onclick').includes("'"+lang+"'"));});
+  document.title=lang==='ar'?'تواصل معنا | مكتب المطرود للمحاماة':'Contact | Al Matrood Law Firm';
+}
+(function(){const s=localStorage.getItem(LANG_KEY)||'ar';applyLang(s);})();
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function submitForm(){
+  const lang=document.documentElement.getAttribute('lang')||'ar';
+  const fname=document.getElementById('fname').value;
+  const lname=document.getElementById('lname').value;
+  const email=document.getElementById('email').value;
+  const phone=document.getElementById('phone').value;
+  const practice=document.getElementById('practice').value;
+  const message=document.getElementById('message').value;
+  const consent=document.getElementById('consent').checked;
+  if(!fname||!lname||!email||!phone||!practice||!message){
+    alert(lang==='ar'?'يرجى تعبئة جميع الحقول الإلزامية المشار إليها بـ *':'Please fill in all required fields marked with *');return;
+  }
+  if(!consent){
+    alert(lang==='ar'?'يرجى تأكيد موافقتك للمتابعة.':'Please confirm your consent to proceed.');return;
+  }
+  document.getElementById('the-form').style.display='none';
+  const s=document.getElementById('success-msg');
+  s.style.display='block';
+  applyLang(lang);
+}
+function toggleFaq(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+</script>
+</body>
+</html>

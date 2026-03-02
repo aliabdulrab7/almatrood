@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مكتب المطرود للمحاماة | التميز القانوني في المملكة العربية السعودية</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:#C9A96E; --gold-light:#E8D5A3; --gold-dark:#9A7A45;
+    --navy:#0A1628; --navy-mid:#122040; --navy-light:#1A2F55;
+    --cream:#F8F4EE; --text-light:#A8B4C8;
+    --font-body:'Tajawal',sans-serif;
+    --font-display:'Amiri',serif;
+  }
+  [lang="en"] { --font-body:'Montserrat',sans-serif; --font-display:'Playfair Display',serif; }
+
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);background:var(--navy);color:var(--cream);overflow-x:hidden;transition:font-family 0.2s;}
+
+  /* LANG TOGGLE */
+  .lang-toggle{display:flex;align-items:center;gap:0;border:1px solid rgba(201,169,110,0.4);overflow:hidden;}
+  .lang-btn{padding:0.4rem 0.85rem;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;cursor:pointer;background:transparent;border:none;color:var(--text-light);font-family:var(--font-body);transition:all 0.2s;}
+  .lang-btn.active{background:var(--gold);color:var(--navy);}
+  .lang-btn:not(.active):hover{color:var(--gold);}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease;}
+  nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(10px);padding:1rem 4rem;border-bottom:1px solid rgba(201,169,110,0.2);}
+  .nav-logo{font-family:var(--font-display);font-size:1.3rem;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:0.75rem;}
+  .logo-mark{width:40px;height:40px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;position:relative;flex-shrink:0;}
+  .logo-mark::before{content:'';position:absolute;inset:3px;border:1px solid rgba(201,169,110,0.3);}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--cream);text-decoration:none;font-size:0.75rem;font-weight:500;letter-spacing:0.05em;transition:color 0.3s;position:relative;}
+  [lang="en"] .nav-links a{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s ease;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-right{display:flex;align-items:center;gap:1.25rem;}
+  .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:0.6rem 1.4rem;font-family:var(--font-body);font-size:0.75rem;letter-spacing:0.05em;cursor:pointer;transition:all 0.3s ease;text-decoration:none;white-space:nowrap;}
+  .nav-cta:hover{background:var(--gold);color:var(--navy);}
+
+  /* PRELOADER */
+  #preloader{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.6s ease,visibility 0.6s ease;}
+  #preloader.hidden{opacity:0;visibility:hidden;}
+  .preloader-emblem{font-family:'Amiri',serif;font-size:2rem;color:var(--gold);letter-spacing:0.2em;animation:pulse 1.5s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+  /* HERO */
+  #hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,169,110,0.06) 0%,transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 50%,var(--navy) 100%);}
+  [lang="en"] .hero-bg{background:radial-gradient(ellipse at 70% 50%,rgba(201,169,110,0.06) 0%,transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 50%,var(--navy) 100%);}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:60px 60px;}
+  .hero-ornament{position:absolute;left:-100px;top:50%;transform:translateY(-50%);width:700px;height:700px;border:1px solid rgba(201,169,110,0.08);border-radius:50%;animation:rotate 60s linear infinite;}
+  [lang="en"] .hero-ornament{left:auto;right:-100px;}
+  .hero-ornament::before{content:'';position:absolute;inset:40px;border:1px solid rgba(201,169,110,0.05);border-radius:50%;}
+  .hero-ornament::after{content:'';position:absolute;inset:80px;border:1px solid rgba(201,169,110,0.08);border-radius:50%;}
+  @keyframes rotate{from{transform:translateY(-50%) rotate(0deg)}to{transform:translateY(-50%) rotate(360deg)}}
+  .hero-content{position:relative;max-width:1400px;margin:0 auto;padding:0 4rem;padding-top:8rem;opacity:0;transform:translateY(30px);animation:fadeUp 1s ease 0.8s forwards;}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+  .hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+  [dir="rtl"] .hero-eyebrow{flex-direction:row-reverse;justify-content:flex-end;}
+  .eyebrow-line{width:60px;height:1px;background:var(--gold);opacity:0.6;}
+  .eyebrow-text{font-size:0.75rem;letter-spacing:0.15em;color:var(--gold);font-weight:500;}
+  [lang="en"] .eyebrow-text{font-size:0.65rem;letter-spacing:0.4em;text-transform:uppercase;}
+  .hero-title{font-family:var(--font-display);font-size:clamp(3rem,7vw,6.5rem);font-weight:700;line-height:1.1;color:var(--cream);margin-bottom:0.25rem;}
+  .hero-title .accent{color:var(--gold);}
+  .hero-title .subtitle-line{display:block;font-style:italic;font-weight:400;font-size:0.5em;color:var(--text-light);margin-top:0.5rem;}
+  .hero-body{max-width:560px;margin:2.5rem 0;font-size:1rem;line-height:1.9;color:var(--text-light);font-weight:300;}
+  .hero-actions{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--gold);color:var(--navy);padding:1rem 2.5rem;font-family:var(--font-body);font-size:0.85rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.3s ease;}
+  [lang="en"] .btn-primary{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;}
+  .btn-primary:hover{background:var(--gold-light);}
+  .btn-secondary{color:var(--cream);text-decoration:none;font-size:0.8rem;display:flex;align-items:center;gap:0.75rem;transition:color 0.3s;}
+  .btn-secondary:hover{color:var(--gold);}
+  .btn-secondary span{width:40px;height:1px;background:currentColor;transition:width 0.3s;}
+  .btn-secondary:hover span{width:60px;}
+  .hero-stats{display:flex;gap:3rem;margin-top:5rem;padding-top:3rem;border-top:1px solid rgba(201,169,110,0.15);}
+  .stat-number{font-family:var(--font-display);font-size:2.5rem;color:var(--gold);font-weight:700;line-height:1;}
+  .stat-label{font-size:0.75rem;color:var(--text-light);margin-top:0.4rem;}
+  [lang="en"] .stat-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;}
+
+  /* MARQUEE */
+  .marquee-section{border-top:1px solid rgba(201,169,110,0.15);border-bottom:1px solid rgba(201,169,110,0.15);padding:1rem 0;overflow:hidden;background:rgba(201,169,110,0.03);}
+  .marquee-track{display:flex;animation:marquee 25s linear infinite;white-space:nowrap;}
+  [dir="rtl"] .marquee-track{animation:marquee-rtl 25s linear infinite;}
+  .marquee-item{font-size:0.72rem;letter-spacing:0.2em;color:var(--gold);padding:0 2.5rem;opacity:0.6;}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes marquee-rtl{from{transform:translateX(0)}to{transform:translateX(50%)}}
+
+  /* SECTIONS COMMON */
+  section{padding:8rem 0;}
+  .container{max-width:1400px;margin:0 auto;padding:0 4rem;}
+  .section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+  .section-label-line{width:40px;height:1px;background:var(--gold);}
+  .section-label-text{font-size:0.72rem;letter-spacing:0.1em;color:var(--gold);}
+  [lang="en"] .section-label-text{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;}
+  .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:600;line-height:1.15;color:var(--cream);margin-bottom:1.5rem;}
+  .section-title em{font-style:italic;color:var(--gold);}
+  .reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}.reveal-delay-3{transition-delay:0.3s;}.reveal-delay-4{transition-delay:0.4s;}
+
+  /* ABOUT */
+  #about{background:var(--navy-mid);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+  .about-frame{aspect-ratio:3/4;background:linear-gradient(135deg,var(--navy-light),var(--navy));border:1px solid rgba(201,169,110,0.2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .about-frame-inner{position:absolute;inset:20px;border:1px solid rgba(201,169,110,0.1);display:flex;align-items:center;justify-content:center;}
+  .about-emblem{font-family:'Amiri',serif;font-size:7rem;color:rgba(201,169,110,0.07);font-weight:700;}
+  .about-badge{position:absolute;bottom:-20px;left:-20px;width:140px;height:140px;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);}
+  [lang="en"] .about-badge{left:auto;right:-20px;}
+  .badge-year{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1;}
+  .badge-text{font-size:0.6rem;text-align:center;margin-top:0.3rem;font-family:var(--font-body);}
+  .about-corner{position:absolute;top:-15px;right:-15px;width:60px;height:60px;border-top:2px solid var(--gold);border-right:2px solid var(--gold);}
+  [lang="en"] .about-corner{right:auto;left:-15px;border-right:none;border-left:2px solid var(--gold);}
+  .about-text p{font-size:0.95rem;line-height:2;color:var(--text-light);margin-bottom:1.5rem;font-weight:300;}
+  .about-text p strong{color:var(--cream);font-weight:500;}
+  .about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;}
+  .pillar{padding:1.5rem;border:1px solid rgba(201,169,110,0.15);background:rgba(201,169,110,0.02);transition:border-color 0.3s;}
+  .pillar:hover{border-color:rgba(201,169,110,0.4);}
+  .pillar-icon{font-size:1.4rem;margin-bottom:0.75rem;}
+  .pillar-name{font-size:0.78rem;color:var(--gold);margin-bottom:0.4rem;font-weight:600;}
+  .pillar-desc{font-size:0.78rem;color:var(--text-light);line-height:1.7;}
+
+  /* PRACTICE */
+  #practice{background:var(--navy);}
+  .practice-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end;}
+  .practice-intro{font-size:0.95rem;color:var(--text-light);line-height:1.9;font-weight:300;}
+  .practice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(201,169,110,0.1);}
+  .practice-card{background:var(--navy);padding:3rem;position:relative;cursor:pointer;transition:all 0.4s ease;overflow:hidden;}
+  .practice-card::before{content:'';position:absolute;bottom:0;right:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform 0.4s ease;}
+  [lang="en"] .practice-card::before{transform-origin:left;}
+  .practice-card:hover{background:var(--navy-light);}
+  .practice-card:hover::before{transform:scaleX(1);}
+  .practice-num{font-family:var(--font-display);font-size:4rem;color:rgba(201,169,110,0.08);font-weight:900;position:absolute;top:1.5rem;left:2rem;line-height:1;}
+  [lang="en"] .practice-num{left:auto;right:2rem;}
+  .practice-icon{width:50px;height:50px;border:1px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.5rem;transition:all 0.3s;}
+  .practice-card:hover .practice-icon{border-color:var(--gold);background:rgba(201,169,110,0.08);}
+  .practice-name{font-family:var(--font-display);font-size:1.4rem;margin-bottom:1rem;color:var(--cream);}
+  .practice-desc{font-size:0.85rem;color:var(--text-light);line-height:1.9;font-weight:300;}
+  .practice-link{display:flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-size:0.72rem;color:var(--gold);text-decoration:none;opacity:0;transform:translateX(10px);transition:all 0.3s ease;}
+  [lang="en"] .practice-link{transform:translateX(-10px);}
+  .practice-card:hover .practice-link{opacity:1;transform:translateX(0);}
+  .practice-link span{width:30px;height:1px;background:var(--gold);}
+
+  /* WHY */
+  #why{background:var(--cream);color:var(--navy);}
+  #why .section-title{color:var(--navy);}
+  #why .section-label-line{background:var(--navy-mid);}
+  #why .section-label-text{color:var(--navy-mid);}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:4rem;border:1px solid rgba(10,22,40,0.1);}
+  .why-item{padding:3rem;border-left:1px solid rgba(10,22,40,0.1);border-bottom:1px solid rgba(10,22,40,0.1);transition:background 0.3s;}
+  [dir="rtl"] .why-item{border-left:none;border-right:1px solid rgba(10,22,40,0.1);}
+  .why-item:nth-child(3n){border-left:none;}
+  [dir="rtl"] .why-item:nth-child(3n){border-right:none;}
+  .why-item:hover{background:rgba(10,22,40,0.03);}
+  .why-number{font-family:var(--font-display);font-size:3rem;color:var(--gold);font-weight:700;line-height:1;margin-bottom:1rem;}
+  .why-title{font-family:var(--font-display);font-size:1.1rem;color:var(--navy);margin-bottom:0.75rem;}
+  .why-desc{font-size:0.82rem;color:rgba(10,22,40,0.6);line-height:1.9;}
+
+  /* TEAM */
+  #team{background:var(--navy-mid);}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+  .team-card{cursor:pointer;}
+  .team-img{aspect-ratio:3/4;background:linear-gradient(135deg,var(--navy-light),var(--navy));border:1px solid rgba(201,169,110,0.15);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s;}
+  .team-card:hover .team-img{border-color:rgba(201,169,110,0.4);}
+  .team-initials{font-family:var(--font-display);font-size:4rem;color:rgba(201,169,110,0.15);font-weight:700;}
+  .team-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,0.92) 0%,transparent 60%);opacity:0;transition:opacity 0.4s;display:flex;align-items:flex-end;padding:2rem;}
+  .team-card:hover .team-overlay{opacity:1;}
+  .team-bio{font-size:0.78rem;color:var(--cream);line-height:1.7;}
+  .team-info{margin-top:1.25rem;}
+  .team-name{font-family:var(--font-display);font-size:1.1rem;color:var(--cream);}
+  .team-role{font-size:0.72rem;color:var(--gold);margin-top:0.25rem;}
+
+  /* TESTIMONIALS */
+  #testimonials{background:var(--navy);}
+  .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+  .testimonial-card{padding:2.5rem;border:1px solid rgba(201,169,110,0.12);background:rgba(201,169,110,0.02);transition:border-color 0.3s;}
+  .testimonial-card:hover{border-color:rgba(201,169,110,0.3);}
+  .quote-mark{font-family:'Amiri',serif;font-size:5rem;color:rgba(201,169,110,0.12);line-height:0.5;margin-bottom:1.5rem;display:block;}
+  .testimonial-text{font-family:var(--font-display);font-size:1.05rem;color:var(--cream);line-height:1.9;font-style:italic;margin-bottom:1.5rem;}
+  .testimonial-author{display:flex;align-items:center;gap:1rem;border-top:1px solid rgba(201,169,110,0.1);padding-top:1.25rem;}
+  .author-avatar{width:40px;height:40px;background:rgba(201,169,110,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.9rem;color:var(--gold);}
+  .author-name{font-size:0.82rem;color:var(--cream);font-weight:500;}
+  .author-title{font-size:0.68rem;color:var(--text-light);}
+
+  /* CONTACT */
+  #contact{background:var(--navy-mid);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;margin-top:4rem;}
+  .contact-info-item{display:flex;gap:1.5rem;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+  .contact-info-item:last-child{border-bottom:none;}
+  .contact-icon{width:45px;height:45px;border:1px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--gold);}
+  .contact-info-label{font-size:0.65rem;color:var(--gold);margin-bottom:0.4rem;}
+  .contact-info-value{font-size:0.9rem;color:var(--cream);line-height:1.6;}
+  .contact-form{display:flex;flex-direction:column;gap:1.5rem;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .form-group{display:flex;flex-direction:column;}
+  .form-label{font-size:0.65rem;color:var(--gold);margin-bottom:0.6rem;}
+  .form-input,.form-select,.form-textarea{background:rgba(201,169,110,0.04);border:1px solid rgba(201,169,110,0.2);color:var(--cream);padding:0.9rem 1.2rem;font-family:var(--font-body);font-size:0.85rem;transition:border-color 0.3s;outline:none;width:100%;text-align:inherit;}
+  .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);}
+  .form-select{cursor:pointer;} .form-select option{background:var(--navy);}
+  .form-textarea{resize:vertical;min-height:120px;}
+  .form-submit{background:var(--gold);color:var(--navy);border:none;padding:1rem 2.5rem;font-family:var(--font-body);font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.3s;align-self:flex-start;}
+  .form-submit:hover{background:var(--gold-light);}
+
+  /* FOOTER */
+  footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);padding:4rem 0 2rem;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+  .footer-brand p{font-size:0.85rem;color:var(--text-light);line-height:1.9;margin-top:1rem;max-width:280px;font-weight:300;}
+  .footer-heading{font-size:0.72rem;color:var(--gold);margin-bottom:1.5rem;font-weight:600;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.75rem;}
+  .footer-links a{color:var(--text-light);text-decoration:none;font-size:0.82rem;transition:color 0.3s;}
+  .footer-links a:hover{color:var(--cream);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:0.72rem;color:var(--text-light);opacity:0.6;}
+  .footer-dual{font-size:0.72rem;color:var(--gold);opacity:0.6;}
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator{position:absolute;bottom:3rem;right:4rem;display:flex;align-items:center;gap:1rem;color:var(--text-light);font-size:0.65rem;}
+  [lang="en"] .scroll-indicator{right:auto;left:4rem;}
+  .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollLine 2s ease-in-out infinite;}
+  @keyframes scrollLine{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;} nav.scrolled{padding:0.8rem 1.5rem;}
+    .nav-links,.nav-cta{display:none;}
+    .container{padding:0 1.5rem;}
+    .hero-content{padding:0 1.5rem;padding-top:7rem;}
+    .hero-stats{gap:1.5rem;flex-wrap:wrap;}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem;}
+    .practice-grid,.practice-header{grid-template-columns:1fr;}
+    .team-grid,.testimonials-grid{grid-template-columns:1fr 1fr;}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .hero-ornament{display:none;}
+    section{padding:5rem 0;}
+  }
+</style>
+</head>
+<body>
+
+<div id="preloader"><div class="preloader-emblem">مكتب المطرود</div></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">م</div>
+    <div>
+      <div style="font-size:0.9rem;" data-ar="مكتب المطرود" data-en="AL MATROOD">مكتب المطرود</div>
+      <div style="font-size:0.6rem;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;" data-ar="للمحاماة والاستشارات القانونية" data-en="LAW FIRM">للمحاماة والاستشارات القانونية</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
+    <li><a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+    <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
+    <li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
+    <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+    <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="contact.html" class="nav-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text" data-ar="مكتب قانوني متخصص — الرياض، المملكة العربية السعودية" data-en="Established in Riyadh, Saudi Arabia">مكتب قانوني متخصص — الرياض، المملكة العربية السعودية</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="accent" data-ar="العدالة." data-en="Justice.">العدالة.</span>
+      <span data-ar=" النزاهة. التميّز." data-en=" Integrity. Excellence."> النزاهة. التميّز.</span>
+      <span class="subtitle-line" data-ar="شريككم القانوني الموثوق في المملكة" data-en="Your Trusted Legal Partner in the Kingdom">شريككم القانوني الموثوق في المملكة</span>
+    </h1>
+    <p class="hero-body" data-ar="يجمع مكتب المطرود للمحاماة خبرات قانونية واسعة تمتد لعقود، نضعها في خدمة كل موكّل. نقدّم حلولاً قانونية شاملة في مجالات قانون الشركات، الأسرة، الدفاع الجنائي، وقضايا التعويضات — بمهنية عالية وحرص على تحقيق النتائج." data-en="Al Matrood Law Firm brings decades of combined legal expertise to every case. We provide comprehensive legal solutions across Corporate, Family, Criminal Defense, and Personal Injury law — delivering results with precision and care.">يجمع مكتب المطرود للمحاماة خبرات قانونية واسعة تمتد لعقود، نضعها في خدمة كل موكّل. نقدّم حلولاً قانونية شاملة في مجالات قانون الشركات، الأسرة، الدفاع الجنائي، وقضايا التعويضات — بمهنية عالية وحرص على تحقيق النتائج.</p>
+    <div class="hero-actions">
+      <a href="contact.html" class="btn-primary" data-ar="احجز استشارتك المجانية" data-en="Book a Consultation">احجز استشارتك المجانية</a>
+      <a href="services.html" class="btn-secondary"><span></span><span data-ar="خدماتنا القانونية" data-en="Our Practice Areas">خدماتنا القانونية</span></a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-number">+500</div><div class="stat-label" data-ar="قضية ناجحة" data-en="Cases Won">قضية ناجحة</div></div>
+      <div><div class="stat-number">+20</div><div class="stat-label" data-ar="سنة خبرة" data-en="Years Experience">سنة خبرة</div></div>
+      <div><div class="stat-number">98%</div><div class="stat-label" data-ar="رضا العملاء" data-en="Client Satisfaction">رضا العملاء</div></div>
+      <div><div class="stat-number">4</div><div class="stat-label" data-ar="تخصصات قانونية" data-en="Practice Areas">تخصصات قانونية</div></div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><div class="scroll-line"></div><span data-ar="مرر للأسفل" data-en="Scroll">مرر للأسفل</span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee-track">
+    <span class="marquee-item" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="الاستشارات القانونية" data-en="Legal Consultation">الاستشارات القانونية</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="التقاضي والتحكيم" data-en="Litigation & Arbitration">التقاضي والتحكيم</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="صياغة العقود" data-en="Contract Drafting">صياغة العقود</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="حل النزاعات" data-en="Dispute Resolution">حل النزاعات</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="الاستشارات القانونية" data-en="Legal Consultation">الاستشارات القانونية</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="التقاضي والتحكيم" data-en="Litigation & Arbitration">التقاضي والتحكيم</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="صياغة العقود" data-en="Contract Drafting">صياغة العقود</span><span class="marquee-item">◆</span>
+    <span class="marquee-item" data-ar="حل النزاعات" data-en="Dispute Resolution">حل النزاعات</span><span class="marquee-item">◆</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-corner"></div>
+        <div class="about-frame">
+          <div class="about-frame-inner"><div class="about-emblem">م</div></div>
+        </div>
+        <div class="about-badge">
+          <div class="badge-year">+20</div>
+          <div class="badge-text" data-ar="عاماً من التميز القانوني" data-en="Years of Legal Excellence">عاماً من التميز القانوني</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="نبذة عن المكتب" data-en="About the Firm">نبذة عن المكتب</span></div>
+        <h2 class="section-title reveal" data-ar="نُدافع عن الحقوق. <em>نُحقق العدالة.</em>" data-en="Defending Rights. <em>Delivering Justice.</em>">نُدافع عن الحقوق. <em>نُحقق العدالة.</em></h2>
+        <p class="reveal reveal-delay-1" data-ar="<strong>مكتب المطرود للمحاماة</strong> من أبرز المكاتب القانونية المتخصصة في المملكة العربية السعودية، ومقره الرياض. مُرخّص من وزارة العدل وهيئة المحامين السعوديين، ويجمع بين العمق في القانون السعودي والفهم الواسع لقانون الأعمال الدولي." data-en="<strong>Al Matrood Law Firm</strong> is one of Saudi Arabia's distinguished legal practices, headquartered in Riyadh. Licensed by the Saudi Ministry of Justice and the Saudi Bar Association, our firm combines deep knowledge of Saudi legal frameworks with an understanding of international business law."><strong>مكتب المطرود للمحاماة</strong> من أبرز المكاتب القانونية المتخصصة في المملكة العربية السعودية، ومقره الرياض. مُرخّص من وزارة العدل وهيئة المحامين السعوديين، ويجمع بين العمق في القانون السعودي والفهم الواسع لقانون الأعمال الدولي.</p>
+        <p class="reveal reveal-delay-2" data-ar="نُمثّل الأفراد والشركات والمؤسسات في طيف واسع من القضايا القانونية، يقودنا دائماً مبدأ <strong>النزاهة والاحترافية وتحقيق النتائج</strong>. محامونا ليسوا مجرد مستشارين — بل شركاء استراتيجيون ملتزمون بنجاحكم." data-en="We represent individuals, corporations, and institutions across a wide spectrum of legal matters — always guided by the principles of <strong>integrity, professionalism, and results</strong>. Our attorneys are not just legal advisors; they are strategic partners committed to your success.">نُمثّل الأفراد والشركات والمؤسسات في طيف واسع من القضايا القانونية، يقودنا دائماً مبدأ <strong>النزاهة والاحترافية وتحقيق النتائج</strong>. محامونا ليسوا مجرد مستشارين — بل شركاء استراتيجيون ملتزمون بنجاحكم.</p>
+        <div class="about-pillars">
+          <div class="pillar reveal reveal-delay-1"><div class="pillar-icon">⚖️</div><div class="pillar-name" data-ar="النزاهة" data-en="Integrity">النزاهة</div><div class="pillar-desc" data-ar="أعلى المعايير الأخلاقية في كل قضية" data-en="Upholding the highest ethical standards">أعلى المعايير الأخلاقية في كل قضية</div></div>
+          <div class="pillar reveal reveal-delay-2"><div class="pillar-icon">🎯</div><div class="pillar-name" data-ar="الدقة" data-en="Precision">الدقة</div><div class="pillar-desc" data-ar="اهتمام استثنائي بتفاصيل الاستراتيجية القانونية" data-en="Meticulous attention to legal strategy">اهتمام استثنائي بتفاصيل الاستراتيجية القانونية</div></div>
+          <div class="pillar reveal reveal-delay-3"><div class="pillar-icon">🤝</div><div class="pillar-name" data-ar="الشراكة" data-en="Partnership">الشراكة</div><div class="pillar-desc" data-ar="علاقات موثوقة وطويلة الأمد مع عملائنا" data-en="Building lasting relationships with clients">علاقات موثوقة وطويلة الأمد مع عملائنا</div></div>
+          <div class="pillar reveal reveal-delay-4"><div class="pillar-icon">🌍</div><div class="pillar-name" data-ar="الخبرة" data-en="Expertise">الخبرة</div><div class="pillar-desc" data-ar="إلمام عميق بالقانون السعودي والدولي" data-en="Deep knowledge of Saudi and international law">إلمام عميق بالقانون السعودي والدولي</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section id="practice">
+  <div class="container">
+    <div class="practice-header">
+      <div>
+        <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="ما نقدمه" data-en="What We Do">ما نقدمه</span></div>
+        <h2 class="section-title reveal" data-ar="مجالات <em>تخصصنا</em>" data-en="Our Practice <em>Areas</em>">مجالات <em>تخصصنا</em></h2>
+      </div>
+      <p class="practice-intro reveal" data-ar="من حماية مصالح شركتك إلى الدفاع عن حقوقك الشخصية، يقدم مكتب المطرود تغطية قانونية شاملة في أربعة مجالات تخصصية، يتولى كل منها محامون متخصصون ذوو سجلات حافلة بالإنجازات." data-en="From protecting your business interests to defending your personal rights, Al Matrood Law Firm offers comprehensive legal coverage across four core practice areas, each handled by specialized attorneys with proven track records.">من حماية مصالح شركتك إلى الدفاع عن حقوقك الشخصية، يقدم مكتب المطرود تغطية قانونية شاملة في أربعة مجالات تخصصية، يتولى كل منها محامون متخصصون ذوو سجلات حافلة بالإنجازات.</p>
+    </div>
+    <div class="practice-grid reveal">
+      <div class="practice-card">
+        <div class="practice-num">٠١</div>
+        <div class="practice-icon">🏢</div>
+        <h3 class="practice-name" data-ar="قانون الأعمال والشركات" data-en="Business & Corporate Law">قانون الأعمال والشركات</h3>
+        <p class="practice-desc" data-ar="دعم قانوني شامل للمنشآت التجارية في جميع مراحلها — من تأسيس الشركات وصياغة العقود إلى عمليات الاندماج والاستحواذ والامتثال التنظيمي وفق الأنظمة السعودية." data-en="Comprehensive legal support for businesses at every stage — from incorporation and contract drafting to mergers, acquisitions, shareholder disputes, and regulatory compliance under Saudi law.">دعم قانوني شامل للمنشآت التجارية في جميع مراحلها — من تأسيس الشركات وصياغة العقود إلى عمليات الاندماج والاستحواذ والامتثال التنظيمي وفق الأنظمة السعودية.</p>
+        <a href="services.html" class="practice-link"><span></span><span data-ar="اقرأ المزيد" data-en="Learn More">اقرأ المزيد</span></a>
+      </div>
+      <div class="practice-card">
+        <div class="practice-num">٠٢</div>
+        <div class="practice-icon">👨‍👩‍👧</div>
+        <h3 class="practice-name" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</h3>
+        <p class="practice-desc" data-ar="تعامل حساس ومهني مع القضايا الأسرية، شاملاً عقود الزواج، الطلاق، الحضانة، الميراث، والنفقة. نسترشد بأحكام الشريعة الإسلامية والأنظمة السعودية في كل خطوة." data-en="Sensitive, compassionate handling of family legal matters including marriage contracts, divorce, child custody, inheritance, and guardianship. We navigate these personal matters guided by Islamic and Saudi civil law.">تعامل حساس ومهني مع القضايا الأسرية، شاملاً عقود الزواج، الطلاق، الحضانة، الميراث، والنفقة. نسترشد بأحكام الشريعة الإسلامية والأنظمة السعودية في كل خطوة.</p>
+        <a href="services.html" class="practice-link"><span></span><span data-ar="اقرأ المزيد" data-en="Learn More">اقرأ المزيد</span></a>
+      </div>
+      <div class="practice-card">
+        <div class="practice-num">٠٣</div>
+        <div class="practice-icon">🛡️</div>
+        <h3 class="practice-name" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</h3>
+        <p class="practice-desc" data-ar="دفاع قوي وصارم عن حقوق الأشخاص المتهمين أمام المحاكم السعودية. يمتلك فريقنا خبرة واسعة في حماية موكليه من مرحلة التحقيق حتى صدور الحكم النهائي والطعن به." data-en="Vigorous defense for individuals facing criminal charges in Saudi courts. Our experienced criminal defense attorneys provide strategic representation, protecting your rights from investigation through trial and appeal.">دفاع قوي وصارم عن حقوق الأشخاص المتهمين أمام المحاكم السعودية. يمتلك فريقنا خبرة واسعة في حماية موكليه من مرحلة التحقيق حتى صدور الحكم النهائي والطعن به.</p>
+        <a href="services.html" class="practice-link"><span></span><span data-ar="اقرأ المزيد" data-en="Learn More">اقرأ المزيد</span></a>
+      </div>
+      <div class="practice-card">
+        <div class="practice-num">٠٤</div>
+        <div class="practice-icon">⚕️</div>
+        <h3 class="practice-name" data-ar="قضايا التعويضات والإصابات" data-en="Personal Injury">قضايا التعويضات والإصابات</h3>
+        <p class="practice-desc" data-ar="مناصرة جادة لضحايا الحوادث والإهمال الطبي وإصابات العمل. نسعى للحصول على التعويض الكامل الذي تستحقه، ومحاسبة المسؤولين وفق أنظمة المسؤولية المدنية السعودية." data-en="Dedicated advocacy for victims of accidents, medical negligence, and workplace injuries. We fight to secure the compensation you deserve, holding responsible parties accountable under Saudi tort and liability law.">مناصرة جادة لضحايا الحوادث والإهمال الطبي وإصابات العمل. نسعى للحصول على التعويض الكامل الذي تستحقه، ومحاسبة المسؤولين وفق أنظمة المسؤولية المدنية السعودية.</p>
+        <a href="services.html" class="practice-link"><span></span><span data-ar="اقرأ المزيد" data-en="Learn More">اقرأ المزيد</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="لماذا تختارنا" data-en="Why Choose Us">لماذا تختارنا</span></div>
+    <h2 class="section-title reveal" data-ar="ما يميّز <em>مكتب المطرود</em>" data-en="The Al Matrood <em>Difference</em>">ما يميّز <em>مكتب المطرود</em></h2>
+    <div class="why-grid">
+      <div class="why-item reveal"><div class="why-number">٠١</div><div class="why-title" data-ar="مُرخّص من وزارة العدل" data-en="Ministry of Justice Licensed">مُرخّص من وزارة العدل</div><div class="why-desc" data-ar="جميع محامينا مرخّصون من هيئة المحامين السعوديين ووزارة العدل، مما يضمن الامتثال للمعايير المهنية الأعلى في المملكة." data-en="All our attorneys are fully licensed by the Saudi Bar Association and Ministry of Justice, ensuring compliance with all local professional standards.">جميع محامينا مرخّصون من هيئة المحامين السعوديين ووزارة العدل، مما يضمن الامتثال للمعايير المهنية الأعلى في المملكة.</div></div>
+      <div class="why-item reveal reveal-delay-1"><div class="why-number">٠٢</div><div class="why-title" data-ar="ثنائي اللغة: عربي وإنجليزي" data-en="Bilingual Arabic & English">ثنائي اللغة: عربي وإنجليزي</div><div class="why-desc" data-ar="نخدم عملاءنا السعوديين والدوليين باللغتين العربية والإنجليزية بكل طلاقة، لضمان وضوح التواصل في أحرج اللحظات." data-en="We serve both Saudi and international clients with complete fluency in Arabic and English, ensuring clear communication when it matters most.">نخدم عملاءنا السعوديين والدوليين باللغتين العربية والإنجليزية بكل طلاقة، لضمان وضوح التواصل في أحرج اللحظات.</div></div>
+      <div class="why-item reveal reveal-delay-2"><div class="why-number">٠٣</div><div class="why-title" data-ar="سجل حافل بالإنجازات" data-en="Proven Track Record">سجل حافل بالإنجازات</div><div class="why-desc" data-ar="أكثر من 500 قضية ناجحة في مجالاتنا المختلفة، ومعدل رضا يبلغ 98% يعكس التزامنا ونتائجنا." data-en="Over 500 successful cases across our practice areas, with a 98% client satisfaction rate that speaks to our commitment and results.">أكثر من 500 قضية ناجحة في مجالاتنا المختلفة، ومعدل رضا يبلغ 98% يعكس التزامنا ونتائجنا.</div></div>
+      <div class="why-item reveal"><div class="why-number">٠٤</div><div class="why-title" data-ar="نهج استراتيجي" data-en="Strategic Approach">نهج استراتيجي</div><div class="why-desc" data-ar="لا نكتفي بردود الفعل — بل نضع الاستراتيجيات. كل قضية تحظى بخطة قانونية مُصممة خصيصاً لتحقيق أفضل النتائج." data-en="We don't just react — we strategize. Every case receives a tailored legal strategy designed to achieve the optimal outcome.">لا نكتفي بردود الفعل — بل نضع الاستراتيجيات. كل قضية تحظى بخطة قانونية مُصممة خصيصاً لتحقيق أفضل النتائج.</div></div>
+      <div class="why-item reveal reveal-delay-1"><div class="why-number">٠٥</div><div class="why-title" data-ar="سرية تامة" data-en="Strict Confidentiality">سرية تامة</div><div class="why-desc" data-ar="خصوصيتك أولويتنا. جميع الاستشارات وملفات القضايا تُعامَل بأعلى درجات السرية المهنية." data-en="Your privacy is paramount. All consultations and case details are handled with the strictest professional confidentiality.">خصوصيتك أولويتنا. جميع الاستشارات وملفات القضايا تُعامَل بأعلى درجات السرية المهنية.</div></div>
+      <div class="why-item reveal reveal-delay-2"><div class="why-number">٠٦</div><div class="why-title" data-ar="استجابة سريعة" data-en="Responsive Service">استجابة سريعة</div><div class="why-desc" data-ar="المسائل القانونية لا تنتظر. نفخر بسرعة استجابتنا والتزامنا بالتواصل الفعّال، حتى لا تشعر أبداً أنك مجرد رقم في ملف." data-en="Legal matters are time-sensitive. We prioritize prompt communication and swift action so you never feel like just a case number.">المسائل القانونية لا تنتظر. نفخر بسرعة استجابتنا والتزامنا بالتواصل الفعّال، حتى لا تشعر أبداً أنك مجرد رقم في ملف.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="الفريق" data-en="The Team">الفريق</span></div>
+    <h2 class="section-title reveal" data-ar="تعرّف على <em>محامينا</em>" data-en="Meet Our <em>Attorneys</em>">تعرّف على <em>محامينا</em></h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-img"><div class="team-initials">ع.م</div><div class="team-overlay"><p class="team-bio" data-ar="أكثر من 20 عاماً من الخبرة في قانون الشركات والقانون التجاري في المملكة العربية السعودية ومنطقة الخليج." data-en="Over 20 years of experience in corporate and commercial law across Saudi Arabia and the GCC region.">أكثر من 20 عاماً من الخبرة في قانون الشركات والقانون التجاري في المملكة العربية السعودية ومنطقة الخليج.</p></div></div>
+        <div class="team-info"><div class="team-name" data-ar="عبدالله المطرود" data-en="Abdullah Al Matrood">عبدالله المطرود</div><div class="team-role" data-ar="الشريك المؤسس · قانون الشركات" data-en="Managing Partner · Corporate Law">الشريك المؤسس · قانون الشركات</div></div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-img"><div class="team-initials">س.م</div><div class="team-overlay"><p class="team-bio" data-ar="متخصصة في قانون الأسرة والأحوال الشخصية مع خبرة راسخة في الفقه الإسلامي والقانون السعودي." data-en="Specializing in family law and personal status matters with deep expertise in Islamic jurisprudence and Saudi law.">متخصصة في قانون الأسرة والأحوال الشخصية مع خبرة راسخة في الفقه الإسلامي والقانون السعودي.</p></div></div>
+        <div class="team-info"><div class="team-name" data-ar="سارة المطرود" data-en="Sara Al Matrood">سارة المطرود</div><div class="team-role" data-ar="شريك أول · قانون الأسرة" data-en="Senior Partner · Family Law">شريك أول · قانون الأسرة</div></div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-img"><div class="team-initials">خ.ر</div><div class="team-overlay"><p class="team-bio" data-ar="محامي دفاع جنائي بخبرة واسعة في المحاكم الجنائية السعودية على مختلف درجاتها." data-en="Criminal defense attorney with extensive courtroom experience in Saudi criminal courts and tribunals.">محامي دفاع جنائي بخبرة واسعة في المحاكم الجنائية السعودية على مختلف درجاتها.</p></div></div>
+        <div class="team-info"><div class="team-name" data-ar="خالد الرشيدي" data-en="Khalid Al Rashidi">خالد الرشيدي</div><div class="team-role" data-ar="شريك · الدفاع الجنائي" data-en="Partner · Criminal Defense">شريك · الدفاع الجنائي</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="آراء عملائنا" data-en="Client Testimonials">آراء عملائنا</span></div>
+    <h2 class="section-title reveal" data-ar="ماذا يقول <em>عملاؤنا</em>" data-en="What Our Clients <em>Say</em>">ماذا يقول <em>عملاؤنا</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal"><span class="quote-mark">"</span><p class="testimonial-text" data-ar="تولّى مكتب المطرود الإشراف على عملية الاستحواذ التي أجرتها شركتنا بكفاءة استثنائية. فهمهم العميق للقانون التجاري السعودي وحرصهم على التفاصيل أنقذانا من مخاطر قانونية جسيمة. فريق من الطراز الأول حقاً." data-en="Al Matrood Law Firm handled our company's acquisition with exceptional skill. Their understanding of Saudi corporate law and attention to detail saved us from significant legal risks. Truly a world-class team.">تولّى مكتب المطرود الإشراف على عملية الاستحواذ التي أجرتها شركتنا بكفاءة استثنائية. فهمهم العميق للقانون التجاري السعودي وحرصهم على التفاصيل أنقذانا من مخاطر قانونية جسيمة. فريق من الطراز الأول حقاً.</p><div class="testimonial-author"><div class="author-avatar">م.ح</div><div><div class="author-name" data-ar="محمد الحربي" data-en="Mohammed Al Harbi">محمد الحربي</div><div class="author-title" data-ar="الرئيس التنفيذي، مجموعة الحربي" data-en="CEO, Al Harbi Group">الرئيس التنفيذي، مجموعة الحربي</div></div></div></div>
+      <div class="testimonial-card reveal reveal-delay-1"><span class="quote-mark">"</span><p class="testimonial-text" data-ar="في أصعب المراحل التي مررت بها، قدّم لي فريق قانون الأسرة في مكتب المطرود إرشاداً مهنياً ومتعاطفاً. حصلنا على أفضل نتيجة ممكنة لأطفالي ولي." data-en="During one of the most difficult periods of my life, the family law team at Al Matrood provided compassionate, professional guidance. They achieved the best possible outcome for my children and me.">في أصعب المراحل التي مررت بها، قدّم لي فريق قانون الأسرة في مكتب المطرود إرشاداً مهنياً ومتعاطفاً. حصلنا على أفضل نتيجة ممكنة لأطفالي ولي.</p><div class="testimonial-author"><div class="author-avatar">ن.ع</div><div><div class="author-name" data-ar="نور العمري" data-en="Noor Al Amri">نور العمري</div><div class="author-title" data-ar="موكّلة في قانون الأسرة" data-en="Family Law Client">موكّلة في قانون الأسرة</div></div></div></div>
+      <div class="testimonial-card reveal reveal-delay-2"><span class="quote-mark">"</span><p class="testimonial-text" data-ar="بعد إصابتي في بيئة العمل، لم أكن أعرف إلى من ألجأ. ناضل فريق مكتب المطرود بلا كلل لأحصل على تعويضي كاملاً. لا أستطيع أن أوصي بهم بما يكفي." data-en="After my workplace accident, I didn't know where to turn. Al Matrood's personal injury team fought tirelessly on my behalf and secured full compensation. I cannot recommend them highly enough.">بعد إصابتي في بيئة العمل، لم أكن أعرف إلى من ألجأ. ناضل فريق مكتب المطرود بلا كلل لأحصل على تعويضي كاملاً. لا أستطيع أن أوصي بهم بما يكفي.</p><div class="testimonial-author"><div class="author-avatar">ف.ق</div><div><div class="author-name" data-ar="فهد القحطاني" data-en="Fahad Al Qahtani">فهد القحطاني</div><div class="author-title" data-ar="موكّل في قضايا التعويضات" data-en="Personal Injury Client">موكّل في قضايا التعويضات</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="تواصل معنا" data-en="Get in Touch">تواصل معنا</span></div>
+    <h2 class="section-title reveal" data-ar="اطلب <em>استشارتك</em>" data-en="Request a <em>Consultation</em>">اطلب <em>استشارتك</em></h2>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-item"><div class="contact-icon">📍</div><div><div class="contact-info-label" data-ar="العنوان" data-en="Address">العنوان</div><div class="contact-info-value" data-ar="طريق الملك فهد، الرياض<br>المملكة العربية السعودية" data-en="King Fahd Road, Riyadh<br>Kingdom of Saudi Arabia">طريق الملك فهد، الرياض<br>المملكة العربية السعودية</div></div></div>
+        <div class="contact-info-item"><div class="contact-icon">📞</div><div><div class="contact-info-label" data-ar="الهاتف" data-en="Phone">الهاتف</div><div class="contact-info-value">+966 11 XXX XXXX</div></div></div>
+        <div class="contact-info-item"><div class="contact-icon">✉️</div><div><div class="contact-info-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</div><div class="contact-info-value">info@almatroodlaw.sa</div></div></div>
+        <div class="contact-info-item"><div class="contact-icon">🕐</div><div><div class="contact-info-label" data-ar="ساعات العمل" data-en="Office Hours">ساعات العمل</div><div class="contact-info-value" data-ar="الأحد – الخميس: 8ص – 6م<br>السبت: 9ص – 2م" data-en="Sunday – Thursday: 8am – 6pm<br>Saturday: 9am – 2pm">الأحد – الخميس: 8ص – 6م<br>السبت: 9ص – 2م</div></div></div>
+      </div>
+      <div class="contact-form reveal reveal-delay-1">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label><input type="text" class="form-input" data-ar-placeholder="اسمك الأول" data-en-placeholder="Your first name" placeholder="اسمك الأول"></div>
+          <div class="form-group"><label class="form-label" data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</label><input type="text" class="form-input" data-ar-placeholder="اسم عائلتك" data-en-placeholder="Your last name" placeholder="اسم عائلتك"></div>
+        </div>
+        <div class="form-group"><label class="form-label" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label><input type="email" class="form-input" data-ar-placeholder="بريدك@الإلكتروني.com" data-en-placeholder="your@email.com" placeholder="بريدك@الإلكتروني.com"></div>
+        <div class="form-group"><label class="form-label" data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label><input type="tel" class="form-input" placeholder="+966 5XX XXX XXXX"></div>
+        <div class="form-group">
+          <label class="form-label" data-ar="مجال الخدمة" data-en="Practice Area">مجال الخدمة</label>
+          <select class="form-select">
+            <option data-ar="اختر مجال الخدمة" data-en="Select a practice area">اختر مجال الخدمة</option>
+            <option data-ar="قانون الأعمال والشركات" data-en="Business & Corporate Law">قانون الأعمال والشركات</option>
+            <option data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</option>
+            <option data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</option>
+            <option data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</option>
+            <option data-ar="أخرى" data-en="Other">أخرى</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label" data-ar="وصف مختصر" data-en="Brief Description">وصف مختصر</label><textarea class="form-textarea" data-ar-placeholder="يرجى وصف قضيتك القانونية بإيجاز..." data-en-placeholder="Please briefly describe your legal matter..." placeholder="يرجى وصف قضيتك القانونية بإيجاز..."></textarea></div>
+        <button class="form-submit" data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark">م</div>
+          <div>
+            <div style="font-family:'Amiri',serif;font-size:1rem;color:var(--gold);" data-ar="مكتب المطرود للمحاماة" data-en="AL MATROOD LAW FIRM">مكتب المطرود للمحاماة</div>
+          </div>
+        </a>
+        <p data-ar="شريككم القانوني الموثوق في المملكة العربية السعودية. نُقدّم العدالة بنزاهة ودقة وتفانٍ لا حدود له." data-en="A trusted legal partner in the Kingdom of Saudi Arabia. Delivering justice with integrity, precision, and dedication.">شريككم القانوني الموثوق في المملكة العربية السعودية. نُقدّم العدالة بنزاهة ودقة وتفانٍ لا حدود له.</p>
+      </div>
+      <div>
+        <div class="footer-heading" data-ar="خدماتنا" data-en="Services">خدماتنا</div>
+        <ul class="footer-links">
+          <li><a href="services.html" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</a></li>
+          <li><a href="services.html" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</a></li>
+          <li><a href="services.html" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</a></li>
+          <li><a href="services.html" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading" data-ar="المكتب" data-en="The Firm">المكتب</div>
+        <ul class="footer-links">
+          <li><a href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
+          <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Choose Us">لماذا نحن</a></li>
+          <li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
+          <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</div>
+        <ul class="footer-links">
+          <li><a href="contact.html" data-ar="احجز استشارة" data-en="Book Consultation">احجز استشارة</a></li>
+          <li><a href="mailto:info@almatroodlaw.sa">info@almatroodlaw.sa</a></li>
+          <li><a href="#">+966 11 XXX XXXX</a></li>
+          <li><a href="#" data-ar="الرياض، المملكة العربية السعودية" data-en="Riyadh, Saudi Arabia">الرياض، المملكة العربية السعودية</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-ar="© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة. | مُرخّص من وزارة العدل" data-en="© 2025 Al Matrood Law Firm. All rights reserved. | Licensed by the Saudi Ministry of Justice">© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة. | مُرخّص من وزارة العدل</div>
+      <div class="footer-dual">AL MATROOD LAW FIRM — مكتب المطرود للمحاماة</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// LANGUAGE ENGINE — shared across all pages
+// ============================================================
+const LANG_KEY = 'almatrood_lang';
+
+function setLang(lang) {
+  localStorage.setItem(LANG_KEY, lang);
+  applyLang(lang);
+}
+
+function applyLang(lang) {
+  const html = document.documentElement;
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+  // Update all translatable text nodes
+  document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+    const txt = el.getAttribute('data-' + lang);
+    if (txt !== null) el.innerHTML = txt;
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-ar-placeholder]').forEach(el => {
+    el.placeholder = el.getAttribute('data-' + lang + '-placeholder') || '';
+  });
+
+  // Update select options
+  document.querySelectorAll('select option[data-ar]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang) || '';
+  });
+
+  // Toggle lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
+  });
+
+  // Update page title
+  if (lang === 'ar') {
+    document.title = 'مكتب المطرود للمحاماة | التميز القانوني في المملكة العربية السعودية';
+  } else {
+    document.title = 'Al Matrood Law Firm | Legal Excellence in Saudi Arabia';
+  }
+}
+
+// Init — Arabic default
+(function() {
+  const saved = localStorage.getItem(LANG_KEY) || 'ar';
+  applyLang(saved);
+})();
+
+// ============================================================
+// PRELOADER
+// ============================================================
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1000);
+});
+
+// ============================================================
+// NAVBAR SCROLL
+// ============================================================
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ============================================================
+// SMOOTH NAV
+// ============================================================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ============================================================
+// FORM SUBMIT
+// ============================================================
+const btn = document.querySelector('.form-submit');
+if (btn) {
+  btn.addEventListener('click', function() {
+    const lang = document.documentElement.getAttribute('lang');
+    this.textContent = lang === 'ar' ? '✓ تم الإرسال بنجاح' : '✓ Request Sent';
+    this.style.background = '#4CAF50';
+    this.style.color = '#fff';
+    setTimeout(() => {
+      this.textContent = this.getAttribute('data-' + lang);
+      this.style.background = '';
+      this.style.color = '';
+    }, 3000);
+  });
+}
+</script>
+</body>
+</html>

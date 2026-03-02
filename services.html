@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدماتنا | مكتب المطرود للمحاماة</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A96E;--gold-light:#E8D5A3;--gold-dark:#9A7A45;--navy:#0A1628;--navy-mid:#122040;--navy-light:#1A2F55;--cream:#F8F4EE;--text-light:#A8B4C8;--font-body:'Tajawal',sans-serif;--font-display:'Amiri',serif;}
+[lang="en"]{--font-body:'Montserrat',sans-serif;--font-display:'Playfair Display',serif;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--navy);color:var(--cream);overflow-x:hidden;}
+.lang-toggle{display:flex;align-items:center;border:1px solid rgba(201,169,110,0.4);overflow:hidden;}
+.lang-btn{padding:0.4rem 0.85rem;font-size:0.65rem;font-weight:600;cursor:pointer;background:transparent;border:none;color:var(--text-light);font-family:var(--font-body);transition:all 0.2s;}
+.lang-btn.active{background:var(--gold);color:var(--navy);}.lang-btn:not(.active):hover{color:var(--gold);}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease;}
+nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(10px);padding:1rem 4rem;border-bottom:1px solid rgba(201,169,110,0.2);}
+.nav-logo{font-family:var(--font-display);color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:0.75rem;}
+.logo-mark{width:40px;height:40px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;position:relative;flex-shrink:0;}
+.logo-mark::before{content:'';position:absolute;inset:3px;border:1px solid rgba(201,169,110,0.3);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.78rem;transition:color 0.3s;position:relative;}
+[lang="en"] .nav-links a{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+.nav-right{display:flex;align-items:center;gap:1.25rem;}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:0.6rem 1.4rem;font-family:var(--font-body);font-size:0.78rem;cursor:pointer;transition:all 0.3s;text-decoration:none;white-space:nowrap;}
+.nav-cta:hover{background:var(--gold);color:var(--navy);}
+.page-hero{min-height:50vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(201,169,110,0.07) 0%,transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;max-width:1400px;margin:0 auto;padding:0 4rem;padding-top:8rem;padding-bottom:4rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s ease 0.4s forwards;}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+.breadcrumb{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;font-size:0.7rem;color:var(--text-light);}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.15;color:var(--cream);margin-bottom:1.5rem;}
+.page-title em{font-style:italic;color:var(--gold);}
+.page-subtitle{max-width:620px;font-size:1rem;color:var(--text-light);line-height:1.9;font-weight:300;}
+.container{max-width:1400px;margin:0 auto;padding:0 4rem;}
+section{padding:7rem 0;}
+.section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.section-label-line{width:40px;height:1px;background:var(--gold);}
+.section-label-text{font-size:0.72rem;color:var(--gold);}
+[lang="en"] .section-label-text{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.2;color:var(--cream);margin-bottom:1.5rem;}
+.section-title em{font-style:italic;color:var(--gold);}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}.reveal-delay-3{transition-delay:0.3s;}
+.marquee-section{border-top:1px solid rgba(201,169,110,0.15);border-bottom:1px solid rgba(201,169,110,0.15);padding:1rem 0;overflow:hidden;background:rgba(201,169,110,0.03);}
+.marquee-track{display:flex;animation:marquee 25s linear infinite;white-space:nowrap;}
+[dir="rtl"] .marquee-track{animation:marquee-rtl 25s linear infinite;}
+.marquee-item{font-size:0.72rem;color:var(--gold);padding:0 2.5rem;opacity:0.6;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marquee-rtl{from{transform:translateX(0)}to{transform:translateX(50%)}}
+#overview{background:var(--navy-mid);}
+.overview-intro{max-width:800px;margin:0 auto;text-align:center;margin-bottom:5rem;}
+.overview-intro p{font-size:1rem;color:var(--text-light);line-height:1.9;font-weight:300;}
+.service-block{margin-bottom:2px;}
+.service-expand{display:grid;grid-template-columns:1fr 2fr;}
+.service-sidebar{padding:4rem;background:rgba(201,169,110,0.04);border-left:1px solid rgba(201,169,110,0.12);display:flex;flex-direction:column;justify-content:space-between;}
+[lang="en"] .service-sidebar{border-left:none;border-right:1px solid rgba(201,169,110,0.12);}
+.service-number{font-family:var(--font-display);font-size:5rem;color:rgba(201,169,110,0.12);font-weight:900;line-height:1;}
+.service-icon-box{width:60px;height:60px;border:1px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:1.5rem 0;}
+.service-main-title{font-family:var(--font-display);font-size:1.8rem;color:var(--cream);margin-bottom:0.5rem;}
+.service-tagline{font-size:0.72rem;color:var(--gold);font-weight:600;}
+.service-body{padding:4rem;background:var(--navy);}
+.service-desc{font-size:0.95rem;color:var(--text-light);line-height:1.95;font-weight:300;margin-bottom:2.5rem;}
+.service-sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.service-sub{padding:1.5rem;border:1px solid rgba(201,169,110,0.12);background:rgba(201,169,110,0.02);transition:border-color 0.3s;}
+.service-sub:hover{border-color:rgba(201,169,110,0.35);}
+.service-sub-title{font-size:0.78rem;font-weight:600;color:var(--gold);margin-bottom:0.6rem;}
+.service-sub-desc{font-size:0.78rem;color:var(--text-light);line-height:1.75;}
+.service-cta{display:inline-flex;align-items:center;gap:0.75rem;margin-top:2rem;color:var(--gold);text-decoration:none;font-size:0.75rem;border:1px solid rgba(201,169,110,0.3);padding:0.75rem 1.5rem;transition:all 0.3s;}
+.service-cta:hover{background:var(--gold);color:var(--navy);}
+#retainer{background:var(--navy);}
+.retainer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+.retainer-card{padding:3rem 2.5rem;border:1px solid rgba(201,169,110,0.15);position:relative;transition:all 0.3s;}
+.retainer-card:hover{border-color:rgba(201,169,110,0.4);background:rgba(201,169,110,0.02);}
+.retainer-card.featured{border-color:var(--gold);background:rgba(201,169,110,0.04);}
+.featured-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:0.6rem;padding:0.3rem 1rem;font-weight:600;}
+.plan-name{font-family:var(--font-display);font-size:1.4rem;color:var(--cream);margin-bottom:0.5rem;}
+.plan-desc{font-size:0.82rem;color:var(--text-light);margin-bottom:2rem;line-height:1.7;}
+.plan-features{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:0.8rem;}
+.plan-features li{font-size:0.8rem;color:var(--text-light);display:flex;align-items:center;gap:0.75rem;}
+.plan-features li::before{content:'';width:6px;height:1px;background:var(--gold);flex-shrink:0;}
+.plan-btn{width:100%;padding:0.9rem;border:1px solid var(--gold);background:transparent;color:var(--gold);font-family:var(--font-body);font-size:0.78rem;cursor:pointer;transition:all 0.3s;}
+.plan-btn:hover,.retainer-card.featured .plan-btn{background:var(--gold);color:var(--navy);}
+footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);padding:4rem 0 2rem;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+.footer-brand p{font-size:0.85rem;color:var(--text-light);line-height:1.9;margin-top:1rem;max-width:280px;font-weight:300;}
+.footer-heading{font-size:0.72rem;color:var(--gold);margin-bottom:1.5rem;font-weight:600;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.75rem;}
+.footer-links a{color:var(--text-light);text-decoration:none;font-size:0.82rem;transition:color 0.3s;}
+.footer-links a:hover{color:var(--cream);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:0.7rem;color:var(--text-light);opacity:0.6;}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}nav.scrolled{padding:0.8rem 1.5rem;}.nav-links,.nav-cta{display:none;}.container{padding:0 1.5rem;}.page-hero-content{padding:0 1.5rem;padding-top:7rem;padding-bottom:3rem;}.service-expand{grid-template-columns:1fr;}.service-sidebar,.service-body{padding:2.5rem;}.service-sub-grid{grid-template-columns:1fr;}.retainer-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr 1fr;}section{padding:5rem 0;}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><div class="logo-mark">م</div><div><div style="font-size:0.9rem;" data-ar="مكتب المطرود" data-en="AL MATROOD">مكتب المطرود</div><div style="font-size:0.6rem;color:var(--text-light);" data-ar="للمحاماة" data-en="LAW FIRM">للمحاماة</div></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+    <li><a href="services.html" class="active" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+    <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
+    <li><a href="process.html" data-ar="آلية العمل" data-en="Process">آلية العمل</a></li>
+    <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+    <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle"><button class="lang-btn active" onclick="setLang('ar')">العربية</button><button class="lang-btn" onclick="setLang('en')">EN</button></div>
+    <a href="contact.html" class="nav-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
+  </div>
+</nav>
+<div class="page-hero"><div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a><span style="opacity:0.4;margin:0 0.4rem;">/</span><span data-ar="الخدمات" data-en="Services">الخدمات</span></div>
+    <h1 class="page-title" data-ar="خدماتنا <em>القانونية</em>" data-en="Our Legal <em>Services</em>">خدماتنا <em>القانونية</em></h1>
+    <p class="page-subtitle" data-ar="حلول قانونية شاملة في أربعة مجالات تخصصية، تُقدَّم بدقة ونزاهة وتفانٍ حقيقي لموكّلينا في المملكة وما وراءها." data-en="Comprehensive legal solutions across four core practice areas, delivered with precision, integrity, and commitment to results in Saudi Arabia and beyond.">حلول قانونية شاملة في أربعة مجالات تخصصية، تُقدَّم بدقة ونزاهة وتفانٍ حقيقي لموكّلينا في المملكة وما وراءها.</p>
+  </div>
+</div>
+<div class="marquee-section"><div class="marquee-track">
+  <span class="marquee-item" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="التعويضات" data-en="Personal Injury">التعويضات</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="التحكيم" data-en="Arbitration">التحكيم</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="صياغة العقود" data-en="Contract Drafting">صياغة العقود</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="التعويضات" data-en="Personal Injury">التعويضات</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="التحكيم" data-en="Arbitration">التحكيم</span><span class="marquee-item">◆</span><span class="marquee-item" data-ar="صياغة العقود" data-en="Contract Drafting">صياغة العقود</span><span class="marquee-item">◆</span>
+</div></div>
+
+<section id="overview">
+  <div class="container">
+    <div class="overview-intro reveal">
+      <div class="section-label" style="justify-content:center;"><div class="section-label-line"></div><span class="section-label-text" data-ar="ما نقدمه" data-en="What We Offer">ما نقدمه</span><div class="section-label-line"></div></div>
+      <h2 class="section-title" style="text-align:center;" data-ar="أربعة تخصصات. <em>مكتب واحد موثوق.</em>" data-en="Four Practice Areas. <em>One Trusted Firm.</em>">أربعة تخصصات. <em>مكتب واحد موثوق.</em></h2>
+      <p data-ar="في مكتب المطرود، نؤمن بأن كل عميل يستحق تمثيلاً قانونياً متخصصاً وجاداً. يجمع محامونا بين المعرفة العميقة بالقانون السعودي والإسلامي ونهج استراتيجي يضع العميل في المقدمة دائماً." data-en="At Al Matrood Law Firm, every client deserves dedicated, expert legal representation. Our attorneys combine deep knowledge of Saudi and Islamic law with a strategic, client-first approach.">في مكتب المطرود، نؤمن بأن كل عميل يستحق تمثيلاً قانونياً متخصصاً وجاداً. يجمع محامونا بين المعرفة العميقة بالقانون السعودي والإسلامي ونهج استراتيجي يضع العميل في المقدمة دائماً.</p>
+    </div>
+    <!-- SERVICE 01 -->
+    <div class="service-block reveal">
+      <div class="service-expand">
+        <div class="service-sidebar"><div><div class="service-number" data-ar="٠١" data-en="01">٠١</div><div class="service-icon-box">🏢</div><h2 class="service-main-title" data-ar="قانون الأعمال والشركات" data-en="Business & Corporate Law">قانون الأعمال والشركات</h2><div class="service-tagline" data-ar="التميز التجاري" data-en="Commercial Excellence">التميز التجاري</div></div><a href="contact.html" class="service-cta" data-ar="احصل على استشارة ←" data-en="Get Advice →">احصل على استشارة ←</a></div>
+        <div class="service-body"><p class="service-desc" data-ar="سواء كنت تُطلق شركة ناشئة أو تدير مشروعاً متنامياً، يقدم مكتب المطرود الدعم القانوني الشامل الذي تحتاجه. نفهم المنظومة التنظيمية السعودية بعمق ونعمل استباقياً لحماية مصالحك التجارية في كل مرحلة." data-en="Whether launching a startup or managing a growing enterprise, Al Matrood Law Firm provides comprehensive corporate legal support. We understand the Saudi regulatory landscape and proactively protect your commercial interests at every stage.">سواء كنت تُطلق شركة ناشئة أو تدير مشروعاً متنامياً، يقدم مكتب المطرود الدعم القانوني الشامل الذي تحتاجه. نفهم المنظومة التنظيمية السعودية بعمق ونعمل استباقياً لحماية مصالحك التجارية في كل مرحلة.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub"><div class="service-sub-title" data-ar="تأسيس الشركات" data-en="Company Formation">تأسيس الشركات</div><div class="service-sub-desc" data-ar="دعم متكامل لتأسيس الشركات بمختلف أشكالها لدى هيئة الاستثمار." data-en="End-to-end support for incorporating businesses, including LLC and branch office registrations with MISA.">دعم متكامل لتأسيس الشركات بمختلف أشكالها لدى هيئة الاستثمار.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="صياغة العقود" data-en="Contract Drafting">صياغة العقود</div><div class="service-sub-desc" data-ar="صياغة ومراجعة وتفاوض على العقود التجارية واتفاقيات الشراكة." data-en="Drafting, reviewing, and negotiating commercial contracts, joint ventures, and shareholder agreements.">صياغة ومراجعة وتفاوض على العقود التجارية واتفاقيات الشراكة.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="الاندماج والاستحواذ" data-en="Mergers & Acquisitions">الاندماج والاستحواذ</div><div class="service-sub-desc" data-ar="التحقق القانوني وهيكلة الصفقات وإدارة معاملات الاندماج والاستحواذ." data-en="Legal due diligence, deal structuring, and transaction management for M&A in the Kingdom.">التحقق القانوني وهيكلة الصفقات وإدارة معاملات الاندماج والاستحواذ.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="الامتثال التنظيمي" data-en="Regulatory Compliance">الامتثال التنظيمي</div><div class="service-sub-desc" data-ar="الإرشاد حول إصلاحات رؤية 2030 وأنظمة هيئة الزكاة والضريبة." data-en="Guidance on Vision 2030 reforms, ZATCA regulations, and sector-specific compliance.">الإرشاد حول إصلاحات رؤية 2030 وأنظمة هيئة الزكاة والضريبة.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="حل النزاعات" data-en="Dispute Resolution">حل النزاعات</div><div class="service-sub-desc" data-ar="التمثيل في النزاعات التجارية أمام المحاكم السعودية وهيئات التحكيم." data-en="Representation in commercial disputes before Saudi courts and international arbitration.">التمثيل في النزاعات التجارية أمام المحاكم السعودية وهيئات التحكيم.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="قانون العمل" data-en="Employment Law">قانون العمل</div><div class="service-sub-desc" data-ar="الإرشاد بشأن نظام العمل السعودي والسعودة (نطاقات) وعقود التوظيف." data-en="Advising on Saudi Labor Law, Saudization (Nitaqat), and workforce restructuring.">الإرشاد بشأن نظام العمل السعودي والسعودة (نطاقات) وعقود التوظيف.</div></div>
+          </div></div>
+      </div>
+    </div>
+    <!-- SERVICE 02 -->
+    <div class="service-block reveal" style="margin-top:2px;">
+      <div class="service-expand">
+        <div class="service-sidebar"><div><div class="service-number" data-ar="٠٢" data-en="02">٠٢</div><div class="service-icon-box">👨‍👩‍👧</div><h2 class="service-main-title" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</h2><div class="service-tagline" data-ar="إرشاد رحيم" data-en="Compassionate Counsel">إرشاد رحيم</div></div><a href="contact.html" class="service-cta" data-ar="احصل على استشارة ←" data-en="Get Advice →">احصل على استشارة ←</a></div>
+        <div class="service-body"><p class="service-desc" data-ar="تستلزم القضايا الأسرية الحساسية والتكتم والاهتمام الحقيقي إلى جانب الخبرة القانونية. يتعامل محامو الأسرة لدينا مع كل قضية بتعاطف واحترافية، مسترشدين بمبادئ الشريعة الإسلامية ونظام الأحوال الشخصية السعودي." data-en="Family legal matters require sensitivity, discretion, and genuine care alongside legal expertise. Our family law attorneys handle every case with compassion, guided by Islamic principles and Saudi Personal Status Law.">تستلزم القضايا الأسرية الحساسية والتكتم والاهتمام الحقيقي إلى جانب الخبرة القانونية. يتعامل محامو الأسرة لدينا مع كل قضية بتعاطف واحترافية، مسترشدين بمبادئ الشريعة الإسلامية ونظام الأحوال الشخصية السعودي.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub"><div class="service-sub-title" data-ar="عقود الزواج" data-en="Marriage Contracts">عقود الزواج</div><div class="service-sub-desc" data-ar="صياغة ومراجعة عقود الزواج واتفاقيات الصداق وفق الشريعة والنظام." data-en="Drafting and reviewing marriage contracts and mahr arrangements per Islamic and Saudi law.">صياغة ومراجعة عقود الزواج واتفاقيات الصداق وفق الشريعة والنظام.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="إجراءات الطلاق" data-en="Divorce Proceedings">إجراءات الطلاق</div><div class="service-sub-desc" data-ar="تمثيل الموكلين في جميع أنواع الطلاق والتفاوض على أفضل شروط التسوية." data-en="Representing clients in all types of divorce and negotiating favorable settlement terms.">تمثيل الموكلين في جميع أنواع الطلاق والتفاوض على أفضل شروط التسوية.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="حضانة الأطفال" data-en="Child Custody">حضانة الأطفال</div><div class="service-sub-desc" data-ar="الدفاع عن مصلحة أطفالك في قضايا الحضانة وحق الزيارة والولاية." data-en="Fighting for your children's best interests in custody, visitation, and guardianship proceedings.">الدفاع عن مصلحة أطفالك في قضايا الحضانة وحق الزيارة والولاية.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="الميراث والوصية" data-en="Inheritance & Wills">الميراث والوصية</div><div class="service-sub-desc" data-ar="التخطيط للتركة وصياغة الوصايا وحل نزاعات الإرث وفق أحكام الفرائض." data-en="Estate planning, will drafting, and resolving inheritance disputes per Islamic law.">التخطيط للتركة وصياغة الوصايا وحل نزاعات الإرث وفق أحكام الفرائض.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="النفقة" data-en="Alimony & Support">النفقة</div><div class="service-sub-desc" data-ar="المشورة والتمثيل في مسائل النفقة الزوجية ونفقة الأولاد والتسويات المالية." data-en="Legal advice on nafaqa, child maintenance, and financial settlements post-divorce.">المشورة والتمثيل في مسائل النفقة الزوجية ونفقة الأولاد والتسويات المالية.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="الولاية القانونية" data-en="Guardianship">الولاية القانونية</div><div class="service-sub-desc" data-ar="المساعدة في طلبات الولاية القانونية وإجراءات القاصرين والتابعين." data-en="Assistance with guardianship applications and documentation for minors and dependents.">المساعدة في طلبات الولاية القانونية وإجراءات القاصرين والتابعين.</div></div>
+          </div></div>
+      </div>
+    </div>
+    <!-- SERVICE 03 -->
+    <div class="service-block reveal" style="margin-top:2px;">
+      <div class="service-expand">
+        <div class="service-sidebar"><div><div class="service-number" data-ar="٠٣" data-en="03">٠٣</div><div class="service-icon-box">🛡️</div><h2 class="service-main-title" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</h2><div class="service-tagline" data-ar="مناصرة صارمة" data-en="Vigorous Advocacy">مناصرة صارمة</div></div><a href="contact.html" class="service-cta" data-ar="احصل على استشارة ←" data-en="Get Advice →">احصل على استشارة ←</a></div>
+        <div class="service-body"><p class="service-desc" data-ar="حين تكون حريتك على المحك، تحتاج إلى تمثيل قانوني ذي خبرة وجرأة. ترافعنا أمام المحاكم الجنائية السعودية بمختلف درجاتها. نكرّس أنفسنا لحماية حقوقك في كل مرحلة." data-en="When your freedom is at stake, you need fearless, experienced representation. Our criminal defense team has appeared before Saudi criminal courts at all levels, protecting your rights from investigation to appeal.">حين تكون حريتك على المحك، تحتاج إلى تمثيل قانوني ذي خبرة وجرأة. ترافعنا أمام المحاكم الجنائية السعودية بمختلف درجاتها. نكرّس أنفسنا لحماية حقوقك في كل مرحلة.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub"><div class="service-sub-title" data-ar="المشورة قبل الاعتقال" data-en="Pre-Arrest Advice">المشورة قبل الاعتقال</div><div class="service-sub-desc" data-ar="إرشاد قانوني فوري في حال التحقيق معك، شاملاً حقوقك خلال الاستجواب." data-en="Immediate legal guidance if under investigation, including your rights during questioning.">إرشاد قانوني فوري في حال التحقيق معك، شاملاً حقوقك خلال الاستجواب.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="طلبات الإفراج" data-en="Bail Applications">طلبات الإفراج</div><div class="service-sub-desc" data-ar="طلبات عاجلة للإفراج وشروط الكفالة وحقوق الموقوفين." data-en="Urgent applications for release and bail conditions before the Public Prosecution.">طلبات عاجلة للإفراج وشروط الكفالة وحقوق الموقوفين.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="التمثيل في المحاكمة" data-en="Trial Representation">التمثيل في المحاكمة</div><div class="service-sub-desc" data-ar="مرافعة قانونية متقنة في جرائم الاحتيال والاعتداء والمخدرات والجرائم الإلكترونية." data-en="Expert advocacy in trials covering fraud, assault, drug offenses, and cybercrime.">مرافعة قانونية متقنة في جرائم الاحتيال والاعتداء والمخدرات والجرائم الإلكترونية.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="الاستئناف" data-en="Appeals">الاستئناف</div><div class="service-sub-desc" data-ar="تقديم الاستئنافات أمام محاكم الاستئناف والمحكمة العليا للطعن في الأحكام." data-en="Filing appeals before the Court of Appeal and Supreme Court to challenge convictions.">تقديم الاستئنافات أمام محاكم الاستئناف والمحكمة العليا للطعن في الأحكام.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="جرائم الأعمال" data-en="White-Collar Crime">جرائم الأعمال</div><div class="service-sub-desc" data-ar="دفاع متخصص في الاحتيال المالي والاختلاس وغسل الأموال والرشوة." data-en="Specialized defense for corporate fraud, embezzlement, money laundering, and bribery.">دفاع متخصص في الاحتيال المالي والاختلاس وغسل الأموال والرشوة.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="تمثيل المجني عليهم" data-en="Victim Representation">تمثيل المجني عليهم</div><div class="service-sub-desc" data-ar="تمثيل ضحايا الجرائم في الشكاوى ومطالبات القصاص والدية." data-en="Representing crime victims in pursuing criminal complaints and diyya claims.">تمثيل ضحايا الجرائم في الشكاوى ومطالبات القصاص والدية.</div></div>
+          </div></div>
+      </div>
+    </div>
+    <!-- SERVICE 04 -->
+    <div class="service-block reveal" style="margin-top:2px;margin-bottom:0;">
+      <div class="service-expand">
+        <div class="service-sidebar"><div><div class="service-number" data-ar="٠٤" data-en="04">٠٤</div><div class="service-icon-box">⚕️</div><h2 class="service-main-title" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</h2><div class="service-tagline" data-ar="المطالبة بالتعويض" data-en="Fighting for Compensation">المطالبة بالتعويض</div></div><a href="contact.html" class="service-cta" data-ar="احصل على استشارة ←" data-en="Get Advice →">احصل على استشارة ←</a></div>
+        <div class="service-body"><p class="service-desc" data-ar="التعرض للإصابة بسبب إهمال الآخرين أمر بالغ الأثر. يسعى محامو التعويضات لدينا للحصول على أقصى تعويض ممكن — يشمل النفقات الطبية والدخل الضائع والمعاناة التي تحملتها." data-en="Suffering an injury due to others' negligence is devastating. Our personal injury attorneys pursue maximum compensation on your behalf — covering medical expenses, lost income, and pain and suffering.">التعرض للإصابة بسبب إهمال الآخرين أمر بالغ الأثر. يسعى محامو التعويضات لدينا للحصول على أقصى تعويض ممكن — يشمل النفقات الطبية والدخل الضائع والمعاناة التي تحملتها.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub"><div class="service-sub-title" data-ar="حوادث المرور" data-en="Traffic Accidents">حوادث المرور</div><div class="service-sub-desc" data-ar="مطالبات ضد السائقين المهملين وشركات التأمين عن إصابات حوادث الطرق." data-en="Claims against negligent drivers and insurance companies for road traffic injuries.">مطالبات ضد السائقين المهملين وشركات التأمين عن إصابات حوادث الطرق.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="إصابات العمل" data-en="Workplace Injuries">إصابات العمل</div><div class="service-sub-desc" data-ar="متابعة مطالبات التأمينات ودعاوى مسؤولية أصحاب العمل في الحوادث المهنية." data-en="Pursuing GOSI claims and employer liability cases for workplace accidents and diseases.">متابعة مطالبات التأمينات ودعاوى مسؤولية أصحاب العمل في الحوادث المهنية.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="الإهمال الطبي" data-en="Medical Negligence">الإهمال الطبي</div><div class="service-sub-desc" data-ar="دعاوى ضد المستشفيات والكوادر الصحية في حالات الأخطاء الطبية." data-en="Complex claims against hospitals and healthcare professionals for medical errors.">دعاوى ضد المستشفيات والكوادر الصحية في حالات الأخطاء الطبية.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="إصابات الممتلكات" data-en="Slip & Fall">إصابات الممتلكات</div><div class="service-sub-desc" data-ar="دعاوى مسؤولية أصحاب العقارات عن الإصابات الناجمة عن الأوضاع الخطرة." data-en="Premises liability claims for injuries caused by dangerous property conditions.">دعاوى مسؤولية أصحاب العقارات عن الإصابات الناجمة عن الأوضاع الخطرة.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="مسؤولية المنتج" data-en="Product Liability">مسؤولية المنتج</div><div class="service-sub-desc" data-ar="مطالبات ضد مصنّعي المنتجات المعيبة التي تسببت في أضرار للمستهلكين." data-en="Claims against manufacturers of defective products that caused consumer injury.">مطالبات ضد مصنّعي المنتجات المعيبة التي تسببت في أضرار للمستهلكين.</div></div>
+            <div class="service-sub"><div class="service-sub-title" data-ar="نزاعات التأمين" data-en="Insurance Disputes">نزاعات التأمين</div><div class="service-sub-desc" data-ar="تمثيل حاملي الوثائق في النزاعات مع شركات التأمين بشأن المطالبات المرفوضة." data-en="Representing policyholders in disputes over denied or underpaid insurance claims.">تمثيل حاملي الوثائق في النزاعات مع شركات التأمين بشأن المطالبات المرفوضة.</div></div>
+          </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="retainer">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="خطط الخدمة" data-en="Service Plans">خطط الخدمة</span></div>
+    <h2 class="section-title reveal" data-ar="<em>خطط</em> الاشتراك القانوني" data-en="Legal Service <em>Plans</em>"><em>خطط</em> الاشتراك القانوني</h2>
+    <div class="retainer-grid">
+      <div class="retainer-card reveal"><div class="plan-name" data-ar="الفرد" data-en="Individual">الفرد</div><div class="plan-desc" data-ar="مثالية للقضايا الشخصية والاستشارات الفردية." data-en="Ideal for personal legal matters and one-time consultations.">مثالية للقضايا الشخصية والاستشارات الفردية.</div><ul class="plan-features"><li data-ar="استشارة أولية ساعة كاملة" data-en="1-hour initial consultation">استشارة أولية ساعة كاملة</li><li data-ar="قضايا الأسرة والتعويضات" data-en="Family & personal injury cases">قضايا الأسرة والتعويضات</li><li data-ar="التمثيل في القضايا الجنائية" data-en="Criminal defense representation">التمثيل في القضايا الجنائية</li><li data-ar="إعداد المستندات القانونية" data-en="Court document preparation">إعداد المستندات القانونية</li><li data-ar="خدمة بالعربية والإنجليزية" data-en="Bilingual Arabic/English service">خدمة بالعربية والإنجليزية</li></ul><button class="plan-btn" onclick="location.href='contact.html'" data-ar="احجز استشارة" data-en="Request Consultation">احجز استشارة</button></div>
+      <div class="retainer-card featured reveal reveal-delay-1"><div class="featured-badge" data-ar="الأكثر طلباً" data-en="Most Popular">الأكثر طلباً</div><div class="plan-name" data-ar="الأعمال" data-en="Business Retainer">الأعمال</div><div class="plan-desc" data-ar="دعم قانوني مستمر للشركات الصغيرة والمتوسطة." data-en="Ongoing legal support for SMEs and growing businesses.">دعم قانوني مستمر للشركات الصغيرة والمتوسطة.</div><ul class="plan-features"><li data-ar="اشتراك شهري بأولوية الوصول" data-en="Monthly retainer with priority access">اشتراك شهري بأولوية الوصول</li><li data-ar="مراجعة وصياغة العقود" data-en="Contract review & drafting">مراجعة وصياغة العقود</li><li data-ar="استشارات الامتثال التنظيمي" data-en="Regulatory compliance advisory">استشارات الامتثال التنظيمي</li><li data-ar="إرشاد قانون العمل" data-en="Employment law guidance">إرشاد قانون العمل</li><li data-ar="إدارة النزاعات التجارية" data-en="Commercial dispute management">إدارة النزاعات التجارية</li><li data-ar="محامٍ مخصص للحساب" data-en="Dedicated account attorney">محامٍ مخصص للحساب</li></ul><button class="plan-btn" onclick="location.href='contact.html'" data-ar="ابدأ الآن" data-en="Get Started">ابدأ الآن</button></div>
+      <div class="retainer-card reveal reveal-delay-2"><div class="plan-name" data-ar="الشركات الكبرى" data-en="Corporate">الشركات الكبرى</div><div class="plan-desc" data-ar="شراكة قانونية متكاملة للمؤسسات الكبرى." data-en="Full-service legal partnership for large corporations.">شراكة قانونية متكاملة للمؤسسات الكبرى.</div><ul class="plan-features"><li data-ar="استشارات قانونية غير محدودة" data-en="Unlimited legal consultations">استشارات قانونية غير محدودة</li><li data-ar="دعم عمليات الاندماج والاستحواذ" data-en="M&A and transaction support">دعم عمليات الاندماج والاستحواذ</li><li data-ar="استشارات حوكمة مجلس الإدارة" data-en="Board & governance advisory">استشارات حوكمة مجلس الإدارة</li><li data-ar="القضايا متعددة الاختصاصات" data-en="Multi-jurisdiction matters">القضايا متعددة الاختصاصات</li><li data-ar="التحكيم الدولي" data-en="International arbitration">التحكيم الدولي</li><li data-ar="وصول طارئ 24/7" data-en="24/7 emergency legal access">وصول طارئ 24/7</li></ul><button class="plan-btn" onclick="location.href='contact.html'" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</button></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html" class="nav-logo" style="text-decoration:none;"><div class="logo-mark">م</div><div><div style="font-family:'Amiri',serif;font-size:1rem;color:var(--gold);" data-ar="مكتب المطرود للمحاماة" data-en="AL MATROOD LAW FIRM">مكتب المطرود للمحاماة</div></div></a><p data-ar="شريككم القانوني الموثوق في المملكة العربية السعودية." data-en="Your trusted legal partner in the Kingdom of Saudi Arabia.">شريككم القانوني الموثوق في المملكة العربية السعودية.</p></div>
+    <div><div class="footer-heading" data-ar="الخدمات" data-en="Services">الخدمات</div><ul class="footer-links"><li><a href="services.html" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</a></li><li><a href="services.html" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</a></li><li><a href="services.html" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</a></li><li><a href="services.html" data-ar="التعويضات" data-en="Personal Injury">التعويضات</a></li></ul></div>
+    <div><div class="footer-heading" data-ar="المكتب" data-en="The Firm">المكتب</div><ul class="footer-links"><li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li><li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li><li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li></ul></div>
+    <div><div class="footer-heading" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</div><ul class="footer-links"><li><a href="contact.html" data-ar="احجز استشارة" data-en="Book Consultation">احجز استشارة</a></li><li><a href="mailto:info@almatroodlaw.sa">info@almatroodlaw.sa</a></li><li>+966 11 XXX XXXX</li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy" data-ar="© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة." data-en="© 2025 Al Matrood Law Firm. All rights reserved.">© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة.</div></div>
+</div></footer>
+
+<script>
+const LANG_KEY='almatrood_lang';
+function setLang(lang){localStorage.setItem(LANG_KEY,lang);applyLang(lang);}
+function applyLang(lang){
+  const html=document.documentElement;
+  html.setAttribute('lang',lang);html.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-ar][data-en]').forEach(el=>{const t=el.getAttribute('data-'+lang);if(t!==null)el.innerHTML=t;});
+  document.querySelectorAll('select option[data-ar]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang)||'';});
+  document.querySelectorAll('.lang-btn').forEach(btn=>{btn.classList.toggle('active',btn.getAttribute('onclick').includes("'"+lang+"'"));});
+  document.title=lang==='ar'?'خدماتنا | مكتب المطرود للمحاماة':'Services | Al Matrood Law Firm';
+}
+(function(){applyLang(localStorage.getItem(LANG_KEY)||'ar');})();
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body></html>

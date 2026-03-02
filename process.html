@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آلية العمل | مكتب المطرود للمحاماة</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A96E;--gold-light:#E8D5A3;--gold-dark:#9A7A45;--navy:#0A1628;--navy-mid:#122040;--navy-light:#1A2F55;--cream:#F8F4EE;--text-light:#A8B4C8;--font-body:'Tajawal',sans-serif;--font-display:'Amiri',serif;}
+[lang="en"]{--font-body:'Montserrat',sans-serif;--font-display:'Playfair Display',serif;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--navy);color:var(--cream);overflow-x:hidden;}
+.lang-toggle{display:flex;align-items:center;border:1px solid rgba(201,169,110,0.4);overflow:hidden;}
+.lang-btn{padding:0.4rem 0.85rem;font-size:0.65rem;font-weight:600;cursor:pointer;background:transparent;border:none;color:var(--text-light);transition:all 0.2s;}
+.lang-btn.active{background:var(--gold);color:var(--navy);}.lang-btn:not(.active):hover{color:var(--gold);}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s;}
+nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(10px);padding:1rem 4rem;border-bottom:1px solid rgba(201,169,110,0.2);}
+.nav-logo{font-family:var(--font-display);color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:0.75rem;}
+.logo-mark{width:40px;height:40px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;position:relative;flex-shrink:0;}
+.logo-mark::before{content:'';position:absolute;inset:3px;border:1px solid rgba(201,169,110,0.3);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.78rem;transition:color 0.3s;position:relative;}
+[lang="en"] .nav-links a{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+.nav-right{display:flex;align-items:center;gap:1.25rem;}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:0.6rem 1.4rem;font-family:var(--font-body);font-size:0.78rem;cursor:pointer;transition:all 0.3s;text-decoration:none;white-space:nowrap;}
+.nav-cta:hover{background:var(--gold);color:var(--navy);}
+.page-hero{min-height:50vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(201,169,110,0.07) 0%,transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;max-width:1400px;margin:0 auto;padding:0 4rem;padding-top:8rem;padding-bottom:4rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s ease 0.4s forwards;}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+.breadcrumb{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;font-size:0.72rem;color:var(--text-light);}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.15;color:var(--cream);margin-bottom:1.5rem;}
+.page-title em{font-style:italic;color:var(--gold);}
+.page-subtitle{max-width:650px;font-size:1rem;color:var(--text-light);line-height:1.9;font-weight:300;}
+.container{max-width:1400px;margin:0 auto;padding:0 4rem;}
+section{padding:7rem 0;}
+.section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.section-label-line{width:40px;height:1px;background:var(--gold);}
+.section-label-text{font-size:0.72rem;color:var(--gold);}
+[lang="en"] .section-label-text{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.2;color:var(--cream);margin-bottom:1.5rem;}
+.section-title em{font-style:italic;color:var(--gold);}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.15s;}.reveal-delay-2{transition-delay:0.3s;}
+
+/* TIMELINE */
+#proc{background:var(--navy-mid);}
+.timeline{position:relative;padding-right:4rem;}
+[lang="en"] .timeline{padding-right:0;padding-left:4rem;}
+.timeline::before{content:'';position:absolute;right:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(201,169,110,0.3) 10%,rgba(201,169,110,0.3) 90%,transparent);}
+[lang="en"] .timeline::before{right:auto;left:0;}
+.t-step{position:relative;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(201,169,110,0.08);}
+.t-step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.step-dot{position:absolute;right:-4.75rem;top:0.5rem;width:20px;height:20px;border:2px solid var(--gold);background:var(--navy-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+[lang="en"] .step-dot{right:auto;left:-4.75rem;}
+.step-dot::after{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;}
+.step-inner{display:grid;grid-template-columns:auto 1fr;gap:2rem;}
+[lang="en"] .step-inner{direction:ltr;}
+.step-num{font-family:var(--font-display);font-size:4.5rem;color:rgba(201,169,110,0.1);font-weight:900;line-height:1;width:80px;flex-shrink:0;}
+.step-phase{font-size:0.72rem;color:var(--gold);margin-bottom:0.5rem;}
+.step-title{font-family:var(--font-display);font-size:1.6rem;color:var(--cream);margin-bottom:0.75rem;}
+.step-desc{font-size:0.88rem;color:var(--text-light);line-height:1.95;font-weight:300;}
+.step-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem;}
+.meta-box{padding:1.25rem;border:1px solid rgba(201,169,110,0.1);background:rgba(201,169,110,0.02);}
+.meta-icon{font-size:1.1rem;margin-bottom:0.6rem;}
+.meta-label{font-size:0.68rem;color:var(--gold);margin-bottom:0.4rem;font-weight:600;}
+.meta-val{font-size:0.78rem;color:var(--text-light);line-height:1.6;}
+
+/* AREA TABS */
+#by-area{background:var(--navy);}
+.tabs{display:flex;gap:0;border:1px solid rgba(201,169,110,0.2);margin-bottom:3rem;flex-wrap:wrap;}
+.tab{flex:1;padding:1.1rem 1.5rem;text-align:center;cursor:pointer;font-size:0.78rem;color:var(--text-light);border-left:1px solid rgba(201,169,110,0.15);transition:all 0.3s;background:transparent;}
+[lang="en"] .tab{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;}
+.tab:last-child{border-left:none;}
+[dir="rtl"] .tab{border-left:none;border-right:1px solid rgba(201,169,110,0.15);}
+[dir="rtl"] .tab:first-child{border-right:none;}
+.tab:hover,.tab.active{background:rgba(201,169,110,0.06);color:var(--gold);}
+.area-content{display:none;}
+.area-content.active{display:block;}
+.area-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,169,110,0.08);}
+.as{background:var(--navy);padding:2.5rem 2rem;text-align:center;}
+.as-num{font-family:var(--font-display);font-size:2.5rem;color:rgba(201,169,110,0.1);font-weight:900;line-height:1;margin-bottom:0.75rem;}
+.as-title{font-size:0.78rem;color:var(--cream);font-weight:600;margin-bottom:0.75rem;}
+[lang="en"] .as-title{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;}
+.as-text{font-size:0.78rem;color:var(--text-light);line-height:1.7;}
+
+/* COMMITMENTS */
+#commit{background:var(--cream);color:var(--navy);}
+#commit .section-title{color:var(--navy);}
+#commit .section-label-line{background:var(--navy-mid);}
+#commit .section-label-text{color:var(--navy-mid);}
+.commit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+.commit-card{padding:2.5rem;border:1px solid rgba(10,22,40,0.08);transition:box-shadow 0.3s;}
+.commit-card:hover{box-shadow:0 15px 40px rgba(10,22,40,0.08);}
+.commit-icon{width:50px;height:50px;background:rgba(201,169,110,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.5rem;}
+.commit-title{font-family:var(--font-display);font-size:1.1rem;color:var(--navy);margin-bottom:0.75rem;}
+.commit-text{font-size:0.83rem;color:rgba(10,22,40,0.6);line-height:1.85;}
+
+.cta-band{background:var(--navy-mid);padding:6rem 0;text-align:center;}
+.cta-band h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,3rem);color:var(--cream);margin-bottom:1rem;}
+.cta-band p{font-size:0.95rem;color:var(--text-light);max-width:550px;margin:0 auto 2.5rem;line-height:1.9;}
+.btn-gold{background:var(--gold);color:var(--navy);padding:1rem 2.5rem;font-family:var(--font-body);font-size:0.9rem;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.3s;}
+[lang="en"] .btn-gold{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;}
+.btn-gold:hover{background:var(--gold-light);}
+
+footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);padding:4rem 0 2rem;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+.footer-brand p{font-size:0.85rem;color:var(--text-light);line-height:1.9;margin-top:1rem;max-width:280px;}
+.footer-heading{font-size:0.75rem;color:var(--gold);margin-bottom:1.5rem;font-weight:600;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.75rem;}
+.footer-links a{color:var(--text-light);text-decoration:none;font-size:0.82rem;transition:color 0.3s;}
+.footer-links a:hover{color:var(--cream);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.72rem;color:var(--text-light);opacity:0.6;}
+.footer-dual{font-size:0.72rem;color:var(--gold);opacity:0.6;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}nav.scrolled{padding:0.8rem 1.5rem;}
+  .nav-links,.nav-cta{display:none;}
+  .container{padding:0 1.5rem;}
+  .page-hero-content{padding:0 1.5rem;padding-top:7rem;padding-bottom:3rem;}
+  .timeline{padding-right:2rem;}[lang="en"] .timeline{padding-left:2rem;}
+  .step-dot{right:-2.75rem;}[lang="en"] .step-dot{left:-2.75rem;}
+  .step-inner{grid-template-columns:1fr;}
+  .step-meta{grid-template-columns:1fr;}
+  .area-steps{grid-template-columns:1fr 1fr;}
+  .commit-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .tabs{flex-direction:column;}
+  section{padding:5rem 0;}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark" data-ar="م" data-en="M">م</div>
+    <div>
+      <div style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold);" data-ar="مكتب المطرود" data-en="AL MATROOD">مكتب المطرود</div>
+      <div style="font-size:0.6rem;color:var(--text-light);" data-ar="للمحاماة والاستشارات" data-en="LAW FIRM">للمحاماة والاستشارات</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+    <li><a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+    <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
+    <li><a href="process.html" class="active" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
+    <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+    <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="contact.html" class="nav-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <span style="opacity:0.4;margin:0 0.25rem;">/</span>
+      <span data-ar="آلية العمل" data-en="Our Process">آلية العمل</span>
+    </div>
+    <h1 class="page-title" data-ar="كيف <em>نعمل</em>" data-en="How We <em>Work</em>">كيف <em>نعمل</em></h1>
+    <p class="page-subtitle" data-ar="من أول استشارة حتى نهاية القضية، نتبع منهجاً دقيقاً وشفافاً مصمماً لتحقيق أفضل النتائج — ونُبقيك على اطلاع دائم في كل خطوة." data-en="From your first consultation to the resolution of your case, we follow a rigorous, transparent process designed to deliver the best possible outcome — keeping you informed every step of the way.">من أول استشارة حتى نهاية القضية، نتبع منهجاً دقيقاً وشفافاً مصمماً لتحقيق أفضل النتائج — ونُبقيك على اطلاع دائم في كل خطوة.</p>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section id="proc">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="خطوة بخطوة" data-en="Step by Step">خطوة بخطوة</span></div>
+    <h2 class="section-title reveal" data-ar="٦ خطوات لمعالجة <em>قضيتك</em>" data-en="Our <em>6-Step</em> Legal Process">٦ خطوات لمعالجة <em>قضيتك</em></h2>
+    <p class="reveal" style="max-width:700px;font-size:0.95rem;color:var(--text-light);line-height:1.95;font-weight:300;margin-bottom:5rem;" data-ar="كل موكل وكل قضية فريدة — غير أن نهجنا ثابت دائماً: دقيق ومدروس ومتمحور حول الموكل. إليك كيف نعمل منذ اللحظة التي تتواصل معنا فيها حتى يُحسم أمر قضيتك بالكامل." data-en="Every client and every case is unique — but our approach is consistent: careful, strategic, and always client-focused. Here is exactly how we work from the moment you reach out to us until your matter is fully resolved.">كل موكل وكل قضية فريدة — غير أن نهجنا ثابت دائماً: دقيق ومدروس ومتمحور حول الموكل. إليك كيف نعمل منذ اللحظة التي تتواصل معنا فيها حتى يُحسم أمر قضيتك بالكامل.</p>
+
+    <div class="timeline">
+
+      <div class="t-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-inner">
+          <div class="step-num" data-ar="٠١" data-en="01">٠١</div>
+          <div>
+            <div class="step-phase" data-ar="التواصل الأولي" data-en="Initial Contact">التواصل الأولي</div>
+            <h3 class="step-title" data-ar="استشارة مجانية وتقييم القضية" data-en="Free Consultation & Case Assessment">استشارة مجانية وتقييم القضية</h3>
+            <p class="step-desc" data-ar="تبدأ رحلتك معنا باستشارة مجانية لا تُلزمك بشيء — سواء حضرتَ شخصياً لمكتبنا في الرياض، أو عبر الهاتف، أو مكالمة فيديو. يستمع إليك أحد كبار محامينا باهتمام، ويطرح الأسئلة اللازمة، ويمنحك تقييماً قانونياً أولياً صادقاً لوضعك وخياراتك." data-en="Your journey with us begins with a free, no-obligation consultation — available in person at our Riyadh office, by phone, or via video call. One of our senior attorneys will listen carefully to your situation, ask clarifying questions, and give you an honest, initial assessment of your legal position and options.">تبدأ رحلتك معنا باستشارة مجانية لا تُلزمك بشيء — سواء حضرتَ شخصياً لمكتبنا في الرياض، أو عبر الهاتف، أو مكالمة فيديو. يستمع إليك أحد كبار محامينا باهتمام، ويطرح الأسئلة اللازمة، ويمنحك تقييماً قانونياً أولياً صادقاً لوضعك وخياراتك.</p>
+            <div class="step-meta">
+              <div class="meta-box"><div class="meta-icon">🕐</div><div class="meta-label" data-ar="المدة" data-en="Duration">المدة</div><div class="meta-val" data-ar="٦٠ – ٩٠ دقيقة" data-en="60–90 minutes">٦٠ – ٩٠ دقيقة</div></div>
+              <div class="meta-box"><div class="meta-icon">📍</div><div class="meta-label" data-ar="الشكل" data-en="Format">الشكل</div><div class="meta-val" data-ar="حضورياً أو هاتفياً أو فيديو" data-en="In-person, phone, or video">حضورياً أو هاتفياً أو فيديو</div></div>
+              <div class="meta-box"><div class="meta-icon">💬</div><div class="meta-label" data-ar="اللغة" data-en="Language">اللغة</div><div class="meta-val" data-ar="عربي وإنجليزي" data-en="Arabic and English">عربي وإنجليزي</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-inner">
+          <div class="step-num" data-ar="٠٢" data-en="02">٠٢</div>
+          <div>
+            <div class="step-phase" data-ar="التعاقد" data-en="Engagement">التعاقد</div>
+            <h3 class="step-title" data-ar="النطاق والأتعاب واتفاقية التعاقد" data-en="Scope, Fees & Engagement Agreement">النطاق والأتعاب واتفاقية التعاقد</h3>
+            <p class="step-desc" data-ar="بمجرد قرارك بالمضي قدماً، نُقدّم لك خطاب تعاقد مكتوباً يوضح نطاق العمل والمحامي المعيّن وهيكل الأتعاب والجداول الزمنية المتوقعة. نؤمن بالشفافية التامة في التكاليف من البداية، فلا مفاجآت ولا تساؤلات." data-en="Once you decide to proceed, we provide a clear, written engagement letter outlining the scope of our work, the assigned attorney, the fee structure, and expected timelines. We believe complete transparency about costs eliminates surprises and builds trust from the beginning.">بمجرد قرارك بالمضي قدماً، نُقدّم لك خطاب تعاقد مكتوباً يوضح نطاق العمل والمحامي المعيّن وهيكل الأتعاب والجداول الزمنية المتوقعة. نؤمن بالشفافية التامة في التكاليف من البداية، فلا مفاجآت ولا تساؤلات.</p>
+            <div class="step-meta">
+              <div class="meta-box"><div class="meta-icon">📄</div><div class="meta-label" data-ar="المخرج" data-en="Deliverable">المخرج</div><div class="meta-val" data-ar="خطاب تعاقد موقّع" data-en="Signed engagement letter">خطاب تعاقد موقّع</div></div>
+              <div class="meta-box"><div class="meta-icon">💰</div><div class="meta-label" data-ar="الأتعاب" data-en="Fees">الأتعاب</div><div class="meta-val" data-ar="أتعاب ثابتة أو احتجاز — متفق عليها مسبقاً" data-en="Fixed fees or retainer — agreed upfront">أتعاب ثابتة أو احتجاز — متفق عليها مسبقاً</div></div>
+              <div class="meta-box"><div class="meta-icon">👤</div><div class="meta-label" data-ar="التخصيص" data-en="Assignment">التخصيص</div><div class="meta-val" data-ar="محامٍ مخصص لمجالك" data-en="Dedicated attorney assigned">محامٍ مخصص لمجالك</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-inner">
+          <div class="step-num" data-ar="٠٣" data-en="03">٠٣</div>
+          <div>
+            <div class="step-phase" data-ar="الاستقصاء" data-en="Investigation">الاستقصاء</div>
+            <h3 class="step-title" data-ar="البحث المعمّق وجمع الأدلة" data-en="Deep-Dive Research & Evidence Gathering">البحث المعمّق وجمع الأدلة</h3>
+            <p class="step-desc" data-ar="يُجري محاميك المعيّن بحثاً قانونياً شاملاً، ويراجع جميع الوثائق، ويجمع الأدلة الداعمة. في القضايا التقاضية، يشمل ذلك فحص السجلات القضائية وإجراء مقابلات الشهود والحصول على آراء الخبراء وإعداد ملف قضية متكامل." data-en="Your assigned attorney conducts thorough legal research, reviews all documentation, and gathers supporting evidence. For litigation cases, this includes examining court records, interviewing witnesses, obtaining expert opinions, and preparing a comprehensive case file.">يُجري محاميك المعيّن بحثاً قانونياً شاملاً، ويراجع جميع الوثائق، ويجمع الأدلة الداعمة. في القضايا التقاضية، يشمل ذلك فحص السجلات القضائية وإجراء مقابلات الشهود والحصول على آراء الخبراء وإعداد ملف قضية متكامل.</p>
+            <div class="step-meta">
+              <div class="meta-box"><div class="meta-icon">🔍</div><div class="meta-label" data-ar="البحث" data-en="Research">البحث</div><div class="meta-val" data-ar="الأنظمة والسوابق القضائية والأكواد" data-en="Statutes, precedents, regulatory codes">الأنظمة والسوابق القضائية والأكواد</div></div>
+              <div class="meta-box"><div class="meta-icon">📂</div><div class="meta-label" data-ar="التوثيق" data-en="Documentation">التوثيق</div><div class="meta-val" data-ar="ملف قضية شامل وفهرس أدلة" data-en="Comprehensive case file and evidence catalogue">ملف قضية شامل وفهرس أدلة</div></div>
+              <div class="meta-box"><div class="meta-icon">🧑‍🔬</div><div class="meta-label" data-ar="الخبراء" data-en="Experts">الخبراء</div><div class="meta-val" data-ar="خبراء جنائيون وطبيون وماليون" data-en="Forensic, medical & financial experts">خبراء جنائيون وطبيون وماليون</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-inner">
+          <div class="step-num" data-ar="٠٤" data-en="04">٠٤</div>
+          <div>
+            <div class="step-phase" data-ar="الاستراتيجية" data-en="Strategy">الاستراتيجية</div>
+            <h3 class="step-title" data-ar="تطوير الاستراتيجية القانونية وإطلاع الموكل" data-en="Legal Strategy Development & Client Briefing">تطوير الاستراتيجية القانونية وإطلاع الموكل</h3>
+            <p class="step-desc" data-ar="استناداً إلى بحثنا، نضع استراتيجية قانونية مُصمَّمة خصيصاً لقضيتك مع بدائل احتياطية. ثم نعرضها عليك في جلسة إحاطة تفصيلية — نشرح فيها المشهد القانوني وخياراتك الواقعية والمخاطر المرتبطة بكل مسار وتوصيتنا. أنت تتحكم في كل قرار مصيري." data-en="Based on our research, we develop a tailored legal strategy with a clear primary approach and contingency plans. We then present this strategy to you in a detailed briefing — explaining the legal landscape, your realistic options, the risks involved, and our recommendation. You remain in control of every major decision.">استناداً إلى بحثنا، نضع استراتيجية قانونية مُصمَّمة خصيصاً لقضيتك مع بدائل احتياطية. ثم نعرضها عليك في جلسة إحاطة تفصيلية — نشرح فيها المشهد القانوني وخياراتك الواقعية والمخاطر المرتبطة بكل مسار وتوصيتنا. أنت تتحكم في كل قرار مصيري.</p>
+            <div class="step-meta">
+              <div class="meta-box"><div class="meta-icon">♟️</div><div class="meta-label" data-ar="الاستراتيجية" data-en="Strategy">الاستراتيجية</div><div class="meta-val" data-ar="النهج الرئيسي مع سيناريوهات بديلة" data-en="Primary approach plus alternative scenarios">النهج الرئيسي مع سيناريوهات بديلة</div></div>
+              <div class="meta-box"><div class="meta-icon">📊</div><div class="meta-label" data-ar="تحليل المخاطر" data-en="Risk Analysis">تحليل المخاطر</div><div class="meta-val" data-ar="تقييم صادق للاحتمالات والنتائج" data-en="Honest assessment of likelihood and outcomes">تقييم صادق للاحتمالات والنتائج</div></div>
+              <div class="meta-box"><div class="meta-icon">✅</div><div class="meta-label" data-ar="موافقة الموكل" data-en="Client Approval">موافقة الموكل</div><div class="meta-val" data-ar="لا إجراء قبل موافقتك" data-en="Your consent before any action">لا إجراء قبل موافقتك</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-inner">
+          <div class="step-num" data-ar="٠٥" data-en="05">٠٥</div>
+          <div>
+            <div class="step-phase" data-ar="التنفيذ" data-en="Execution">التنفيذ</div>
+            <h3 class="step-title" data-ar="الإجراء القانوني والتمثيل والتفاوض" data-en="Legal Action, Representation & Negotiation">الإجراء القانوني والتمثيل والتفاوض</h3>
+            <p class="step-desc" data-ar="ننفّذ الاستراتيجية المتفق عليها بدقة متناهية — رفع اللوائح القانونية وتمثيلك في جلسات المحاكم وإجراء المفاوضات وإدارة جميع المراسلات مع الأطراف الأخرى والمحاكم والجهات الحكومية. تتلقى تحديثات منتظمة حتى لا تبقى أبداً في الظلام." data-en="We execute the agreed strategy with precision — filing legal documents, representing you in court hearings, conducting negotiations, and managing all communications with opposing parties, courts, and government authorities. You receive regular progress updates so you are never left wondering what is happening with your case.">ننفّذ الاستراتيجية المتفق عليها بدقة متناهية — رفع اللوائح القانونية وتمثيلك في جلسات المحاكم وإجراء المفاوضات وإدارة جميع المراسلات مع الأطراف الأخرى والمحاكم والجهات الحكومية. تتلقى تحديثات منتظمة حتى لا تبقى أبداً في الظلام.</p>
+            <div class="step-meta">
+              <div class="meta-box"><div class="meta-icon">🏛️</div><div class="meta-label" data-ar="العمل القضائي" data-en="Court Work">العمل القضائي</div><div class="meta-val" data-ar="جميع المذكرات والمثول والمرافعات" data-en="All filings, appearances, oral arguments">جميع المذكرات والمثول والمرافعات</div></div>
+              <div class="meta-box"><div class="meta-icon">🤝</div><div class="meta-label" data-ar="التفاوض" data-en="Negotiation">التفاوض</div><div class="meta-val" data-ar="التسويات حين تكون في مصلحتك" data-en="Settlements when in your best interest">التسويات حين تكون في مصلحتك</div></div>
+              <div class="meta-box"><div class="meta-icon">📲</div><div class="meta-label" data-ar="التحديثات" data-en="Updates">التحديثات</div><div class="meta-val" data-ar="تقارير دورية — لا انقطاع في التواصل" data-en="Regular progress reports — no radio silence">تقارير دورية — لا انقطاع في التواصل</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-inner">
+          <div class="step-num" data-ar="٠٦" data-en="06">٠٦</div>
+          <div>
+            <div class="step-phase" data-ar="الإغلاق" data-en="Resolution">الإغلاق</div>
+            <h3 class="step-title" data-ar="حسم القضية والدعم اللاحق" data-en="Case Resolution & Post-Matter Support">حسم القضية والدعم اللاحق</h3>
+            <p class="step-desc" data-ar="بمجرد حسم قضيتك — سواء بحكم قضائي أو تسوية ودية أو قرار إداري — نُتابع جميع الإجراءات اللازمة: تنفيذ الأحكام وإتمام التسجيلات أو تقديم الطعون عند الاقتضاء. كما نُجري معك جلسة تقييم للقضية ونبقى في خدمتك شريكاً قانونياً طويل الأمد." data-en="Once your case is resolved — whether through judgment, settlement, or administrative decision — we handle all follow-up actions: enforcing judgments, completing registrations, or filing appeals if required. We also conduct a case debrief with you and remain available as your long-term legal partner.">بمجرد حسم قضيتك — سواء بحكم قضائي أو تسوية ودية أو قرار إداري — نُتابع جميع الإجراءات اللازمة: تنفيذ الأحكام وإتمام التسجيلات أو تقديم الطعون عند الاقتضاء. كما نُجري معك جلسة تقييم للقضية ونبقى في خدمتك شريكاً قانونياً طويل الأمد.</p>
+            <div class="step-meta">
+              <div class="meta-box"><div class="meta-icon">🏆</div><div class="meta-label" data-ar="الإغلاق" data-en="Resolution">الإغلاق</div><div class="meta-val" data-ar="تنفيذ الأحكام وإتمام التسويات" data-en="Enforcement and settlement finalization">تنفيذ الأحكام وإتمام التسويات</div></div>
+              <div class="meta-box"><div class="meta-icon">📋</div><div class="meta-label" data-ar="التوثيق" data-en="Documentation">التوثيق</div><div class="meta-val" data-ar="تقرير ختامي وإعادة الوثائق الأصلية" data-en="Final report and original documents returned">تقرير ختامي وإعادة الوثائق الأصلية</div></div>
+              <div class="meta-box"><div class="meta-icon">🔄</div><div class="meta-label" data-ar="الاستمرارية" data-en="Ongoing">الاستمرارية</div><div class="meta-val" data-ar="شريكك القانوني الدائم" data-en="Available as your long-term partner">شريكك القانوني الدائم</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BY PRACTICE AREA -->
+<section id="by-area">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="حسب التخصص" data-en="Practice Specific">حسب التخصص</span></div>
+    <h2 class="section-title reveal" data-ar="آلية العمل حسب <em>مجال التخصص</em>" data-en="Process by <em>Practice Area</em>">آلية العمل حسب <em>مجال التخصص</em></h2>
+    <p class="reveal" style="max-width:600px;font-size:0.92rem;color:var(--text-light);line-height:1.9;font-weight:300;margin-bottom:3rem;" data-ar="رغم أن منهجنا الأساسي المكوّن من ٦ خطوات يسري على جميع القضايا، إليك كيف يتجلّى هذا المنهج تحديداً في كل مجال من مجالاتنا." data-en="While our core 6-step process applies to all matters, here's how it unfolds specifically in each of our practice areas.">رغم أن منهجنا الأساسي المكوّن من ٦ خطوات يسري على جميع القضايا، إليك كيف يتجلّى هذا المنهج تحديداً في كل مجال من مجالاتنا.</p>
+
+    <div class="tabs reveal">
+      <div class="tab active" onclick="showArea('corporate')" data-ar="الشركات" data-en="Corporate">الشركات</div>
+      <div class="tab" onclick="showArea('family')" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</div>
+      <div class="tab" onclick="showArea('criminal')" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</div>
+      <div class="tab" onclick="showArea('injury')" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</div>
+    </div>
+
+    <div id="corporate" class="area-content active">
+      <div class="area-steps">
+        <div class="as"><div class="as-num" data-ar="٠١" data-en="01">٠١</div><div class="as-title" data-ar="مراجعة الوضع التجاري" data-en="Business Review">مراجعة الوضع التجاري</div><div class="as-text" data-ar="فهم هيكل شركتك وأهدافها ومخاطرها القانونية" data-en="Understand corporate structure, objectives, and legal exposure">فهم هيكل شركتك وأهدافها ومخاطرها القانونية</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٢" data-en="02">٠٢</div><div class="as-title" data-ar="تقييم المخاطر" data-en="Risk Assessment">تقييم المخاطر</div><div class="as-text" data-ar="تحديد المخاطر القانونية التنظيمية والتعاقدية والتشغيلية" data-en="Identify regulatory, contractual, and operational legal risks">تحديد المخاطر القانونية التنظيمية والتعاقدية والتشغيلية</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٣" data-en="03">٠٣</div><div class="as-title" data-ar="الاستراتيجية والصياغة" data-en="Strategy & Drafting">الاستراتيجية والصياغة</div><div class="as-text" data-ar="صياغة الاتفاقيات وتقديم التسجيلات وهيكلة الصفقات" data-en="Draft agreements, file registrations, structure transactions">صياغة الاتفاقيات وتقديم التسجيلات وهيكلة الصفقات</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٤" data-en="04">٠٤</div><div class="as-title" data-ar="الإغلاق والحماية" data-en="Close & Protect">الإغلاق والحماية</div><div class="as-text" data-ar="تنفيذ وتسجيل وتقديم الدعم الاستشاري المستمر" data-en="Execute, register, and provide ongoing advisory support">تنفيذ وتسجيل وتقديم الدعم الاستشاري المستمر</div></div>
+      </div>
+    </div>
+    <div id="family" class="area-content">
+      <div class="area-steps">
+        <div class="as"><div class="as-num" data-ar="٠١" data-en="01">٠١</div><div class="as-title" data-ar="لقاء سري" data-en="Confidential Meeting">لقاء سري</div><div class="as-text" data-ar="نقاش خاص حول وضعك الأسري والنتائج المرجوة" data-en="Private discussion of your family situation and desired outcomes">نقاش خاص حول وضعك الأسري والنتائج المرجوة</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٢" data-en="02">٠٢</div><div class="as-title" data-ar="الوضع القانوني" data-en="Legal Position">الوضع القانوني</div><div class="as-text" data-ar="تقييم الحقوق وفق نظام الأحوال الشخصية والشريعة الإسلامية" data-en="Assess rights under Saudi Personal Status Law and Islamic law">تقييم الحقوق وفق نظام الأحوال الشخصية والشريعة الإسلامية</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٣" data-en="03">٠٣</div><div class="as-title" data-ar="الوساطة / الرفع" data-en="Mediation / Filing">الوساطة / الرفع</div><div class="as-text" data-ar="محاولة التسوية أولاً؛ وإن تعذّر، رفع دعوى قضائية" data-en="Attempt settlement first; if unresolved, file court proceedings">محاولة التسوية أولاً؛ وإن تعذّر، رفع دعوى قضائية</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٤" data-en="04">٠٤</div><div class="as-title" data-ar="المحكمة والحسم" data-en="Court & Resolution">المحكمة والحسم</div><div class="as-text" data-ar="تمثيل أمام محكمة الأسرة وتنفيذ الحكم ومتابعة الإجراءات" data-en="Represent before family court; enforce judgment and follow up">تمثيل أمام محكمة الأسرة وتنفيذ الحكم ومتابعة الإجراءات</div></div>
+      </div>
+    </div>
+    <div id="criminal" class="area-content">
+      <div class="area-steps">
+        <div class="as"><div class="as-num" data-ar="٠١" data-en="01">٠١</div><div class="as-title" data-ar="استجابة طارئة" data-en="Emergency Response">استجابة طارئة</div><div class="as-text" data-ar="توجيه فوري حول حقوقك والحضور في مركز الشرطة عند الاعتقال" data-en="Immediate advice on rights; attend police station if arrested">توجيه فوري حول حقوقك والحضور في مركز الشرطة عند الاعتقال</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٢" data-en="02">٠٢</div><div class="as-title" data-ar="تحليل القضية" data-en="Case Analysis">تحليل القضية</div><div class="as-text" data-ar="مراجعة أدلة الادعاء وتحديد نقاط الضعف وخطوط الدفاع" data-en="Review prosecution evidence, identify weaknesses and defenses">مراجعة أدلة الادعاء وتحديد نقاط الضعف وخطوط الدفاع</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٣" data-en="03">٠٣</div><div class="as-title" data-ar="استراتيجية الدفاع" data-en="Defense Strategy">استراتيجية الدفاع</div><div class="as-text" data-ar="بناء دفاع شامل وتفنيد الأدلة وإعداد الشهود" data-en="Build comprehensive defense; challenge evidence; brief witnesses">بناء دفاع شامل وتفنيد الأدلة وإعداد الشهود</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٤" data-en="04">٠٤</div><div class="as-title" data-ar="المحاكمة والطعن" data-en="Trial & Appeal">المحاكمة والطعن</div><div class="as-text" data-ar="تمثيل كامل في المحكمة والطعن في الحكم إن كان ظالماً" data-en="Full courtroom representation; appeal if verdict is unjust">تمثيل كامل في المحكمة والطعن في الحكم إن كان ظالماً</div></div>
+      </div>
+    </div>
+    <div id="injury" class="area-content">
+      <div class="area-steps">
+        <div class="as"><div class="as-num" data-ar="٠١" data-en="01">٠١</div><div class="as-title" data-ar="مراجعة الحادثة" data-en="Incident Review">مراجعة الحادثة</div><div class="as-text" data-ar="توثيق الإصابات والأدلة وجمع شهادات الشهود" data-en="Document injuries, evidence, and gather witness statements">توثيق الإصابات والأدلة وجمع شهادات الشهود</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٢" data-en="02">٠٢</div><div class="as-title" data-ar="تحديد المسؤولية" data-en="Liability Assessment">تحديد المسؤولية</div><div class="as-text" data-ar="إثبات المسؤولية وتقييم كامل الأضرار المستحقة" data-en="Establish liability and quantify full damages owed">إثبات المسؤولية وتقييم كامل الأضرار المستحقة</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٣" data-en="03">٠٣</div><div class="as-title" data-ar="التفاوض" data-en="Negotiation">التفاوض</div><div class="as-text" data-ar="السعي للتسوية مع شركات التأمين والأطراف المسؤولة" data-en="Pursue settlement with insurers and liable parties">السعي للتسوية مع شركات التأمين والأطراف المسؤولة</div></div>
+        <div class="as"><div class="as-num" data-ar="٠٤" data-en="04">٠٤</div><div class="as-title" data-ar="التقاضي" data-en="Litigation">التقاضي</div><div class="as-text" data-ar="اللجوء للمحكمة إن رُفض التعويض العادل وتنفيذ الحكم" data-en="Take to court if fair compensation is refused; enforce award">اللجوء للمحكمة إن رُفض التعويض العادل وتنفيذ الحكم</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENTS -->
+<section id="commit">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="وعودنا لك" data-en="Our Promises">وعودنا لك</span></div>
+    <h2 class="section-title reveal" data-ar="ما يمكنك توقّعه <em style='color:var(--gold-dark)'>دائماً</em>" data-en="What You Can <em style='color:var(--gold-dark)'>Always Expect</em>">ما يمكنك توقّعه <em style="color:var(--gold-dark)">دائماً</em></h2>
+    <div class="commit-grid">
+      <div class="commit-card reveal">
+        <div class="commit-icon">📞</div>
+        <h3 class="commit-title" data-ar="رد خلال ٢٤ ساعة" data-en="24-Hour Response">رد خلال ٢٤ ساعة</h3>
+        <p class="commit-text" data-ar="نضمن الرد على جميع مراسلات الموكلين خلال ٢٤ ساعة — وخلال ساعتين في الحالات العاجلة والطارئة." data-en="We guarantee a response to all client communications within 24 hours — and within 2 hours for urgent and emergency matters.">نضمن الرد على جميع مراسلات الموكلين خلال ٢٤ ساعة — وخلال ساعتين في الحالات العاجلة والطارئة.</p>
+      </div>
+      <div class="commit-card reveal reveal-delay-1">
+        <div class="commit-icon">📊</div>
+        <h3 class="commit-title" data-ar="تحديثات شهرية للقضية" data-en="Monthly Case Updates">تحديثات شهرية للقضية</h3>
+        <p class="commit-text" data-ar="تحديثات مكتوبة رسمية حول مستجدات قضيتك كل شهر، إضافة إلى تحديثات عاجلة كلما طرأت مستجدات مهمة." data-en="Formal written updates on your case progress every month, in addition to ad-hoc updates whenever there are significant developments.">تحديثات مكتوبة رسمية حول مستجدات قضيتك كل شهر، إضافة إلى تحديثات عاجلة كلما طرأت مستجدات مهمة.</p>
+      </div>
+      <div class="commit-card reveal reveal-delay-2">
+        <div class="commit-icon">💡</div>
+        <h3 class="commit-title" data-ar="المشورة الصادقة" data-en="Honest Counsel">المشورة الصادقة</h3>
+        <p class="commit-text" data-ar="سنقدم لك دائماً تقييمنا القانوني الصادق — حتى حين لا يكون الخبر ما كنت تأمله. النصيحة الصادقة تحميك وتصون حقوقك." data-en="We will always give you our genuine legal assessment — including when the news is not what you hoped to hear. Honest advice protects you.">سنقدم لك دائماً تقييمنا القانوني الصادق — حتى حين لا يكون الخبر ما كنت تأمله. النصيحة الصادقة تحميك وتصون حقوقك.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2 data-ar="مستعد <em style='font-style:italic;color:var(--gold)'>للبدء؟</em>" data-en="Ready to <em style='font-style:italic;color:var(--gold)'>Get Started?</em>">مستعد <em style="font-style:italic;color:var(--gold)">للبدء؟</em></h2>
+  <p data-ar="احجز استشارتك المجانية اليوم واخطُ أولى خطواتك نحو حلّ قضيتك." data-en="Book your free consultation today and take the first step toward resolving your legal matter.">احجز استشارتك المجانية اليوم واخطُ أولى خطواتك نحو حلّ قضيتك.</p>
+  <a href="contact.html" class="btn-gold" data-ar="احجز استشارة مجانية" data-en="Book Free Consultation">احجز استشارة مجانية</a>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark" data-ar="م" data-en="M">م</div>
+          <div><div style="font-family:var(--font-display);font-size:0.95rem;color:var(--gold);" data-ar="مكتب المطرود للمحاماة" data-en="AL MATROOD LAW FIRM">مكتب المطرود للمحاماة</div></div>
+        </a>
+        <p data-ar="شريككم القانوني الموثوق في المملكة العربية السعودية." data-en="A trusted legal partner in the Kingdom of Saudi Arabia.">شريككم القانوني الموثوق في المملكة العربية السعودية.</p>
+      </div>
+      <div>
+        <div class="footer-heading" data-ar="خدماتنا" data-en="Services">خدماتنا</div>
+        <ul class="footer-links">
+          <li><a href="services.html" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</a></li>
+          <li><a href="services.html" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</a></li>
+          <li><a href="services.html" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</a></li>
+          <li><a href="services.html" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading" data-ar="المكتب" data-en="The Firm">المكتب</div>
+        <ul class="footer-links">
+          <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Choose Us">لماذا نحن</a></li>
+          <li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
+          <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+          <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</div>
+        <ul class="footer-links">
+          <li><a href="contact.html" data-ar="احجز استشارة" data-en="Book Consultation">احجز استشارة</a></li>
+          <li><a href="mailto:info@almatroodlaw.sa">info@almatroodlaw.sa</a></li>
+          <li><a href="#">+966 11 XXX XXXX</a></li>
+          <li><a href="#" data-ar="الرياض، المملكة العربية السعودية" data-en="Riyadh, Saudi Arabia">الرياض، المملكة العربية السعودية</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-ar="© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة." data-en="© 2025 Al Matrood Law Firm. All rights reserved.">© 2025 مكتب المطرود للمحاماة. جميع الحقوق محفوظة.</div>
+      <div class="footer-dual">AL MATROOD — مكتب المطرود للمحاماة</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const LANG_KEY='almatrood_lang';
+function setLang(lang){localStorage.setItem(LANG_KEY,lang);applyLang(lang);}
+function applyLang(lang){
+  const html=document.documentElement;
+  html.setAttribute('lang',lang);
+  html.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-ar][data-en]').forEach(el=>{const t=el.getAttribute('data-'+lang);if(t!==null)el.innerHTML=t;});
+  document.querySelectorAll('.lang-btn').forEach(btn=>{btn.classList.toggle('active',btn.getAttribute('onclick').includes("'"+lang+"'"));});
+  document.title=lang==='ar'?'آلية العمل | مكتب المطرود للمحاماة':'Our Process | Al Matrood Law Firm';
+}
+(function(){const s=localStorage.getItem(LANG_KEY)||'ar';applyLang(s);})();
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function showArea(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['corporate','family','criminal','injury'][i]===id));
+  document.querySelectorAll('.area-content').forEach(c=>c.classList.toggle('active',c.id===id));
+}
+</script>
+</body>
+</html>
