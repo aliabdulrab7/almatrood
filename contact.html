@@ -302,7 +302,7 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
               <div class="form-group"><label class="form-label"><span data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</span> <span>*</span></label><input type="tel" class="form-input" id="phone" placeholder="+966 5XX XXX XXXX"></div>
               <div class="form-group">
                 <label class="form-label" data-ar="طريقة التواصل المفضلة" data-en="Preferred Contact">طريقة التواصل المفضلة</label>
-                <select class="form-select">
+                <select class="form-select" id="contactMethod">
                   <option data-ar="مكالمة هاتفية" data-en="Phone Call">مكالمة هاتفية</option>
                   <option data-ar="واتساب" data-en="WhatsApp">واتساب</option>
                   <option data-ar="بريد إلكتروني" data-en="Email">بريد إلكتروني</option>
@@ -323,7 +323,7 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
             </div>
             <div class="form-group">
               <label class="form-label" data-ar="طريقة الاجتماع المفضلة" data-en="Preferred Meeting Format">طريقة الاجتماع المفضلة</label>
-              <select class="form-select">
+              <select class="form-select" id="meetingFormat">
                 <option data-ar="حضورياً (مكتب الرياض)" data-en="In-Person (Riyadh Office)">حضورياً (مكتب الرياض)</option>
                 <option data-ar="استشارة هاتفية" data-en="Phone Consultation">استشارة هاتفية</option>
                 <option data-ar="مكالمة فيديو" data-en="Video Call">مكالمة فيديو</option>
@@ -421,23 +421,64 @@ const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersect
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 function submitForm(){
   const lang=document.documentElement.getAttribute('lang')||'ar';
-  const fname=document.getElementById('fname').value;
-  const lname=document.getElementById('lname').value;
-  const email=document.getElementById('email').value;
-  const phone=document.getElementById('phone').value;
+  const fname=document.getElementById('fname').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const contactMethod=document.getElementById('contactMethod');
   const practice=document.getElementById('practice').value;
-  const message=document.getElementById('message').value;
+  const meetingFormat=document.getElementById('meetingFormat');
+  const message=document.getElementById('message').value.trim();
   const consent=document.getElementById('consent').checked;
+
   if(!fname||!lname||!email||!phone||!practice||!message){
     alert(lang==='ar'?'يرجى تعبئة جميع الحقول الإلزامية المشار إليها بـ *':'Please fill in all required fields marked with *');return;
   }
   if(!consent){
     alert(lang==='ar'?'يرجى تأكيد موافقتك للمتابعة.':'Please confirm your consent to proceed.');return;
   }
-  document.getElementById('the-form').style.display='none';
-  const s=document.getElementById('success-msg');
-  s.style.display='block';
-  applyLang(lang);
+
+  // Show loading state
+  const btn=document.querySelector('.form-submit');
+  const origText=btn.textContent;
+  btn.disabled=true;
+  btn.textContent=lang==='ar'?'جارٍ الإرسال...':'Sending...';
+  btn.style.opacity='0.7';
+
+  // ── IMPORTANT: Replace this URL with your deployed Google Apps Script URL ──
+  const GOOGLE_SCRIPT_URL='YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+  const data={
+    timestamp: new Date().toLocaleString('en-US',{timeZone:'Asia/Riyadh'}),
+    firstName: fname,
+    lastName: lname,
+    email: email,
+    phone: phone,
+    contactMethod: contactMethod.options[contactMethod.selectedIndex].getAttribute('data-en')||contactMethod.value,
+    practiceArea: practice,
+    meetingFormat: meetingFormat.options[meetingFormat.selectedIndex].getAttribute('data-en')||meetingFormat.value,
+    message: message,
+    language: lang
+  };
+
+  fetch(GOOGLE_SCRIPT_URL,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(data)
+  })
+  .then(()=>{
+    document.getElementById('the-form').style.display='none';
+    const s=document.getElementById('success-msg');
+    s.style.display='block';
+    applyLang(lang);
+  })
+  .catch(()=>{
+    alert(lang==='ar'?'حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.':'Something went wrong. Please try again or contact us directly.');
+    btn.disabled=false;
+    btn.textContent=origText;
+    btn.style.opacity='1';
+  });
 }
 function toggleFaq(el){
   const isOpen=el.classList.contains('open');
