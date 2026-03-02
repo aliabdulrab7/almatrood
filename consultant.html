@@ -144,6 +144,57 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
   .footer-grid{grid-template-columns:1fr 1fr;}
   section{padding:5rem 0;}
 }
+
+  /* HAMBURGER BUTTON */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:1100;background:none;border:none;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--gold);transition:all 0.3s ease;}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+  .hamburger.active span:nth-child(2){opacity:0;}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu{position:fixed;inset:0;background:rgba(10,22,40,0.98);backdrop-filter:blur(20px);z-index:1050;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;opacity:0;visibility:hidden;transition:all 0.4s ease;}
+  .mobile-menu.open{opacity:1;visibility:visible;}
+  .mobile-menu a{color:var(--cream);text-decoration:none;font-family:var(--font-display);font-size:1.5rem;padding:0.8rem 0;transition:color 0.3s;opacity:0;transform:translateY(15px);display:block;}
+  .mobile-menu.open a{opacity:1;transform:translateY(0);}
+  .mobile-menu a:nth-child(1){transition-delay:0.1s;}
+  .mobile-menu a:nth-child(2){transition-delay:0.15s;}
+  .mobile-menu a:nth-child(3){transition-delay:0.2s;}
+  .mobile-menu a:nth-child(4){transition-delay:0.25s;}
+  .mobile-menu a:nth-child(5){transition-delay:0.3s;}
+  .mobile-menu a:nth-child(6){transition-delay:0.35s;}
+  .mobile-menu a:nth-child(7){transition-delay:0.4s;}
+  .mobile-menu a:hover{color:var(--gold);}
+  .mobile-menu .mobile-cta{margin-top:1.5rem;background:var(--gold);color:var(--navy);padding:0.9rem 2.5rem;font-family:var(--font-body);font-size:0.85rem;font-weight:600;text-decoration:none;display:inline-block;}
+  .mobile-menu .mobile-lang{display:flex;gap:0;border:1px solid rgba(201,169,110,0.4);margin-top:1.5rem;overflow:hidden;}
+  .mobile-menu .mobile-lang .lang-btn{padding:0.5rem 1.2rem;font-size:0.75rem;font-weight:600;cursor:pointer;background:transparent;border:none;color:var(--text-light);font-family:var(--font-body);transition:all 0.2s;}
+  .mobile-menu .mobile-lang .lang-btn.active{background:var(--gold);color:var(--navy);}
+
+  @media(max-width:900px){
+    .hamburger{display:flex;}
+    body.menu-open{overflow:hidden;}
+  }
+
+  @media(max-width:480px){
+    .hero-stats{flex-direction:column;gap:1.5rem;}
+    .stat-number{font-size:2rem;}
+    .hero-title{font-size:clamp(2rem,8vw,3rem);}
+    .section-title{font-size:clamp(1.6rem,5vw,2.5rem);}
+    .hero-body{font-size:0.9rem;}
+    .hero-actions{flex-direction:column;align-items:stretch;}
+    .btn-primary{text-align:center;}
+    .team-grid,.testimonials-grid,.support-grid,.why-grid,.footer-grid{grid-template-columns:1fr !important;}
+    .footer-bottom{flex-direction:column;gap:0.8rem;text-align:center;}
+    .stats-inner{grid-template-columns:1fr !important;}
+    .area-steps{grid-template-columns:1fr !important;}
+    nav{padding:1rem 1rem !important;} nav.scrolled{padding:0.8rem 1rem !important;}
+    .container{padding:0 1rem !important;}
+    .hero-content{padding:0 1rem !important;padding-top:6rem !important;}
+    .page-hero-content{padding:0 1rem !important;padding-top:6rem !important;padding-bottom:2rem !important;}
+    .mobile-menu a{font-size:1.2rem;padding:0.6rem 0;}
+    .scroll-indicator{display:none;}
+  }
+
 </style>
 </head>
 <body>
@@ -171,7 +222,25 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
     </div>
     <a href="contact.html" class="nav-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
   </div>
+
+  <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+  <a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+  <a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a>
+  <a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a>
+  <a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a>
+  <a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+  <a href="contact.html" class="mobile-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
+  <div class="mobile-lang">
+    <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
 
 <div class="page-hero">
   <div class="page-hero-bg"></div>
@@ -397,6 +466,28 @@ const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ============================================================
+// MOBILE MENU
+// ============================================================
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.querySelector('.hamburger');
+  const isOpen = menu.classList.contains('open');
+  menu.classList.toggle('open');
+  burger.classList.toggle('active');
+  document.body.classList.toggle('menu-open');
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.querySelector('.hamburger');
+  if (menu) { menu.classList.remove('open'); }
+  if (burger) { burger.classList.remove('active'); }
+  document.body.classList.remove('menu-open');
+}
+// Close on resize to desktop
+window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
+
 </script>
 </body>
 </html>
