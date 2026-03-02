@@ -156,6 +156,120 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
 .footer-copy{font-size:0.72rem;color:var(--text-light);opacity:0.6;}
 .footer-dual{font-size:0.72rem;color:var(--gold);opacity:0.6;}
 
+/* ══════════════════════════════════════════════
+   WIZARD — Smart Consultation Form
+   ══════════════════════════════════════════════ */
+
+/* Progress bar */
+.wiz-progress-bar{height:3px;background:rgba(201,169,110,0.12);margin-bottom:2rem;border-radius:2px;overflow:hidden;}
+.wiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));transition:width 0.5s cubic-bezier(.4,0,.2,1);}
+
+/* Step dots */
+.wiz-steps-dots{display:flex;align-items:center;justify-content:center;margin-bottom:2.5rem;}
+.wiz-dot{width:34px;height:34px;border-radius:50%;border:2px solid rgba(201,169,110,0.22);background:transparent;color:var(--text-light);font-size:0.72rem;font-weight:600;cursor:default;display:flex;align-items:center;justify-content:center;transition:all 0.35s;font-family:var(--font-body);}
+.wiz-dot.completed{border-color:var(--gold);background:var(--gold);color:var(--navy);cursor:pointer;}
+.wiz-dot.active{border-color:var(--gold);color:var(--gold);}
+.wiz-dot-line{flex:1;height:1px;background:rgba(201,169,110,0.15);min-width:24px;transition:background 0.5s;}
+.wiz-dot-line.filled{background:var(--gold);}
+
+/* Slide animations */
+.wiz-container{position:relative;overflow:hidden;transition:min-height 0.38s ease;}
+.wiz-step{display:none;}
+.wiz-step.active{display:block;}
+.wiz-step.slide-out-left{display:block;position:absolute;top:0;left:0;right:0;animation:wizOutLeft 0.4s cubic-bezier(.4,0,.2,1) forwards;}
+.wiz-step.slide-out-right{display:block;position:absolute;top:0;left:0;right:0;animation:wizOutRight 0.4s cubic-bezier(.4,0,.2,1) forwards;}
+.wiz-step.slide-in-left{display:block;animation:wizInLeft 0.4s cubic-bezier(.4,0,.2,1) forwards;}
+.wiz-step.slide-in-right{display:block;animation:wizInRight 0.4s cubic-bezier(.4,0,.2,1) forwards;}
+@keyframes wizOutLeft{from{transform:translateX(0);opacity:1}to{transform:translateX(-55%);opacity:0}}
+@keyframes wizOutRight{from{transform:translateX(0);opacity:1}to{transform:translateX(55%);opacity:0}}
+@keyframes wizInLeft{from{transform:translateX(55%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes wizInRight{from{transform:translateX(-55%);opacity:0}to{transform:translateX(0);opacity:1}}
+/* RTL: flip directions */
+[dir="rtl"] .wiz-step.slide-out-left{animation-name:wizOutRight;}
+[dir="rtl"] .wiz-step.slide-out-right{animation-name:wizOutLeft;}
+[dir="rtl"] .wiz-step.slide-in-left{animation-name:wizInRight;}
+[dir="rtl"] .wiz-step.slide-in-right{animation-name:wizInLeft;}
+
+/* Step header */
+.wiz-step-label{font-size:0.58rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;font-weight:700;}
+[lang="ar"] .wiz-step-label{letter-spacing:0;font-size:0.66rem;text-transform:none;}
+.wiz-step-title{font-family:var(--font-display);font-size:1.35rem;color:var(--cream);margin-bottom:0.35rem;line-height:1.25;}
+.wiz-step-sub{font-size:0.78rem;color:var(--text-light);margin-bottom:1.75rem;}
+
+/* Type cards — Step 1 */
+.type-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:0.5rem;}
+.type-card{background:rgba(10,22,40,0.5);border:1.5px solid rgba(201,169,110,0.15);padding:1.75rem 1rem;cursor:pointer;transition:border-color .25s,transform .25s,box-shadow .25s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.7rem;width:100%;}
+.type-card:hover{border-color:rgba(201,169,110,0.5);transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,169,110,0.1);}
+.type-card.selected{border-color:var(--gold);background:rgba(201,169,110,0.07);}
+.type-card-icon{font-size:2.1rem;line-height:1;}
+.type-card-title{font-family:var(--font-display);font-size:1rem;color:var(--cream);font-weight:600;}
+.type-card-desc{font-size:0.71rem;color:var(--text-light);line-height:1.55;}
+
+/* Area cards — Step 2 */
+.area-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:1.1rem;}
+.area-card{background:rgba(10,22,40,0.5);border:1.5px solid rgba(201,169,110,0.15);padding:1.1rem 0.85rem;cursor:pointer;transition:border-color .25s,transform .2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.45rem;width:100%;}
+.area-card:hover{border-color:rgba(201,169,110,0.5);transform:translateY(-2px);}
+.area-card.selected{border-color:var(--gold);background:rgba(201,169,110,0.07);}
+.area-card-icon{font-size:1.65rem;line-height:1;}
+.area-card-title{font-size:0.78rem;color:var(--cream);font-weight:600;}
+.subissue-wrap{animation:fieldIn .3s ease forwards;}
+
+/* Dynamic fields — Step 3 */
+.dynamic-field{animation:fieldIn .35s ease both;}
+@keyframes fieldIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.field-delay-1{animation-delay:.04s}.field-delay-2{animation-delay:.09s}
+.field-delay-3{animation-delay:.14s}.field-delay-4{animation-delay:.19s}.field-delay-5{animation-delay:.24s}
+.sub-field{display:none;}
+.sub-field.visible{display:flex;flex-direction:column;animation:fieldIn .25s ease forwards;}
+.radio-row{display:flex;flex-wrap:wrap;gap:1.5rem;margin:0;}
+.radio-row label{display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.83rem;color:var(--cream);}
+.radio-row input[type=radio]{accent-color:var(--gold);width:16px;height:16px;flex-shrink:0;}
+
+/* Urgent banner */
+.urgent-banner{background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.3);padding:0.8rem 1rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:0.7rem;font-size:0.77rem;color:#fca5a5;line-height:1.5;}
+
+/* Urgency pills — Step 4 */
+.urgency-pills{display:flex;flex-direction:column;gap:0.55rem;margin-bottom:1.25rem;}
+.urgency-pill{display:flex;align-items:center;gap:0.9rem;padding:0.85rem 1.1rem;border:1.5px solid rgba(201,169,110,0.14);background:rgba(10,22,40,0.4);cursor:pointer;transition:border-color .22s,background .22s;width:100%;text-align:start;}
+.urgency-pill:hover{border-color:rgba(201,169,110,0.35);}
+.urgency-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.urgency-pill[data-level="normal"]   .urgency-dot{background:#16a34a;}
+.urgency-pill[data-level="important"].urgency-dot{background:#d97706;}
+.urgency-pill[data-level="urgent"]   .urgency-dot{background:#dc2626;}
+.urgency-label{font-size:0.83rem;color:var(--cream);font-weight:600;flex:1;}
+.urgency-sla{font-size:0.65rem;color:var(--text-light);}
+.urgency-pill.selected[data-level="normal"]  {border-color:#16a34a;background:rgba(22,163,74,.08);}
+.urgency-pill.selected[data-level="important"]{border-color:#d97706;background:rgba(217,119,6,.08);}
+.urgency-pill.selected[data-level="urgent"]  {border-color:#dc2626;background:rgba(220,38,38,.08);}
+
+/* Char counter */
+.char-counter{font-size:0.62rem;color:var(--text-light);text-align:end;margin-top:0.25rem;}
+.char-counter.warn{color:#d97706;}.char-counter.ovr{color:#dc2626;}
+
+/* Wizard nav buttons */
+.wiz-next-btn{background:var(--gold);color:var(--navy);border:none;padding:0.9rem 2rem;font-family:var(--font-body);font-size:0.88rem;font-weight:700;cursor:pointer;transition:background .25s;display:block;width:100%;margin-top:0.75rem;}
+.wiz-next-btn:hover{background:var(--gold-light);}
+.wiz-back-link{background:none;border:none;color:var(--text-light);font-size:0.75rem;cursor:pointer;padding:0.6rem 0;display:inline-block;margin-top:0.4rem;transition:color .2s;font-family:var(--font-body);}
+.wiz-back-link:hover{color:var(--gold);}
+.form-input.error,.form-select.error,.form-textarea.error{border-color:#dc2626 !important;}
+
+/* Success screen */
+.wiz-req-id{font-size:0.72rem;color:var(--gold);margin:.5rem 0 .2rem;font-weight:700;letter-spacing:.05em;}
+.wiz-sla-msg{font-size:.95rem;color:var(--cream);margin:0 0 1.5rem;font-weight:600;}
+.wiz-success-actions{display:flex;flex-direction:column;gap:.8rem;margin-top:1.75rem;}
+.wiz-wa-btn{display:flex;align-items:center;justify-content:center;gap:.7rem;background:#25D366;color:#fff;padding:.9rem 1.5rem;text-decoration:none;font-weight:700;font-size:.88rem;transition:opacity .2s;font-family:var(--font-body);}
+.wiz-wa-btn:hover{opacity:.88;}
+.wiz-services-btn{display:block;text-align:center;border:1px solid rgba(201,169,110,0.25);color:var(--gold);padding:.8rem;text-decoration:none;font-size:.8rem;transition:all .2s;font-family:var(--font-body);}
+.wiz-services-btn:hover{border-color:var(--gold);background:rgba(201,169,110,.04);}
+
+/* Responsive */
+@media(max-width:600px){
+  .type-cards-grid{grid-template-columns:1fr;}
+  .area-cards-grid{grid-template-columns:1fr 1fr;}
+  .wiz-step-title{font-size:1.15rem;}
+}
+@media(max-width:400px){.area-cards-grid{grid-template-columns:1fr;}}
+
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}nav.scrolled{padding:0.8rem 1.5rem;}
   .nav-links,.nav-cta{display:none;}
@@ -327,61 +441,181 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
       <!-- FORM -->
       <div class="reveal reveal-delay-1">
         <div class="form-wrap" id="form-wrap">
-          <h3 class="form-main-title" data-ar="احجز استشارة مجانية" data-en="Book a Free Consultation">احجز استشارة مجانية</h3>
-          <p class="form-sub" data-ar="أكمل النموذج أدناه وسيتواصل معك أحد محامينا خلال ٢٤ ساعة لتحديد موعد استشارتك. جميع المعلومات تحظى بسرية مطلقة." data-en="Fill in the form below and one of our attorneys will contact you within 24 hours to schedule your consultation. All information is treated with strict confidentiality.">أكمل النموذج أدناه وسيتواصل معك أحد محامينا خلال ٢٤ ساعة لتحديد موعد استشارتك. جميع المعلومات تحظى بسرية مطلقة.</p>
+          <!-- ══ PROGRESS BAR ══ -->
+          <div class="wiz-progress-bar"><div class="wiz-progress-fill" id="wiz-progress" style="width:25%"></div></div>
 
-          <div id="the-form">
-            <div class="form-row">
-              <div class="form-group"><label class="form-label"><span data-ar="الاسم الأول" data-en="First Name">الاسم الأول</span> <span>*</span></label><input type="text" class="form-input" id="fname" data-ar-placeholder="اسمك الأول" data-en-placeholder="Your first name" placeholder="اسمك الأول"></div>
-              <div class="form-group"><label class="form-label"><span data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</span> <span>*</span></label><input type="text" class="form-input" id="lname" data-ar-placeholder="اسم عائلتك" data-en-placeholder="Your last name" placeholder="اسم عائلتك"></div>
-            </div>
-            <div class="form-group"><label class="form-label"><span data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</span> <span>*</span></label><input type="email" class="form-input" id="email" data-ar-placeholder="بريدك@الإلكتروني.com" data-en-placeholder="your@email.com" placeholder="بريدك@الإلكتروني.com"></div>
-            <div class="form-row">
-              <div class="form-group"><label class="form-label"><span data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</span> <span>*</span></label><input type="tel" class="form-input" id="phone" placeholder="+966 5XX XXX XXXX"></div>
-              <div class="form-group">
-                <label class="form-label" data-ar="طريقة التواصل المفضلة" data-en="Preferred Contact">طريقة التواصل المفضلة</label>
-                <select class="form-select" id="contactMethod">
-                  <option data-ar="مكالمة هاتفية" data-en="Phone Call">مكالمة هاتفية</option>
-                  <option data-ar="واتساب" data-en="WhatsApp">واتساب</option>
-                  <option data-ar="بريد إلكتروني" data-en="Email">بريد إلكتروني</option>
-                  <option data-ar="حضورياً" data-en="In-Person">حضورياً</option>
-                </select>
+          <!-- ══ STEP DOTS ══ -->
+          <div class="wiz-steps-dots" id="wiz-dots">
+            <button class="wiz-dot active" id="wdot-1" onclick="wizGoToDot(1)">1</button>
+            <div class="wiz-dot-line" id="wline-1"></div>
+            <button class="wiz-dot" id="wdot-2" onclick="wizGoToDot(2)">2</button>
+            <div class="wiz-dot-line" id="wline-2"></div>
+            <button class="wiz-dot" id="wdot-3" onclick="wizGoToDot(3)">3</button>
+            <div class="wiz-dot-line" id="wline-3"></div>
+            <button class="wiz-dot" id="wdot-4" onclick="wizGoToDot(4)">4</button>
+          </div>
+
+          <!-- ══ WIZARD CONTAINER ══ -->
+          <div class="wiz-container" id="wiz-container">
+
+            <!-- ── STEP 1: Client Type ── -->
+            <div class="wiz-step active" id="wiz-step-1">
+              <div class="wiz-step-label" data-ar="الخطوة ١ من ٤" data-en="Step 1 of 4">الخطوة ١ من ٤</div>
+              <h3 class="wiz-step-title" data-ar="ابدأ من هنا" data-en="Let's Get Started">ابدأ من هنا</h3>
+              <p class="wiz-step-sub" data-ar="كلما عرفنا أكثر، قدّمنا خدمةً أفضل" data-en="The more we know, the better we serve you">كلما عرفنا أكثر، قدّمنا خدمةً أفضل</p>
+              <div class="type-cards-grid">
+                <button class="type-card" onclick="wizSelectType('individual',this)">
+                  <div class="type-card-icon">👤</div>
+                  <div class="type-card-title" data-ar="فرد / شخصي" data-en="Individual / Personal">فرد / شخصي</div>
+                  <div class="type-card-desc" data-ar="قضايا شخصية أو عائلية أو جنائية" data-en="Personal, family or criminal matters">قضايا شخصية أو عائلية أو جنائية</div>
+                </button>
+                <button class="type-card" onclick="wizSelectType('business',this)">
+                  <div class="type-card-icon">🏢</div>
+                  <div class="type-card-title" data-ar="شركة / مؤسسة" data-en="Business / Company">شركة / مؤسسة</div>
+                  <div class="type-card-desc" data-ar="قضايا تجارية ومؤسسية وعقود" data-en="Commercial, corporate and contract matters">قضايا تجارية ومؤسسية وعقود</div>
+                </button>
               </div>
             </div>
-            <div class="form-group">
-              <label class="form-label"><span data-ar="مجال الخدمة" data-en="Practice Area">مجال الخدمة</span> <span>*</span></label>
-              <select class="form-select" id="practice">
-                <option value="" data-ar="اختر مجال الخدمة المناسب" data-en="Select the area most relevant to your matter">اختر مجال الخدمة المناسب</option>
-                <option data-ar="قانون الأعمال والشركات" data-en="Business & Corporate Law">قانون الأعمال والشركات</option>
-                <option data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</option>
-                <option data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</option>
-                <option data-ar="قضايا التعويضات والإصابات" data-en="Personal Injury">قضايا التعويضات والإصابات</option>
-                <option data-ar="غير متأكد — أحتاج توجيهاً" data-en="Not Sure — Need Guidance">غير متأكد — أحتاج توجيهاً</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label" data-ar="طريقة الاجتماع المفضلة" data-en="Preferred Meeting Format">طريقة الاجتماع المفضلة</label>
-              <select class="form-select" id="meetingFormat">
-                <option data-ar="حضورياً (فرع الرياض)" data-en="In-Person (Riyadh Branch)">حضورياً (فرع الرياض)</option>
-                <option data-ar="حضورياً (فرع القصيم)" data-en="In-Person (Al Qasim Branch)">حضورياً (فرع القصيم)</option>
-                <option data-ar="استشارة هاتفية" data-en="Phone Consultation">استشارة هاتفية</option>
-                <option data-ar="مكالمة فيديو" data-en="Video Call">مكالمة فيديو</option>
-              </select>
-            </div>
-            <div class="form-group"><label class="form-label"><span data-ar="وصف مختصر للقضية" data-en="Brief Description">وصف مختصر للقضية</span> <span>*</span></label><textarea class="form-textarea" id="message" data-ar-placeholder="يرجى وصف قضيتك القانونية بإيجاز. جميع المعلومات المقدمة سرية تماماً..." data-en-placeholder="Please briefly describe your legal situation. All information shared is strictly confidential..." placeholder="يرجى وصف قضيتك القانونية بإيجاز. جميع المعلومات المقدمة سرية تماماً..."></textarea></div>
-            <div class="form-consent">
-              <input type="checkbox" id="consent">
-              <label for="consent" data-ar="أؤكد دقة المعلومات المقدمة وأوافق على التواصل من قِبَل سليمان المطرود للاستشارات القانونية، مع إدراكي أن جميع المراسلات تخضع للسرية المهنية المطلقة." data-en="I confirm that the information provided is accurate and I agree to be contacted by Sulaiman Al Matrood Legal Consultations. I understand all communications are strictly confidential.">أؤكد دقة المعلومات المقدمة وأوافق على التواصل من قِبَل سليمان المطرود للاستشارات القانونية، مع إدراكي أن جميع المراسلات تخضع للسرية المهنية المطلقة.</label>
-            </div>
-            <button class="form-submit" onclick="submitForm()" data-ar="إرسال طلب الاستشارة" data-en="Submit Consultation Request">إرسال طلب الاستشارة</button>
-            <p class="form-note" data-ar="🔒 معلوماتك محمية ولن تُشارك مع أي طرف ثالث" data-en="🔒 Your information is protected and never shared with third parties">🔒 معلوماتك محمية ولن تُشارك مع أي طرف ثالث</p>
-          </div>
 
-          <div class="form-success" id="success-msg">
-            <div class="success-icon">✅</div>
-            <div class="success-title" data-ar="تم استلام طلبك!" data-en="Request Received!">تم استلام طلبك!</div>
-            <p class="success-text" data-ar="شكراً لتواصلك مع سليمان المطرود للاستشارات القانونية. سيتواصل معك أحد أعضاء فريقنا خلال ٢٤ ساعة لتحديد موعد استشارتك المجانية.<br><br>للأمور العاجلة، يرجى الاتصال مباشرةً على <strong style='color:var(--gold)'>+966 055 662 3555</strong>" data-en="Thank you for reaching out to Sulaiman Al Matrood Legal Consultations. A member of our team will contact you within 24 hours to schedule your free consultation.<br><br>For urgent matters, please call us directly at <strong style='color:var(--gold)'>+966 055 662 3555</strong>">شكراً لتواصلك مع سليمان المطرود للاستشارات القانونية. سيتواصل معك أحد أعضاء فريقنا خلال ٢٤ ساعة لتحديد موعد استشارتك المجانية.<br><br>للأمور العاجلة، يرجى الاتصال مباشرةً على <strong style="color:var(--gold)">+966 055 662 3555</strong></p>
-          </div>
+            <!-- ── STEP 2: Practice Area ── -->
+            <div class="wiz-step" id="wiz-step-2">
+              <div class="wiz-step-label" data-ar="الخطوة ٢ من ٤" data-en="Step 2 of 4">الخطوة ٢ من ٤</div>
+              <h3 class="wiz-step-title" data-ar="ما طبيعة قضيتك؟" data-en="What's Your Matter?">ما طبيعة قضيتك؟</h3>
+              <p class="wiz-step-sub" data-ar="ساعدنا في توجيه طلبك للمحامي المناسب" data-en="Help us direct your request to the right attorney">ساعدنا في توجيه طلبك للمحامي المناسب</p>
+              <div class="area-cards-grid">
+                <button class="area-card" onclick="wizSelectArea('corporate',this)">
+                  <div class="area-card-icon">⚖️</div>
+                  <div class="area-card-title" data-ar="أعمال وشركات" data-en="Business & Corporate">أعمال وشركات</div>
+                </button>
+                <button class="area-card" onclick="wizSelectArea('family',this)">
+                  <div class="area-card-icon">👨‍👩‍👧</div>
+                  <div class="area-card-title" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</div>
+                </button>
+                <button class="area-card" onclick="wizSelectArea('criminal',this)">
+                  <div class="area-card-icon">🛡️</div>
+                  <div class="area-card-title" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</div>
+                </button>
+                <button class="area-card" onclick="wizSelectArea('injury',this)">
+                  <div class="area-card-icon">💼</div>
+                  <div class="area-card-title" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</div>
+                </button>
+              </div>
+              <!-- Sub-issue dropdown — appears after area selected -->
+              <div class="subissue-wrap" id="subissue-wrap" style="display:none;">
+                <div class="form-group">
+                  <label class="form-label" data-ar="حدد نوع المسألة بدقة" data-en="Specify the type of matter">حدد نوع المسألة بدقة <span style="color:rgba(201,169,110,0.4)">*</span></label>
+                  <select class="form-select" id="subissue-select"><!-- filled by JS --></select>
+                </div>
+                <button class="wiz-next-btn" onclick="wizStep2Next()" data-ar="التالي" data-en="Continue →">التالي</button>
+              </div>
+              <button class="wiz-back-link" onclick="wizGoToStep(1)" data-ar="→ السابق" data-en="← Back">→ السابق</button>
+            </div>
+
+            <!-- ── STEP 3: Dynamic Fields ── -->
+            <div class="wiz-step" id="wiz-step-3">
+              <div class="wiz-step-label" data-ar="الخطوة ٣ من ٤" data-en="Step 3 of 4">الخطوة ٣ من ٤</div>
+              <h3 class="wiz-step-title" data-ar="بعض التفاصيل" data-en="A Few More Details">بعض التفاصيل</h3>
+              <p class="wiz-step-sub" data-ar="جميع المعلومات تُعامَل بسرية تامة" data-en="All information is treated with strict confidentiality">جميع المعلومات تُعامَل بسرية تامة</p>
+              <!-- Auto-urgency alert -->
+              <div class="urgent-banner" id="urgent-banner" style="display:none;">
+                <span style="font-size:1.1rem;flex-shrink:0;">⚡</span>
+                <span data-ar="لاحظنا أن قضيتك عاجلة — تم تحديد أولوية قصوى تلقائياً وسيتواصل معك المحامي بأسرع وقت." data-en="We noticed your matter is urgent — maximum priority has been set automatically. An attorney will contact you as soon as possible.">لاحظنا أن قضيتك عاجلة — تم تحديد أولوية قصوى تلقائياً وسيتواصل معك المحامي بأسرع وقت.</span>
+              </div>
+              <!-- Dynamic fields injected here -->
+              <div id="dynamic-fields"></div>
+              <button class="wiz-next-btn" onclick="wizStep3Next()" data-ar="التالي" data-en="Continue →">التالي</button>
+              <button class="wiz-back-link" onclick="wizGoToStep(2)" data-ar="→ السابق" data-en="← Back">→ السابق</button>
+            </div>
+
+            <!-- ── STEP 4: Contact + Urgency ── -->
+            <div class="wiz-step" id="wiz-step-4">
+              <div class="wiz-step-label" data-ar="الخطوة ٤ من ٤" data-en="Step 4 of 4">الخطوة ٤ من ٤</div>
+              <h3 class="wiz-step-title" data-ar="كيف نتواصل معك؟" data-en="How Can We Reach You?">كيف نتواصل معك؟</h3>
+              <p class="wiz-step-sub" data-ar="سنتواصل معك بطريقتك المفضلة في أقرب وقت" data-en="We'll reach out in your preferred way at the earliest">سنتواصل معك بطريقتك المفضلة في أقرب وقت</p>
+              <div class="form-group">
+                <label class="form-label"><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span style="color:rgba(201,169,110,0.45)">*</span></label>
+                <input type="text" class="form-input" id="wiz-name" data-ar-placeholder="الاسم الكامل" data-en-placeholder="Your full name" placeholder="الاسم الكامل">
+              </div>
+              <div class="form-group">
+                <label class="form-label"><span data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</span> <span style="color:rgba(201,169,110,0.45)">*</span></label>
+                <input type="tel" class="form-input" id="wiz-phone" data-ar-placeholder="05XXXXXXXX" data-en-placeholder="05XXXXXXXX" placeholder="05XXXXXXXX">
+              </div>
+              <div class="form-group">
+                <label class="form-label">
+                  <span data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</span>
+                  <span style="color:rgba(201,169,110,0.38);font-size:0.6rem;margin-inline-start:0.4rem;" data-ar="(اختياري)" data-en="(optional)">(اختياري)</span>
+                </label>
+                <input type="email" class="form-input" id="wiz-email" data-ar-placeholder="بريدك@الإلكتروني.com" data-en-placeholder="your@email.com" placeholder="بريدك@الإلكتروني.com">
+              </div>
+              <!-- Urgency -->
+              <div class="form-group">
+                <label class="form-label" data-ar="مستوى الاستعجال" data-en="Urgency Level">مستوى الاستعجال</label>
+                <div class="urgency-pills" id="urgency-pills">
+                  <button class="urgency-pill" data-level="normal" onclick="wizSelectUrgency('normal',this)">
+                    <span class="urgency-dot"></span>
+                    <span class="urgency-label" data-ar="عادي" data-en="Standard">عادي</span>
+                    <span class="urgency-sla" data-ar="رد خلال ٢٤ ساعة" data-en="Reply within 24 hours">رد خلال ٢٤ ساعة</span>
+                  </button>
+                  <button class="urgency-pill" data-level="important" onclick="wizSelectUrgency('important',this)">
+                    <span class="urgency-dot"></span>
+                    <span class="urgency-label" data-ar="مهم" data-en="Important">مهم</span>
+                    <span class="urgency-sla" data-ar="رد خلال ٤ ساعات" data-en="Reply within 4 hours">رد خلال ٤ ساعات</span>
+                  </button>
+                  <button class="urgency-pill" data-level="urgent" onclick="wizSelectUrgency('urgent',this)">
+                    <span class="urgency-dot"></span>
+                    <span class="urgency-label" data-ar="عاجل جداً" data-en="Very Urgent">عاجل جداً</span>
+                    <span class="urgency-sla" data-ar="رد خلال ساعة" data-en="Reply within 1 hour">رد خلال ساعة</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Preferred contact + branch -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" data-ar="طريقة التواصل المفضلة" data-en="Preferred Contact">طريقة التواصل المفضلة</label>
+                  <select class="form-select" id="wiz-contact-method">
+                    <option value="whatsapp" data-ar="واتساب" data-en="WhatsApp">واتساب</option>
+                    <option value="phone" data-ar="مكالمة هاتفية" data-en="Phone Call">مكالمة هاتفية</option>
+                    <option value="email" data-ar="بريد إلكتروني" data-en="Email">بريد إلكتروني</option>
+                    <option value="inperson" data-ar="حضورياً" data-en="In-Person">حضورياً</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-ar="الفرع المفضل" data-en="Preferred Branch">الفرع المفضل</label>
+                  <select class="form-select" id="wiz-branch">
+                    <option value="riyadh" data-ar="الرياض" data-en="Riyadh">الرياض</option>
+                    <option value="qasim" data-ar="القصيم" data-en="Al Qasim">القصيم</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Consent -->
+              <div class="form-consent">
+                <input type="checkbox" id="wiz-consent">
+                <label for="wiz-consent" data-ar="أؤكد دقة المعلومات المقدمة وأوافق على التواصل من قِبَل سليمان المطرود للاستشارات القانونية. أدرك أن جميع المراسلات تخضع للسرية المهنية المطلقة." data-en="I confirm the information is accurate and agree to be contacted by Sulaiman Al Matrood Legal Consultations. I understand all communications are strictly confidential.">أؤكد دقة المعلومات المقدمة وأوافق على التواصل من قِبَل سليمان المطرود للاستشارات القانونية.</label>
+              </div>
+              <button class="form-submit" onclick="wizSubmit()" id="wiz-submit-btn" data-ar="إرسال طلب الاستشارة" data-en="Submit Consultation Request">إرسال طلب الاستشارة</button>
+              <p class="form-note" data-ar="🔒 معلوماتك محمية ولن تُشارك مع أي طرف ثالث" data-en="🔒 Your information is protected and never shared with third parties">🔒 معلوماتك محمية ولن تُشارك مع أي طرف ثالث</p>
+              <button class="wiz-back-link" onclick="wizGoToStep(3)" data-ar="→ السابق" data-en="← Back">→ السابق</button>
+            </div>
+
+            <!-- ── STEP 5: Success ── -->
+            <div class="wiz-step" id="wiz-step-5">
+              <div style="text-align:center;padding:1.5rem 0.5rem 2rem;">
+                <div style="font-size:3.5rem;margin-bottom:1.25rem;">✅</div>
+                <div class="success-title" data-ar="تم استلام طلبك!" data-en="Request Received!">تم استلام طلبك!</div>
+                <p class="wiz-req-id" id="wiz-req-id"></p>
+                <p class="wiz-sla-msg" id="wiz-sla-msg"></p>
+                <p class="success-text" data-ar="شكراً لتواصلك مع سليمان المطرود للاستشارات القانونية. سيتواصل معك فريقنا وفق مستوى الأولوية المحددة. للأمور العاجلة اتصل مباشرةً على <strong style='color:var(--gold)'>+966 055 662 3555</strong>" data-en="Thank you for reaching out to Sulaiman Al Matrood Legal Consultations. Our team will contact you according to the priority level assigned. For urgent matters call <strong style='color:var(--gold)'>+966 055 662 3555</strong>">شكراً لتواصلك مع سليمان المطرود للاستشارات القانونية. سيتواصل معك فريقنا وفق مستوى الأولوية المحددة. للأمور العاجلة اتصل مباشرةً على <strong style="color:var(--gold)">+966 055 662 3555</strong></p>
+                <div class="wiz-success-actions">
+                  <a href="https://wa.me/9660556623555" target="_blank" rel="noopener" class="wiz-wa-btn" id="wiz-wa-btn">
+                    <span>💬</span>
+                    <span data-ar="فتح واتساب مباشرةً" data-en="Open WhatsApp Now">فتح واتساب مباشرةً</span>
+                  </a>
+                  <a href="services.html" class="wiz-services-btn" data-ar="تصفح خدماتنا القانونية" data-en="Browse Our Legal Services">تصفح خدماتنا القانونية</a>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /wiz-container -->
         </div>
       </div>
 
@@ -458,66 +692,643 @@ const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-function submitForm(){
-  const lang=document.documentElement.getAttribute('lang')||'ar';
-  const fname=document.getElementById('fname').value.trim();
-  const lname=document.getElementById('lname').value.trim();
-  const email=document.getElementById('email').value.trim();
-  const phone=document.getElementById('phone').value.trim();
-  const contactMethod=document.getElementById('contactMethod');
-  const practice=document.getElementById('practice').value;
-  const meetingFormat=document.getElementById('meetingFormat');
-  const message=document.getElementById('message').value.trim();
-  const consent=document.getElementById('consent').checked;
+// ============================================================
+// WIZARD STATE
+// ============================================================
+const wiz = {
+  currentStep: 1,
+  clientType: null,      // 'individual' | 'business'
+  practiceArea: null,    // 'corporate' | 'family' | 'criminal' | 'injury'
+  subIssue: '',
+  dynamicData: {},
+  urgencyScore: 0,
+  urgencyLevel: 'normal',
+  autoUrgent: false,
+  waMessage: ''
+};
 
-  if(!fname||!lname||!email||!phone||!practice||!message){
-    alert(lang==='ar'?'يرجى تعبئة جميع الحقول الإلزامية المشار إليها بـ *':'Please fill in all required fields marked with *');return;
+// Sub-issues — bilingual, always both languages stored
+const WIZ_SUB = {
+  corporate: [
+    {ar:'تأسيس شركة أو مشروع تجاري',   en:'Company / Business Formation'},
+    {ar:'عقود وصفقات تجارية',            en:'Commercial Contracts & Deals'},
+    {ar:'نزاعات بين الشركاء',            en:'Partner / Shareholder Disputes'},
+    {ar:'إعادة هيكلة أو إفلاس',          en:'Restructuring & Bankruptcy'},
+    {ar:'ملكية فكرية وبراءات اختراع',    en:'Intellectual Property & Patents'},
+    {ar:'شؤون العمالة والموارد البشرية', en:'Employment & HR Matters'},
+    {ar:'أخرى',                          en:'Other'}
+  ],
+  family: [
+    {ar:'طلاق أو خلع',                  en:'Divorce / Khul'},
+    {ar:'حضانة الأطفال',                 en:'Child Custody'},
+    {ar:'نفقة أو مؤخر صداق',             en:'Alimony / Deferred Dowry'},
+    {ar:'ميراث أو وصايا',                en:'Inheritance & Wills'},
+    {ar:'عقد زواج',                      en:'Marriage Contract'},
+    {ar:'إثبات نسب',                     en:'Paternity / Lineage'},
+    {ar:'أخرى',                          en:'Other'}
+  ],
+  criminal: [
+    {ar:'دفاع جنائي عام',               en:'General Criminal Defense'},
+    {ar:'قضايا مالية واحتيال',           en:'Financial Fraud'},
+    {ar:'قضايا مخدرات',                  en:'Drug-Related Cases'},
+    {ar:'جرائم إلكترونية',               en:'Cybercrime'},
+    {ar:'قضايا عمالية جنائية',           en:'Criminal Labor Cases'},
+    {ar:'استئناف حكم صادر',              en:'Verdict Appeal'},
+    {ar:'أخرى',                          en:'Other'}
+  ],
+  injury: [
+    {ar:'حوادث مرورية',                  en:'Traffic Accidents'},
+    {ar:'إهمال طبي',                     en:'Medical Negligence'},
+    {ar:'إصابات عمل',                    en:'Workplace Injuries'},
+    {ar:'خسائر مالية وتعويضات',          en:'Financial Loss & Compensation'},
+    {ar:'تعويض من جهة حكومية',           en:'Government Compensation'},
+    {ar:'أخرى',                          en:'Other'}
+  ]
+};
+
+// ── Step navigation ──────────────────────────────────────
+function wizGoToStep(n) {
+  const prev = wiz.currentStep;
+  if (n === prev || n < 1 || n > 5) return;
+  const dir = n > prev ? 1 : -1;
+  const prevEl = document.getElementById('wiz-step-' + prev);
+  const nextEl = document.getElementById('wiz-step-' + n);
+  if (!prevEl || !nextEl) return;
+
+  // Lock container height so it doesn't collapse during animation
+  const container = document.getElementById('wiz-container');
+  container.style.minHeight = prevEl.offsetHeight + 'px';
+
+  const outClass = dir === 1 ? 'slide-out-left' : 'slide-out-right';
+  const inClass  = dir === 1 ? 'slide-in-left'  : 'slide-in-right';
+
+  prevEl.classList.remove('active');
+  prevEl.classList.add(outClass);
+  nextEl.classList.add(inClass);
+
+  setTimeout(function() {
+    prevEl.classList.remove('active', outClass, 'slide-out-left', 'slide-out-right');
+    nextEl.classList.remove(inClass, 'slide-in-left', 'slide-in-right');
+    nextEl.classList.add('active');
+    // Re-measure after content settles
+    setTimeout(function() {
+      container.style.minHeight = nextEl.offsetHeight + 'px';
+    }, 60);
+  }, 430);
+
+  wiz.currentStep = n;
+  wizUpdateDots(n);
+
+  if (n === 3) { setTimeout(wizRenderDynamicFields, 440); }
+
+  // Scroll form into view smoothly
+  setTimeout(function() {
+    document.getElementById('form-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 50);
+}
+
+function wizGoToDot(n) {
+  if (n < wiz.currentStep) wizGoToStep(n);
+}
+
+function wizUpdateDots(step) {
+  // Progress bar: 25% / 50% / 75% / 100%
+  var pct = step >= 5 ? 100 : (step / 4) * 100;
+  document.getElementById('wiz-progress').style.width = pct + '%';
+
+  for (var i = 1; i <= 4; i++) {
+    var dot  = document.getElementById('wdot-' + i);
+    var line = document.getElementById('wline-' + i);
+    if (!dot) continue;
+    dot.classList.remove('active','completed');
+    if (i < step)       { dot.classList.add('completed'); dot.textContent = '✓'; }
+    else if (i === step){ dot.classList.add('active');    dot.textContent = i;   }
+    else                {                                 dot.textContent = i;   }
+    if (line) line.classList.toggle('filled', i < step);
   }
-  if(!consent){
-    alert(lang==='ar'?'يرجى تأكيد موافقتك للمتابعة.':'Please confirm your consent to proceed.');return;
+}
+
+// ── Step 1 ───────────────────────────────────────────────
+function wizSelectType(type, el) {
+  wiz.clientType = type;
+  document.querySelectorAll('.type-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+  setTimeout(function(){ wizGoToStep(2); }, 300);
+}
+
+// ── Step 2 ───────────────────────────────────────────────
+function wizSelectArea(area, el) {
+  wiz.practiceArea = area;
+  wiz.subIssue = '';
+  document.querySelectorAll('.area-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+
+  var lang = document.documentElement.getAttribute('lang') || 'ar';
+  var issues = WIZ_SUB[area] || [];
+  var sel = document.getElementById('subissue-select');
+  sel.innerHTML = issues.map(function(iss) {
+    var txt = lang === 'ar' ? iss.ar : iss.en;
+    return '<option value="' + iss.ar + '" data-ar="' + iss.ar + '" data-en="' + iss.en + '">' + txt + '</option>';
+  }).join('');
+
+  var wrap = document.getElementById('subissue-wrap');
+  wrap.style.display = 'block';
+}
+
+function wizStep2Next() {
+  var sel = document.getElementById('subissue-select');
+  if (!sel || !sel.value) return;
+  var opt = sel.options[sel.selectedIndex];
+  wiz.subIssue = opt.getAttribute('data-ar') || sel.value;
+  wizGoToStep(3);
+}
+
+// ── Step 3: Dynamic field templates ─────────────────────
+function wizRenderDynamicFields() {
+  var lang = document.documentElement.getAttribute('lang') || 'ar';
+  var ar   = lang === 'ar';
+  var area = wiz.practiceArea;
+  var container = document.getElementById('dynamic-fields');
+  if (!container) return;
+
+  var html = '';
+  if (area === 'criminal')                               html = wizTplCriminal(ar);
+  else if (area === 'family')                            html = wizTplFamily(ar);
+  else if (area === 'corporate' || wiz.clientType === 'business') html = wizTplCorporate(ar);
+  else if (area === 'injury')                            html = wizTplInjury(ar);
+  else                                                   html = wizTplGeneral(ar);
+
+  container.innerHTML = html;
+  applyLang(lang);    // sync any data-ar/data-en in injected html
+  wizCheckUrgency();  // initial urgency scan
+}
+
+function wizTplCriminal(ar) {
+  return [
+  '<div class="form-group dynamic-field field-delay-1">',
+    '<label class="form-label" data-ar="علاقتك بالقضية" data-en="Your Relation to the Case">'+(ar?'علاقتك بالقضية':'Your Relation to the Case')+'</label>',
+    '<select class="form-select" id="d-relation">',
+      '<option value="self" data-ar="أنا المتهم / المشتكى عليه" data-en="I am the accused / defendant">'+(ar?'أنا المتهم / المشتكى عليه':'I am the accused / defendant')+'</option>',
+      '<option value="other" data-ar="أسعى للمساعدة لشخص آخر" data-en="Seeking help for another person">'+(ar?'أسعى للمساعدة لشخص آخر':'Seeking help for another person')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-2">',
+    '<label class="form-label" data-ar="الوضع الراهن" data-en="Current Status">'+(ar?'الوضع الراهن':'Current Status')+' <span style="color:rgba(201,169,110,0.4)">*</span></label>',
+    '<select class="form-select" id="d-status" onchange="wizCheckUrgency()">',
+      '<option value="" data-ar="— اختر الوضع الحالي —" data-en="— Select current status —">'+(ar?'— اختر الوضع الحالي —':'— Select current status —')+'</option>',
+      '<option value="detained" data-ar="🔴 محتجز / معتقل حالياً" data-en="🔴 Currently detained / arrested">'+(ar?'🔴 محتجز / معتقل حالياً':'🔴 Currently detained / arrested')+'</option>',
+      '<option value="warrant" data-ar="قرار اعتقال أو استدعاء" data-en="Arrest warrant / summons issued">'+(ar?'قرار اعتقال أو استدعاء':'Arrest warrant / summons issued')+'</option>',
+      '<option value="investigation" data-ar="تحت التحقيق" data-en="Under investigation">'+(ar?'تحت التحقيق':'Under investigation')+'</option>',
+      '<option value="trial" data-ar="قضية منظورة أمام المحكمة" data-en="Case before the court">'+(ar?'قضية منظورة أمام المحكمة':'Case before the court')+'</option>',
+      '<option value="appeal" data-ar="استئناف حكم" data-en="Appealing a verdict">'+(ar?'استئناف حكم':'Appealing a verdict')+'</option>',
+      '<option value="none" data-ar="لا يوجد إجراء رسمي بعد" data-en="No formal action yet">'+(ar?'لا يوجد إجراء رسمي بعد':'No formal action yet')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-3">',
+    '<label class="form-label" data-ar="هل هناك جلسة استماع قادمة؟" data-en="Is there an upcoming hearing?">'+(ar?'هل هناك جلسة استماع قادمة؟':'Is there an upcoming hearing?')+'</label>',
+    '<div class="radio-row">',
+      '<label><input type="radio" name="d-hearing" value="yes" onchange="wizToggleEl(\'d-hearing-date-wrap\',true);wizCheckUrgency();"><span data-ar="نعم" data-en="Yes">'+(ar?'نعم':'Yes')+'</span></label>',
+      '<label><input type="radio" name="d-hearing" value="no" checked onchange="wizToggleEl(\'d-hearing-date-wrap\',false);"><span data-ar="لا" data-en="No">'+(ar?'لا':'No')+'</span></label>',
+    '</div>',
+  '</div>',
+  '<div class="form-group dynamic-field sub-field" id="d-hearing-date-wrap">',
+    '<label class="form-label" data-ar="تاريخ الجلسة" data-en="Hearing Date">'+(ar?'تاريخ الجلسة':'Hearing Date')+'</label>',
+    '<input type="date" class="form-input" id="d-hearing-date" onchange="wizCheckUrgency()">',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-4">',
+    '<label class="form-label" data-ar="تفاصيل مختصرة" data-en="Brief Details">'+(ar?'تفاصيل مختصرة':'Brief Details')+' <span style="color:rgba(201,169,110,0.4)">*</span></label>',
+    '<textarea class="form-textarea" id="d-details" maxlength="400" oninput="wizCharCount(this,400,\'d-cnt\')" data-ar-placeholder="اكتب تفاصيل موجزة عن القضية. جميع المعلومات سرية تماماً." data-en-placeholder="Brief case details. All information is strictly confidential." placeholder="'+(ar?'اكتب تفاصيل موجزة عن القضية. جميع المعلومات سرية تماماً.':'Brief case details. All information is strictly confidential.')+'"></textarea>',
+    '<div class="char-counter" id="d-cnt">0 / 400</div>',
+  '</div>'
+  ].join('');
+}
+
+function wizTplFamily(ar) {
+  return [
+  '<div class="form-group dynamic-field field-delay-1">',
+    '<label class="form-label" data-ar="نوع الإجراء المطلوب" data-en="Type of Action Needed">'+(ar?'نوع الإجراء المطلوب':'Type of Action Needed')+'</label>',
+    '<select class="form-select" id="d-action">',
+      '<option value="consult" data-ar="استشارة قانونية فقط" data-en="Legal consultation only">'+(ar?'استشارة قانونية فقط':'Legal consultation only')+'</option>',
+      '<option value="represent" data-ar="تمثيل قانوني كامل" data-en="Full legal representation">'+(ar?'تمثيل قانوني كامل':'Full legal representation')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-2">',
+    '<label class="form-label" data-ar="هل يوجد حكم أو قرار سابق؟" data-en="Is there a prior judgment or order?">'+(ar?'هل يوجد حكم أو قرار سابق؟':'Is there a prior judgment or order?')+'</label>',
+    '<div class="radio-row">',
+      '<label><input type="radio" name="d-prior" value="yes" onchange="wizToggleEl(\'d-prior-wrap\',true)"><span data-ar="نعم" data-en="Yes">'+(ar?'نعم':'Yes')+'</span></label>',
+      '<label><input type="radio" name="d-prior" value="no" checked onchange="wizToggleEl(\'d-prior-wrap\',false)"><span data-ar="لا" data-en="No">'+(ar?'لا':'No')+'</span></label>',
+    '</div>',
+  '</div>',
+  '<div class="form-group dynamic-field sub-field" id="d-prior-wrap">',
+    '<label class="form-label" data-ar="رقم القضية / المحكمة" data-en="Case Number / Court">'+(ar?'رقم القضية / المحكمة':'Case Number / Court')+'</label>',
+    '<input type="text" class="form-input" id="d-case-num" data-ar-placeholder="مثال: المحكمة العامة بالرياض" data-en-placeholder="e.g. Riyadh General Court" placeholder="'+(ar?'مثال: المحكمة العامة بالرياض':'e.g. Riyadh General Court')+'">',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-3">',
+    '<label class="form-label" data-ar="هل الطرف الآخر ممثَّل قانونياً؟" data-en="Is the other party legally represented?">'+(ar?'هل الطرف الآخر ممثَّل قانونياً؟':'Is the other party legally represented?')+'</label>',
+    '<select class="form-select" id="d-other-rep">',
+      '<option value="yes" data-ar="نعم" data-en="Yes">'+(ar?'نعم':'Yes')+'</option>',
+      '<option value="no"  data-ar="لا"  data-en="No">'+(ar?'لا':'No')+'</option>',
+      '<option value="unknown" data-ar="غير متأكد" data-en="Unknown">'+(ar?'غير متأكد':'Unknown')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-4">',
+    '<label class="form-label" data-ar="عدد الأطفال المعنيين (إن وجد)" data-en="Number of children involved (if any)">'+(ar?'عدد الأطفال المعنيين (إن وجد)':'Number of children involved (if any)')+'</label>',
+    '<input type="number" class="form-input" id="d-children" min="0" max="20" placeholder="0" style="max-width:120px;">',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-5">',
+    '<label class="form-label" data-ar="تفاصيل إضافية" data-en="Additional Details">'+(ar?'تفاصيل إضافية':'Additional Details')+' <span style="color:rgba(201,169,110,0.4)">*</span></label>',
+    '<textarea class="form-textarea" id="d-details" maxlength="400" oninput="wizCharCount(this,400,\'d-cnt\')" data-ar-placeholder="اكتب تفاصيل موجزة. جميع المعلومات سرية تماماً." data-en-placeholder="Brief details. All information is strictly confidential." placeholder="'+(ar?'اكتب تفاصيل موجزة. جميع المعلومات سرية تماماً.':'Brief details. All information is strictly confidential.')+'"></textarea>',
+    '<div class="char-counter" id="d-cnt">0 / 400</div>',
+  '</div>'
+  ].join('');
+}
+
+function wizTplCorporate(ar) {
+  return [
+  '<div class="form-group dynamic-field field-delay-1">',
+    '<label class="form-label" data-ar="اسم الشركة / المؤسسة" data-en="Company / Entity Name">'+(ar?'اسم الشركة / المؤسسة':'Company / Entity Name')+' <span style="color:rgba(201,169,110,0.4)">*</span></label>',
+    '<input type="text" class="form-input" id="d-company" data-ar-placeholder="اسم الشركة أو المؤسسة" data-en-placeholder="Company or entity name" placeholder="'+(ar?'اسم الشركة أو المؤسسة':'Company or entity name')+'">',
+  '</div>',
+  '<div class="form-row">',
+  '<div class="form-group dynamic-field field-delay-2">',
+    '<label class="form-label" data-ar="القطاع" data-en="Industry Sector">'+(ar?'القطاع':'Industry Sector')+'</label>',
+    '<select class="form-select" id="d-sector">',
+      '<option value="tech"         data-ar="تقنية المعلومات"     data-en="Information Technology">'+(ar?'تقنية المعلومات':'Information Technology')+'</option>',
+      '<option value="real-estate"  data-ar="العقارات"            data-en="Real Estate">'+(ar?'العقارات':'Real Estate')+'</option>',
+      '<option value="retail"       data-ar="التجزئة والتوزيع"    data-en="Retail & Distribution">'+(ar?'التجزئة والتوزيع':'Retail & Distribution')+'</option>',
+      '<option value="construction" data-ar="المقاولات والإنشاءات" data-en="Construction">'+(ar?'المقاولات والإنشاءات':'Construction')+'</option>',
+      '<option value="healthcare"   data-ar="الرعاية الصحية"      data-en="Healthcare">'+(ar?'الرعاية الصحية':'Healthcare')+'</option>',
+      '<option value="finance"      data-ar="المالية والاستثمار"  data-en="Finance & Investment">'+(ar?'المالية والاستثمار':'Finance & Investment')+'</option>',
+      '<option value="other"        data-ar="أخرى"                data-en="Other">'+(ar?'أخرى':'Other')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-2">',
+    '<label class="form-label" data-ar="عدد الموظفين" data-en="No. of Employees">'+(ar?'عدد الموظفين':'No. of Employees')+'</label>',
+    '<select class="form-select" id="d-employees">',
+      '<option value="1-10">1 – 10</option><option value="11-50">11 – 50</option><option value="51-200">51 – 200</option><option value="200+">+200</option>',
+    '</select>',
+  '</div>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-3">',
+    '<label class="form-label" data-ar="مستوى الاستعجال التجاري" data-en="Business Urgency">'+(ar?'مستوى الاستعجال التجاري':'Business Urgency')+'</label>',
+    '<select class="form-select" id="d-biz-urgency" onchange="wizCheckUrgency()">',
+      '<option value="halt"     data-ar="🔴 توقف النشاط التجاري"        data-en="🔴 Business operations halted">'+(ar?'🔴 توقف النشاط التجاري':'🔴 Business operations halted')+'</option>',
+      '<option value="deadline" data-ar="🟡 عقد بموعد نهائي قريب"       data-en="🟡 Contract with imminent deadline">'+(ar?'🟡 عقد بموعد نهائي قريب':'🟡 Contract with imminent deadline')+'</option>',
+      '<option value="dispute"  data-ar="نزاع جارٍ بين الأطراف"         data-en="Ongoing dispute">'+(ar?'نزاع جارٍ بين الأطراف':'Ongoing dispute')+'</option>',
+      '<option value="general"  data-ar="استشارة وتخطيط عام"            data-en="General consultation">'+(ar?'استشارة وتخطيط عام':'General consultation')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-4">',
+    '<label class="form-label" data-ar="هل هناك طرف مقابل / خصم؟" data-en="Is there an opposing party?">'+(ar?'هل هناك طرف مقابل / خصم؟':'Is there an opposing party?')+'</label>',
+    '<div class="radio-row">',
+      '<label><input type="radio" name="d-opponent" value="yes" onchange="wizToggleEl(\'d-opp-rep-wrap\',true)"><span data-ar="نعم" data-en="Yes">'+(ar?'نعم':'Yes')+'</span></label>',
+      '<label><input type="radio" name="d-opponent" value="no" checked onchange="wizToggleEl(\'d-opp-rep-wrap\',false)"><span data-ar="لا" data-en="No">'+(ar?'لا':'No')+'</span></label>',
+    '</div>',
+  '</div>',
+  '<div class="form-group dynamic-field sub-field" id="d-opp-rep-wrap">',
+    '<label class="form-label" data-ar="هل الطرف المقابل ممثَّل قانونياً؟" data-en="Is the opposing party represented?">'+(ar?'هل الطرف المقابل ممثَّل قانونياً؟':'Is the opposing party represented?')+'</label>',
+    '<select class="form-select" id="d-opp-rep">',
+      '<option value="yes" data-ar="نعم" data-en="Yes">'+(ar?'نعم':'Yes')+'</option>',
+      '<option value="no"  data-ar="لا"  data-en="No">'+(ar?'لا':'No')+'</option>',
+      '<option value="unknown" data-ar="غير متأكد" data-en="Unknown">'+(ar?'غير متأكد':'Unknown')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-5">',
+    '<label class="form-label" data-ar="تفاصيل المسألة" data-en="Matter Details">'+(ar?'تفاصيل المسألة':'Matter Details')+' <span style="color:rgba(201,169,110,0.4)">*</span></label>',
+    '<textarea class="form-textarea" id="d-details" maxlength="400" oninput="wizCharCount(this,400,\'d-cnt\')" data-ar-placeholder="وصف موجز للمسألة القانونية." data-en-placeholder="Brief description of the legal matter." placeholder="'+(ar?'وصف موجز للمسألة القانونية.':'Brief description of the legal matter.')+'"></textarea>',
+    '<div class="char-counter" id="d-cnt">0 / 400</div>',
+  '</div>'
+  ].join('');
+}
+
+function wizTplInjury(ar) {
+  return [
+  '<div class="form-group dynamic-field field-delay-1">',
+    '<label class="form-label" data-ar="تاريخ الحادث" data-en="Date of Incident">'+(ar?'تاريخ الحادث':'Date of Incident')+'</label>',
+    '<input type="date" class="form-input" id="d-incident-date">',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-2">',
+    '<label class="form-label" data-ar="هل تلقيت علاجاً طبياً؟" data-en="Have you received medical treatment?">'+(ar?'هل تلقيت علاجاً طبياً؟':'Have you received medical treatment?')+'</label>',
+    '<div class="radio-row">',
+      '<label><input type="radio" name="d-medical" value="yes" onchange="wizToggleEl(\'d-med-report-wrap\',true)"><span data-ar="نعم" data-en="Yes">'+(ar?'نعم':'Yes')+'</span></label>',
+      '<label><input type="radio" name="d-medical" value="no" checked onchange="wizToggleEl(\'d-med-report-wrap\',false)"><span data-ar="لا" data-en="No">'+(ar?'لا':'No')+'</span></label>',
+    '</div>',
+  '</div>',
+  '<div class="form-group dynamic-field sub-field" id="d-med-report-wrap">',
+    '<label class="form-label" data-ar="هل التقرير الطبي متاح؟" data-en="Is a medical report available?">'+(ar?'هل التقرير الطبي متاح؟':'Is a medical report available?')+'</label>',
+    '<select class="form-select" id="d-med-report">',
+      '<option value="yes" data-ar="نعم، لديّ تقرير طبي" data-en="Yes, I have a report">'+(ar?'نعم، لديّ تقرير طبي':'Yes, I have a report')+'</option>',
+      '<option value="no"  data-ar="لا، لم أحصل عليه بعد" data-en="No, not yet">'+(ar?'لا، لم أحصل عليه بعد':'No, not yet')+'</option>',
+    '</select>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-3">',
+    '<label class="form-label" data-ar="هل أبلغت الجهات المختصة؟" data-en="Have you reported to authorities?">'+(ar?'هل أبلغت الجهات المختصة؟':'Have you reported to authorities?')+'</label>',
+    '<div class="radio-row">',
+      '<label><input type="radio" name="d-reported" value="yes"><span data-ar="نعم" data-en="Yes">'+(ar?'نعم':'Yes')+'</span></label>',
+      '<label><input type="radio" name="d-reported" value="no" checked><span data-ar="لا" data-en="No">'+(ar?'لا':'No')+'</span></label>',
+    '</div>',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-4">',
+    '<label class="form-label" data-ar="الخسارة المقدرة — اختياري" data-en="Estimated Loss — optional">'+(ar?'الخسارة المقدرة — اختياري':'Estimated Loss — optional')+'</label>',
+    '<input type="number" class="form-input" id="d-loss" min="0" data-ar-placeholder="المبلغ بالريال السعودي" data-en-placeholder="Amount in SAR" placeholder="'+(ar?'المبلغ بالريال السعودي':'Amount in SAR')+'">',
+  '</div>',
+  '<div class="form-group dynamic-field field-delay-5">',
+    '<label class="form-label" data-ar="تفاصيل الحادث" data-en="Incident Details">'+(ar?'تفاصيل الحادث':'Incident Details')+' <span style="color:rgba(201,169,110,0.4)">*</span></label>',
+    '<textarea class="form-textarea" id="d-details" maxlength="400" oninput="wizCharCount(this,400,\'d-cnt\')" data-ar-placeholder="وصف موجز للحادث والضرر اللاحق بك." data-en-placeholder="Brief description of the incident and damages suffered." placeholder="'+(ar?'وصف موجز للحادث والضرر اللاحق بك.':'Brief description of the incident and damages suffered.')+'"></textarea>',
+    '<div class="char-counter" id="d-cnt">0 / 400</div>',
+  '</div>'
+  ].join('');
+}
+
+function wizTplGeneral(ar) {
+  return [
+  '<div class="form-group dynamic-field field-delay-1">',
+    '<label class="form-label" data-ar="وصف مختصر للمسألة" data-en="Brief Description of Your Matter">'+(ar?'وصف مختصر للمسألة':'Brief Description of Your Matter')+' <span style="color:rgba(201,169,110,0.4)">*</span></label>',
+    '<textarea class="form-textarea" id="d-details" maxlength="400" oninput="wizCharCount(this,400,\'d-cnt\')" data-ar-placeholder="اكتب تفاصيل موجزة. سيساعدنا ذلك في توجيهك للمحامي المناسب. جميع المعلومات سرية." data-en-placeholder="Brief details. This helps us direct you to the right attorney. All information is strictly confidential." placeholder="'+(ar?'اكتب تفاصيل موجزة. سيساعدنا ذلك في توجيهك للمحامي المناسب. جميع المعلومات سرية.':'Brief details. This helps us direct you to the right attorney. All information is strictly confidential.')+'"></textarea>',
+    '<div class="char-counter" id="d-cnt">0 / 400</div>',
+  '</div>'
+  ].join('');
+}
+
+// ── Helper: toggle sub-fields ─────────────────────────────
+function wizToggleEl(id, show) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('visible', show);
+}
+
+// ── Helper: char counter ──────────────────────────────────
+function wizCharCount(el, max, countId) {
+  var len = el.value.length;
+  var counter = document.getElementById(countId);
+  if (!counter) return;
+  counter.textContent = len + ' / ' + max;
+  counter.classList.remove('warn','ovr');
+  if (len >= max)          counter.classList.add('ovr');
+  else if (len >= max*0.8) counter.classList.add('warn');
+}
+
+// ── Urgency scoring engine ────────────────────────────────
+function wizCheckUrgency() {
+  var score = 0;
+
+  // Criminal: detained
+  var status = document.getElementById('d-status');
+  if (status) {
+    if (status.value === 'detained') score += 10;
+    else if (status.value === 'warrant') score += 5;
   }
 
-  // Show loading state
-  const btn=document.querySelector('.form-submit');
-  const origText=btn.textContent;
-  btn.disabled=true;
-  btn.textContent=lang==='ar'?'جارٍ الإرسال...':'Sending...';
-  btn.style.opacity='0.7';
+  // Criminal: hearing within 7 days
+  var hDate = document.getElementById('d-hearing-date');
+  var hRadio = document.querySelector('input[name="d-hearing"]:checked');
+  if (hDate && hDate.value && hRadio && hRadio.value === 'yes') {
+    var diff = (new Date(hDate.value) - new Date()) / 86400000;
+    if (diff >= 0 && diff <= 7)  score += 8;
+    else if (diff >= 0 && diff <= 14) score += 4;
+  }
 
-  // ── IMPORTANT: Replace this URL with your deployed Google Apps Script URL ──
-  const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbw_PX74dlipZlzPrqpJzyRe8neqA_DL5aAw6_0sIbgntCJEGWiX0_T76o30y2JEWE_e-Q/exec';
+  // Corporate: operations halted
+  var biz = document.getElementById('d-biz-urgency');
+  if (biz) {
+    if (biz.value === 'halt')     score += 7;
+    else if (biz.value === 'deadline') score += 5;
+  }
 
-  const data={
-    timestamp: new Date().toLocaleString('en-US',{timeZone:'Asia/Riyadh'}),
-    firstName: fname,
-    lastName: lname,
-    email: email,
-    phone: phone,
-    contactMethod: contactMethod.options[contactMethod.selectedIndex].getAttribute('data-en')||contactMethod.value,
-    practiceArea: practice,
-    meetingFormat: meetingFormat.options[meetingFormat.selectedIndex].getAttribute('data-en')||meetingFormat.value,
-    message: message,
-    language: lang
+  wiz.urgencyScore = score;
+  wiz.autoUrgent   = score >= 9;
+
+  var banner = document.getElementById('urgent-banner');
+  if (banner) banner.style.display = wiz.autoUrgent ? 'flex' : 'none';
+
+  // Update container height after banner appears/disappears
+  var step3 = document.getElementById('wiz-step-3');
+  if (step3 && step3.classList.contains('active')) {
+    var cont = document.getElementById('wiz-container');
+    if (cont) cont.style.minHeight = step3.offsetHeight + 'px';
+  }
+}
+
+// ── Step 3 → Step 4 validation ───────────────────────────
+function wizStep3Next() {
+  var lang = document.documentElement.getAttribute('lang') || 'ar';
+
+  // Company name required for corporate
+  var company = document.getElementById('d-company');
+  if (company && !company.value.trim()) {
+    company.classList.add('error');
+    company.focus();
+    setTimeout(function(){ company.classList.remove('error'); }, 2500);
+    return;
+  }
+
+  // Status required for criminal
+  var status = document.getElementById('d-status');
+  if (status && !status.value) {
+    status.classList.add('error');
+    setTimeout(function(){ status.classList.remove('error'); }, 2500);
+    return;
+  }
+
+  // Details required
+  var details = document.getElementById('d-details');
+  if (details && !details.value.trim()) {
+    details.classList.add('error');
+    details.focus();
+    setTimeout(function(){ details.classList.remove('error'); }, 2500);
+    return;
+  }
+
+  wizCollectDynamicData();
+  wizGoToStep(4);
+
+  // Auto-select urgency pill after step 4 renders
+  setTimeout(function() {
+    var targetLevel = wiz.autoUrgent ? 'urgent' : 'normal';
+    var pill = document.querySelector('.urgency-pill[data-level="' + targetLevel + '"]');
+    if (pill && !document.querySelector('.urgency-pill.selected')) {
+      wizSelectUrgency(targetLevel, pill);
+    }
+  }, 500);
+}
+
+function wizCollectDynamicData() {
+  var data = {};
+  var ids = ['d-relation','d-status','d-case-num','d-action','d-sector',
+             'd-employees','d-biz-urgency','d-company','d-children',
+             'd-other-rep','d-opp-rep','d-hearing-date','d-incident-date',
+             'd-loss','d-med-report','d-details'];
+  ids.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) data[id] = el.value;
+  });
+  // Radio groups
+  ['d-hearing','d-prior','d-opponent','d-medical','d-reported'].forEach(function(name) {
+    var r = document.querySelector('input[name="' + name + '"]:checked');
+    if (r) data[name] = r.value;
+  });
+  wiz.dynamicData = data;
+}
+
+// ── Step 4: urgency pill selection ───────────────────────
+function wizSelectUrgency(level, el) {
+  wiz.urgencyLevel = level;
+  document.querySelectorAll('.urgency-pill').forEach(function(p){ p.classList.remove('selected'); });
+  if (el) el.classList.add('selected');
+}
+
+// ── Final submit ──────────────────────────────────────────
+function wizSubmit() {
+  var lang  = document.documentElement.getAttribute('lang') || 'ar';
+  var name  = document.getElementById('wiz-name').value.trim();
+  var phone = document.getElementById('wiz-phone').value.trim();
+  var email = document.getElementById('wiz-email').value.trim();
+  var consent = document.getElementById('wiz-consent').checked;
+
+  // Name validation
+  if (!name) {
+    var nf = document.getElementById('wiz-name');
+    nf.classList.add('error'); nf.focus();
+    setTimeout(function(){ nf.classList.remove('error'); }, 2500);
+    return;
+  }
+
+  // Saudi phone validation
+  var phoneClean = phone.replace(/[\s\-]/g,'');
+  var phoneOk = /^(\+?9665\d{8}|05\d{8}|\+966\s?05\d{8})$/.test(phoneClean);
+  if (!phone || !phoneOk) {
+    var pf = document.getElementById('wiz-phone');
+    pf.classList.add('error'); pf.focus();
+    alert(lang === 'ar'
+      ? 'يرجى إدخال رقم جوال سعودي صحيح (مثال: 0556623555)'
+      : 'Please enter a valid Saudi phone number (e.g. 0556623555)');
+    setTimeout(function(){ pf.classList.remove('error'); }, 3000);
+    return;
+  }
+
+  // Urgency selection
+  if (!document.querySelector('.urgency-pill.selected')) {
+    var norm = document.querySelector('.urgency-pill[data-level="normal"]');
+    if (norm) wizSelectUrgency('normal', norm);
+  }
+
+  if (!consent) {
+    alert(lang === 'ar'
+      ? 'يرجى تأكيد موافقتك للمتابعة.'
+      : 'Please confirm your consent to proceed.');
+    return;
+  }
+
+  // Loading state
+  var btn = document.getElementById('wiz-submit-btn');
+  btn.disabled = true;
+  btn.textContent = lang === 'ar' ? 'جارٍ الإرسال...' : 'Sending...';
+  btn.style.opacity = '0.7';
+
+  // Effective urgency (auto-boost if score high)
+  var effectiveUrgency = wiz.urgencyLevel;
+  if (wiz.autoUrgent && effectiveUrgency === 'normal') effectiveUrgency = 'urgent';
+
+  var SLA = {
+    ar: { urgent:'سنتواصل معك خلال ساعة واحدة ⚡', important:'سنتواصل معك خلال ٤ ساعات 🟡', normal:'سنتواصل معك خلال ٢٤ ساعة 🟢' },
+    en: { urgent:'We will contact you within 1 hour ⚡', important:'We will contact you within 4 hours 🟡', normal:'We will contact you within 24 hours 🟢' }
   };
 
-  fetch(GOOGLE_SCRIPT_URL,{
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(data)
-  })
-  .then(()=>{
-    document.getElementById('the-form').style.display='none';
-    const s=document.getElementById('success-msg');
-    s.style.display='block';
+  var reqId  = 'SAL-' + new Date().getFullYear() + '-' + String(Date.now()).slice(-5);
+  var slaMsg = SLA[lang][effectiveUrgency];
+  var waMsg  = wizBuildWAMessage(name, phone, email, effectiveUrgency, reqId);
+  wiz.waMessage = waMsg;
+
+  // Short processing delay then go to success
+  setTimeout(function() {
+    document.getElementById('wiz-req-id').textContent  = '# ' + reqId;
+    document.getElementById('wiz-sla-msg').textContent = slaMsg;
+
+    // WA link with pre-filled message
+    var waBtn = document.getElementById('wiz-wa-btn');
+    waBtn.href = 'https://wa.me/9660556623555?text=' + encodeURIComponent(waMsg);
+
+    wizGoToStep(5);
     applyLang(lang);
-  })
-  .catch(()=>{
-    alert(lang==='ar'?'حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.':'Something went wrong. Please try again or contact us directly.');
-    btn.disabled=false;
-    btn.textContent=origText;
-    btn.style.opacity='1';
-  });
+
+    // Fire to Google Script (non-blocking, best-effort)
+    var GS = 'https://script.google.com/macros/s/AKfycbw_PX74dlipZlzPrqpJzyRe8neqA_DL5aAw6_0sIbgntCJEGWiX0_T76o30y2JEWE_e-Q/exec';
+    var branchEl  = document.getElementById('wiz-branch');
+    var methodEl  = document.getElementById('wiz-contact-method');
+    var payload = {
+      timestamp:      new Date().toLocaleString('en-US',{timeZone:'Asia/Riyadh'}),
+      requestId:      reqId,
+      fullName:       name,
+      phone:          phone,
+      email:          email,
+      clientType:     wiz.clientType,
+      practiceArea:   wiz.practiceArea,
+      subIssue:       wiz.subIssue,
+      urgencyLevel:   effectiveUrgency,
+      urgencyScore:   wiz.urgencyScore,
+      contactMethod:  methodEl ? methodEl.value : '',
+      branch:         branchEl ? branchEl.value : '',
+      dynamicData:    JSON.stringify(wiz.dynamicData),
+      language:       lang
+    };
+    fetch(GS, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+  }, 800);
+}
+
+// ── WhatsApp message builder (always Arabic for lawyer) ───
+function wizBuildWAMessage(name, phone, email, urgency, reqId) {
+  var d = wiz.dynamicData;
+
+  var urgEmoji = {urgent:'🔴',important:'🟡',normal:'🟢'};
+  var urgLabel = {urgent:'أولوية قصوى — رد خلال ساعة',important:'مهم — رد خلال ٤ ساعات',normal:'عادي — رد خلال ٢٤ ساعة'};
+
+  var areaAR = {corporate:'أعمال وشركات',family:'قانون الأسرة',criminal:'الدفاع الجنائي',injury:'قضايا التعويضات'};
+  var typeAR = {individual:'فرد / شخصي',business:'شركة / مؤسسة'};
+
+  var branchEl = document.getElementById('wiz-branch');
+  var branchAR = branchEl ? (branchEl.options[branchEl.selectedIndex].getAttribute('data-ar') || '') : '';
+  var methodEl = document.getElementById('wiz-contact-method');
+  var methodAR = methodEl ? (methodEl.options[methodEl.selectedIndex].getAttribute('data-ar') || '') : '';
+
+  // Build dynamic details block (Arabic labels always)
+  var details = '';
+  if (d['d-company'])        details += '\n• الشركة: ' + d['d-company'];
+  if (d['d-sector'])         details += '\n• القطاع: ' + d['d-sector'];
+  if (d['d-employees'])      details += '\n• الموظفون: ' + d['d-employees'];
+  if (d['d-biz-urgency'])    details += '\n• الاستعجال التجاري: ' + d['d-biz-urgency'];
+  if (d['d-status'])         details += '\n• الوضع الراهن: ' + d['d-status'];
+  if (d['d-relation'])       details += '\n• العلاقة بالقضية: ' + (d['d-relation']==='self'?'المتهم نفسه':'شخص آخر');
+  if (d['d-hearing'])        details += '\n• جلسة قادمة: ' + (d['d-hearing']==='yes'?'نعم':'لا');
+  if (d['d-hearing-date'] && d['d-hearing']==='yes') details += ' — ' + d['d-hearing-date'];
+  if (d['d-prior'])          details += '\n• حكم سابق: ' + (d['d-prior']==='yes'?'نعم':'لا');
+  if (d['d-case-num'])       details += ' (' + d['d-case-num'] + ')';
+  if (d['d-other-rep'])      details += '\n• الطرف الآخر ممثَّل: ' + (d['d-other-rep']==='yes'?'نعم':d['d-other-rep']==='no'?'لا':'غير متأكد');
+  if (d['d-children'] && d['d-children']!=='0') details += '\n• عدد الأطفال: ' + d['d-children'];
+  if (d['d-opp-rep'])        details += '\n• الخصم ممثَّل: ' + (d['d-opp-rep']==='yes'?'نعم':d['d-opp-rep']==='no'?'لا':'غير متأكد');
+  if (d['d-incident-date'])  details += '\n• تاريخ الحادث: ' + d['d-incident-date'];
+  if (d['d-loss'])           details += '\n• الخسارة المقدرة: ' + Number(d['d-loss']).toLocaleString('ar-SA') + ' ر.س';
+  if (d['d-details'])        details += '\n\n📝 ' + d['d-details'];
+
+  var now = new Date().toLocaleString('ar-SA', {timeZone:'Asia/Riyadh', dateStyle:'short', timeStyle:'short'});
+
+  return urgEmoji[urgency] + ' *طلب استشارة قانونية — ' + urgLabel[urgency] + '*\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '👤 *الاسم:* ' + name + '\n' +
+    '📱 *الجوال:* ' + phone + '\n' +
+    (email ? '📧 *البريد:* ' + email + '\n' : '') +
+    '━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '🏷️ *نوع الموكّل:* ' + (typeAR[wiz.clientType] || wiz.clientType) + '\n' +
+    '⚖️ *مجال القضية:* ' + (areaAR[wiz.practiceArea] || wiz.practiceArea) + '\n' +
+    (wiz.subIssue ? '📌 *نوع المسألة:* ' + wiz.subIssue + '\n' : '') +
+    '━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '📋 *تفاصيل:*' + (details || ' —') + '\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '📍 *الفرع المفضل:* ' + branchAR + '\n' +
+    '📞 *طريقة التواصل:* ' + methodAR + '\n' +
+    '⏱️ *الأولوية:* ' + urgLabel[urgency] + '\n' +
+    '🔑 *رقم الطلب:* ' + reqId + '\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '🌐 _المصدر: نموذج الموقع الإلكتروني_\n' +
+    '🕐 _' + now + '_';
 }
 function toggleFaq(el){
   const isOpen=el.classList.contains('open');
