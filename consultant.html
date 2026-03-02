@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team | Al Matrood Law Firm</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --gold:#C9A96E; --gold-light:#E8D5A3; --gold-dark:#9A7A45; --navy:#0A1628; --navy-mid:#122040; --navy-light:#1A2F55; --cream:#F8F4EE; --cream-dark:#EDE5D8; --text-light:#A8B4C8; }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--cream);overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease;background:transparent;}
+  nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(10px);padding:1rem 4rem;border-bottom:1px solid rgba(201,169,110,0.2);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);letter-spacing:0.1em;text-decoration:none;display:flex;align-items:center;gap:0.75rem;}
+  .logo-mark{width:40px;height:40px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;position:relative;}
+  .logo-mark::before{content:'';position:absolute;inset:3px;border:1px solid rgba(201,169,110,0.3);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{color:var(--cream);text-decoration:none;font-size:0.7rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;transition:color 0.3s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s ease;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:0.6rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;text-decoration:none;}
+  .nav-cta:hover{background:var(--gold);color:var(--navy);}
+  .page-hero{min-height:55vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+  .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(201,169,110,0.07) 0%,transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);}
+  .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:60px 60px;}
+  .page-hero-content{position:relative;max-width:1400px;margin:0 auto;padding:0 4rem;padding-top:8rem;padding-bottom:4rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s ease 0.4s forwards;}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+  .breadcrumb{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+  .breadcrumb a{color:var(--gold);text-decoration:none;}
+  .page-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.1;color:var(--cream);margin-bottom:1.5rem;}
+  .page-title em{font-style:italic;color:var(--gold);}
+  .page-subtitle{max-width:600px;font-size:0.95rem;color:var(--text-light);line-height:1.8;font-weight:300;}
+  .container{max-width:1400px;margin:0 auto;padding:0 4rem;}
+  section{padding:7rem 0;}
+  .section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+  .section-label-line{width:40px;height:1px;background:var(--gold);}
+  .section-label-text{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.15;color:var(--cream);margin-bottom:1.5rem;}
+  .section-title em{font-style:italic;color:var(--gold);}
+  .reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.15s;}.reveal-delay-2{transition-delay:0.3s;}.reveal-delay-3{transition-delay:0.45s;}
+
+  /* FEATURED CONSULTANT (MANAGING PARTNER) */
+  #lead{background:var(--navy-mid);}
+  .lead-grid{display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start;}
+  .lead-portrait{position:relative;}
+  .portrait-frame{aspect-ratio:3/4;background:linear-gradient(135deg,var(--navy-light),var(--navy));border:1px solid rgba(201,169,110,0.2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .portrait-initials{font-family:'Playfair Display',serif;font-size:7rem;color:rgba(201,169,110,0.12);font-weight:900;}
+  .portrait-corner-tl{position:absolute;top:-12px;left:-12px;width:50px;height:50px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);}
+  .portrait-corner-br{position:absolute;bottom:-12px;right:-12px;width:50px;height:50px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);}
+  .lead-badge{position:absolute;bottom:1.5rem;left:-20px;background:var(--gold);color:var(--navy);padding:1rem 1.5rem;}
+  .badge-role{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;font-weight:600;}
+  .badge-name{font-family:'Playfair Display',serif;font-size:1rem;margin-top:0.2rem;}
+
+  .lead-info{}
+  .lead-name{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--cream);line-height:1.1;margin-bottom:0.5rem;}
+  .lead-title-role{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+  .lead-bio p{font-size:0.92rem;color:var(--text-light);line-height:1.9;font-weight:300;margin-bottom:1.25rem;}
+  .lead-bio p strong{color:var(--cream);font-weight:500;}
+  .lead-credentials{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2rem;}
+  .credential{padding:1.25rem;border:1px solid rgba(201,169,110,0.15);background:rgba(201,169,110,0.02);}
+  .cred-label{font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+  .cred-value{font-size:0.8rem;color:var(--cream);}
+
+  .expertise-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2rem;}
+  .tag{padding:0.4rem 1rem;border:1px solid rgba(201,169,110,0.25);font-size:0.65rem;letter-spacing:0.1em;color:var(--text-light);}
+
+  /* TEAM GRID */
+  #attorneys{background:var(--navy);}
+  .attorneys-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+  .attorney-card{border:1px solid rgba(201,169,110,0.12);background:rgba(201,169,110,0.01);transition:all 0.3s;overflow:hidden;}
+  .attorney-card:hover{border-color:rgba(201,169,110,0.35);background:rgba(201,169,110,0.03);}
+  .att-portrait{aspect-ratio:1/1;background:linear-gradient(135deg,var(--navy-light),var(--navy));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .att-initials{font-family:'Playfair Display',serif;font-size:4rem;color:rgba(201,169,110,0.12);font-weight:900;}
+  .att-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,0.95) 0%,transparent 50%);opacity:0;transition:opacity 0.4s;padding:2rem;display:flex;flex-direction:column;justify-content:flex-end;}
+  .attorney-card:hover .att-overlay{opacity:1;}
+  .att-bio-preview{font-size:0.78rem;color:var(--cream);line-height:1.7;}
+  .att-info{padding:2rem;}
+  .att-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:0.3rem;}
+  .att-role{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .att-specs{display:flex;flex-direction:column;gap:0.4rem;}
+  .att-spec{font-size:0.73rem;color:var(--text-light);display:flex;align-items:center;gap:0.5rem;}
+  .att-spec::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+  .att-contact{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(201,169,110,0.1);}
+  .att-contact a{font-size:0.65rem;letter-spacing:0.15em;color:var(--gold);text-decoration:none;text-transform:uppercase;}
+  .att-contact a:hover{text-decoration:underline;}
+
+  /* SUPPORT TEAM */
+  #support-team{background:var(--navy-mid);}
+  .support-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;}
+  .support-card{padding:2rem;border:1px solid rgba(201,169,110,0.1);text-align:center;transition:border-color 0.3s;}
+  .support-card:hover{border-color:rgba(201,169,110,0.3);}
+  .support-avatar{width:60px;height:60px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold);margin:0 auto 1rem;}
+  .support-name{font-size:0.85rem;color:var(--cream);font-weight:500;margin-bottom:0.3rem;}
+  .support-role{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
+
+  /* VALUES */
+  #values{background:var(--cream);color:var(--navy);}
+  #values .section-title{color:var(--navy);}
+  .values-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+  .value-item{padding:2.5rem;border:1px solid rgba(10,22,40,0.08);}
+  .value-num{font-family:'Playfair Display',serif;font-size:3rem;color:rgba(201,169,110,0.3);font-weight:700;line-height:1;margin-bottom:1rem;}
+  .value-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:0.75rem;}
+  .value-text{font-size:0.82rem;color:rgba(10,22,40,0.6);line-height:1.8;}
+
+  .cta-band{background:var(--navy-mid);padding:6rem 0;text-align:center;}
+  .cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--cream);margin-bottom:1rem;}
+  .cta-band p{font-size:0.9rem;color:var(--text-light);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;}
+  .btn-gold{background:var(--gold);color:var(--navy);padding:1rem 2.5rem;font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.3s;}
+  .btn-gold:hover{background:var(--gold-light);}
+
+  footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);padding:4rem 0 2rem;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+  .footer-brand p{font-size:0.82rem;color:var(--text-light);line-height:1.8;margin-top:1rem;max-width:280px;font-weight:300;}
+  .footer-heading{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.75rem;}
+  .footer-links a{color:var(--text-light);text-decoration:none;font-size:0.82rem;transition:color 0.3s;}
+  .footer-links a:hover{color:var(--cream);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:0.7rem;color:var(--text-light);opacity:0.6;}
+  .footer-arabic{font-size:0.8rem;color:var(--gold);opacity:0.6;font-style:italic;}
+
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;} nav.scrolled{padding:0.8rem 1.5rem;}
+    .nav-links,.nav-cta{display:none;}
+    .container{padding:0 1.5rem;}
+    .page-hero-content{padding:0 1.5rem;padding-top:7rem;padding-bottom:3rem;}
+    .lead-grid{grid-template-columns:1fr;gap:3rem;}
+    .attorneys-grid{grid-template-columns:1fr;}
+    .support-grid{grid-template-columns:1fr 1fr;}
+    .values-row{grid-template-columns:1fr;}
+    .lead-credentials{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    section{padding:5rem 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">M</div>
+    <div>
+      <div style="font-size:0.85rem;letter-spacing:0.15em;">AL MATROOD</div>
+      <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;">LAW FIRM</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="process.html">Our Process</a></li>
+    <li><a href="consultant.html" class="active">Our Team</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Free Consultation</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span style="opacity:0.4;margin:0 0.25rem;">/</span><span>Our Team</span></div>
+    <h1 class="page-title">The People Behind <em>Your Case</em></h1>
+    <p class="page-subtitle">Meet the experienced, dedicated attorneys and consultants who will stand by your side — licensed experts in Saudi law committed to delivering outstanding results.</p>
+  </div>
+</div>
+
+<!-- LEAD / MANAGING PARTNER -->
+<section id="lead">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text">Managing Partner</span></div>
+
+    <div class="lead-grid">
+      <div class="lead-portrait reveal">
+        <div class="portrait-corner-tl"></div>
+        <div class="portrait-frame">
+          <div class="portrait-initials">AM</div>
+        </div>
+        <div class="portrait-corner-br"></div>
+        <div class="lead-badge">
+          <div class="badge-role">Managing Partner</div>
+          <div class="badge-name">Abdullah Al Matrood</div>
+        </div>
+      </div>
+
+      <div class="lead-info reveal reveal-delay-1">
+        <h2 class="lead-name">Abdullah<br>Al Matrood</h2>
+        <div class="lead-title-role">Founder & Managing Partner · Business & Corporate Law</div>
+        <div class="lead-bio">
+          <p>Abdullah Al Matrood is the founder and Managing Partner of Al Matrood Law Firm, with over <strong>20 years of distinguished legal practice</strong> in Saudi Arabia. His career spans the full spectrum of corporate and commercial law — from founding-stage business structuring to complex multinational transactions and high-stakes commercial litigation.</p>
+          <p>A graduate of <strong>King Saud University Faculty of Law</strong> with a postgraduate diploma in International Commercial Law, Abdullah has represented some of the Kingdom's leading corporations, government agencies, and foreign investors. He is known for his strategic acumen, meticulous preparation, and ability to navigate the intersection of Saudi, Islamic, and international law.</p>
+          <p>Abdullah is a registered member of the <strong>Saudi Bar Association</strong> and a licensed practitioner before all courts of the Kingdom, including the Supreme Court. He regularly advises boards on corporate governance and speaks at regional legal conferences on Vision 2030 legal reforms.</p>
+        </div>
+        <div class="lead-credentials">
+          <div class="credential"><div class="cred-label">Education</div><div class="cred-value">LLB — King Saud University<br>Dip. International Commercial Law</div></div>
+          <div class="credential"><div class="cred-label">Licensing</div><div class="cred-value">Saudi Bar Association<br>Ministry of Justice — All Courts</div></div>
+          <div class="credential"><div class="cred-label">Languages</div><div class="cred-value">Arabic (Native)<br>English (Fluent)</div></div>
+          <div class="credential"><div class="cred-label">Experience</div><div class="cred-value">20+ Years<br>500+ Cases</div></div>
+        </div>
+        <div class="expertise-tags">
+          <span class="tag">M&A Transactions</span>
+          <span class="tag">Corporate Governance</span>
+          <span class="tag">Commercial Litigation</span>
+          <span class="tag">Vision 2030 Advisory</span>
+          <span class="tag">International Arbitration</span>
+          <span class="tag">Contract Law</span>
+          <span class="tag">MISA Registrations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENIOR ATTORNEYS -->
+<section id="attorneys">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text">The Team</span></div>
+    <h2 class="section-title reveal">Senior <em>Attorneys</em></h2>
+
+    <div class="attorneys-grid">
+
+      <!-- ATTORNEY 1 -->
+      <div class="attorney-card reveal">
+        <div class="att-portrait">
+          <div class="att-initials">SM</div>
+          <div class="att-overlay">
+            <p class="att-bio-preview">Sara brings 15 years of experience in Saudi family law, having handled hundreds of personal status cases before family courts across Riyadh. She is known for her empathetic approach and strong courtroom presence.</p>
+          </div>
+        </div>
+        <div class="att-info">
+          <div class="att-name">Sara Al Matrood</div>
+          <div class="att-role">Senior Partner · Family Law</div>
+          <div class="att-specs">
+            <div class="att-spec">15 years of family law practice</div>
+            <div class="att-spec">LLB — Imam Muhammad Ibn Saud University</div>
+            <div class="att-spec">Specialist in divorce, custody & inheritance</div>
+            <div class="att-spec">Arabic & English</div>
+          </div>
+          <div class="att-contact">
+            <a href="contact.html">Request Consultation →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTORNEY 2 -->
+      <div class="attorney-card reveal reveal-delay-1">
+        <div class="att-portrait">
+          <div class="att-initials">KR</div>
+          <div class="att-overlay">
+            <p class="att-bio-preview">Khalid is one of the firm's most experienced trial attorneys, with an exceptional record in criminal defense across Saudi courts. His calm under pressure and razor-sharp cross-examination skills are unmatched.</p>
+          </div>
+        </div>
+        <div class="att-info">
+          <div class="att-name">Khalid Al Rashidi</div>
+          <div class="att-role">Partner · Criminal Defense</div>
+          <div class="att-specs">
+            <div class="att-spec">12 years of criminal defense practice</div>
+            <div class="att-spec">LLB — King Abdulaziz University</div>
+            <div class="att-spec">Specialist in fraud, assault & cyber crime</div>
+            <div class="att-spec">Arabic & English</div>
+          </div>
+          <div class="att-contact">
+            <a href="contact.html">Request Consultation →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTORNEY 3 -->
+      <div class="attorney-card reveal reveal-delay-2">
+        <div class="att-portrait">
+          <div class="att-initials">NA</div>
+          <div class="att-overlay">
+            <p class="att-bio-preview">Nora specializes in personal injury and insurance disputes, having recovered millions in compensation for her clients. She is known for her relentless advocacy and deep understanding of GOSI and insurance law.</p>
+          </div>
+        </div>
+        <div class="att-info">
+          <div class="att-name">Nora Al Ansari</div>
+          <div class="att-role">Associate · Personal Injury</div>
+          <div class="att-specs">
+            <div class="att-spec">8 years of personal injury practice</div>
+            <div class="att-spec">LLB — Princess Nourah University</div>
+            <div class="att-spec">Specialist in accidents, negligence & GOSI</div>
+            <div class="att-spec">Arabic & English</div>
+          </div>
+          <div class="att-contact">
+            <a href="contact.html">Request Consultation →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTORNEY 4 -->
+      <div class="attorney-card reveal">
+        <div class="att-portrait">
+          <div class="att-initials">FA</div>
+          <div class="att-overlay">
+            <p class="att-bio-preview">Fahad focuses on corporate compliance and employment law, helping multinationals navigate Saudi labor regulations and Saudization requirements under Vision 2030 reforms.</p>
+          </div>
+        </div>
+        <div class="att-info">
+          <div class="att-name">Fahad Al Otaibi</div>
+          <div class="att-role">Associate · Corporate & Employment</div>
+          <div class="att-specs">
+            <div class="att-spec">7 years of corporate law practice</div>
+            <div class="att-spec">LLB — King Fahd University</div>
+            <div class="att-spec">Specialist in Nitaqat & MISA compliance</div>
+            <div class="att-spec">Arabic & English</div>
+          </div>
+          <div class="att-contact">
+            <a href="contact.html">Request Consultation →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTORNEY 5 -->
+      <div class="attorney-card reveal reveal-delay-1">
+        <div class="att-portrait">
+          <div class="att-initials">MQ</div>
+          <div class="att-overlay">
+            <p class="att-bio-preview">Mohammed handles complex commercial disputes and international arbitration, with experience before the SCCA and DIFC courts. He has particular expertise in construction and real estate disputes.</p>
+          </div>
+        </div>
+        <div class="att-info">
+          <div class="att-name">Mohammed Al Qahtani</div>
+          <div class="att-role">Associate · Dispute Resolution</div>
+          <div class="att-specs">
+            <div class="att-spec">10 years in commercial disputes</div>
+            <div class="att-spec">LLB — University of Riyadh, LLM London</div>
+            <div class="att-spec">SCCA & international arbitration specialist</div>
+            <div class="att-spec">Arabic, English & French</div>
+          </div>
+          <div class="att-contact">
+            <a href="contact.html">Request Consultation →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTORNEY 6 -->
+      <div class="attorney-card reveal reveal-delay-2">
+        <div class="att-portrait">
+          <div class="att-initials">LA</div>
+          <div class="att-overlay">
+            <p class="att-bio-preview">Lama focuses on family law and women's legal rights, providing a safe and supportive environment for clients navigating sensitive personal matters including guardianship and domestic issues.</p>
+          </div>
+        </div>
+        <div class="att-info">
+          <div class="att-name">Lama Al Amri</div>
+          <div class="att-role">Associate · Family Law</div>
+          <div class="att-specs">
+            <div class="att-spec">6 years of family law practice</div>
+            <div class="att-spec">LLB — Effat University</div>
+            <div class="att-spec">Specialist in women's rights & child custody</div>
+            <div class="att-spec">Arabic & English</div>
+          </div>
+          <div class="att-contact">
+            <a href="contact.html">Request Consultation →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT TEAM -->
+<section id="support-team">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text">Support Staff</span></div>
+    <h2 class="section-title reveal">Our <em>Support Team</em></h2>
+    <p class="reveal" style="max-width:600px;font-size:0.9rem;color:var(--text-light);line-height:1.8;font-weight:300;margin-bottom:1rem;">Behind every great attorney is a dedicated support team ensuring every case runs smoothly and every client is cared for.</p>
+    <div class="support-grid">
+      <div class="support-card reveal">
+        <div class="support-avatar">RS</div>
+        <div class="support-name">Reem Al Sudairi</div>
+        <div class="support-role">Head of Client Relations</div>
+      </div>
+      <div class="support-card reveal reveal-delay-1">
+        <div class="support-avatar">AH</div>
+        <div class="support-name">Ahmed Al Harbi</div>
+        <div class="support-role">Senior Legal Researcher</div>
+      </div>
+      <div class="support-card reveal reveal-delay-2">
+        <div class="support-avatar">DM</div>
+        <div class="support-name">Dina Al Maliki</div>
+        <div class="support-role">Case Administrator</div>
+      </div>
+      <div class="support-card reveal reveal-delay-3">
+        <div class="support-avatar">YZ</div>
+        <div class="support-name">Yousef Al Zahrani</div>
+        <div class="support-role">Court Liaison Officer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line" style="background:var(--navy);"></div><span class="section-label-text" style="color:var(--navy);">What Drives Us</span></div>
+    <h2 class="section-title reveal">Our Team <em style="color:var(--gold-dark);">Values</em></h2>
+    <div class="values-row">
+      <div class="value-item reveal">
+        <div class="value-num">I</div>
+        <h3 class="value-title">Client First, Always</h3>
+        <p class="value-text">Every decision we make — from how we answer the phone to how we argue in court — starts with the question: "Is this in our client's best interest?" It is the only metric that truly matters.</p>
+      </div>
+      <div class="value-item reveal reveal-delay-1">
+        <div class="value-num">II</div>
+        <h3 class="value-title">Excellence Without Exception</h3>
+        <p class="value-text">We hold ourselves to the highest standards in everything we do. We do not cut corners, we do not settle for "good enough," and we do not stop until we have exhausted every legitimate avenue for our clients.</p>
+      </div>
+      <div class="value-item reveal reveal-delay-2">
+        <div class="value-num">III</div>
+        <h3 class="value-title">Rooted in Saudi Values</h3>
+        <p class="value-text">We are proud to practice law in the Kingdom, guided by Islamic principles of justice, fairness, and compassion. Our deep respect for Saudi culture and law shapes everything we do for our clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Meet the Team <em style="font-style:italic;color:var(--gold);">in Person</em></h2>
+  <p>Book a free consultation and be matched with the attorney best suited to your legal needs.</p>
+  <a href="contact.html" class="btn-gold">Book Free Consultation</a>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark">M</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:0.85rem;letter-spacing:0.15em;color:var(--gold);">AL MATROOD</div>
+            <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;">LAW FIRM</div>
+          </div>
+        </a>
+        <p>A trusted legal partner in the Kingdom of Saudi Arabia.</p>
+      </div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="services.html">Corporate Law</a></li><li><a href="services.html">Family Law</a></li><li><a href="services.html">Criminal Defense</a></li><li><a href="services.html">Personal Injury</a></li></ul></div>
+      <div><div class="footer-heading">The Firm</div><ul class="footer-links"><li><a href="why-us.html">Why Choose Us</a></li><li><a href="process.html">Our Process</a></li><li><a href="consultant.html">Our Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="contact.html">Book Consultation</a></li><li><a href="mailto:info@almatroodlaw.sa">info@almatroodlaw.sa</a></li><li><a href="#">+966 11 XXX XXXX</a></li><li><a href="#">Riyadh, Saudi Arabia</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Al Matrood Law Firm. All rights reserved.</div>
+      <div class="footer-arabic">مكتب المطرود للمحاماة</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

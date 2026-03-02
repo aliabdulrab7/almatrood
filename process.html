@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Process | Al Matrood Law Firm</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --gold:#C9A96E; --gold-light:#E8D5A3; --gold-dark:#9A7A45; --navy:#0A1628; --navy-mid:#122040; --navy-light:#1A2F55; --cream:#F8F4EE; --cream-dark:#EDE5D8; --text-light:#A8B4C8; }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--cream);overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease;background:transparent;}
+  nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(10px);padding:1rem 4rem;border-bottom:1px solid rgba(201,169,110,0.2);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);letter-spacing:0.1em;text-decoration:none;display:flex;align-items:center;gap:0.75rem;}
+  .logo-mark{width:40px;height:40px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;position:relative;}
+  .logo-mark::before{content:'';position:absolute;inset:3px;border:1px solid rgba(201,169,110,0.3);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{color:var(--cream);text-decoration:none;font-size:0.7rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;transition:color 0.3s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s ease;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:0.6rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;text-decoration:none;}
+  .nav-cta:hover{background:var(--gold);color:var(--navy);}
+  .page-hero{min-height:55vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+  .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(201,169,110,0.07) 0%,transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);}
+  .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:60px 60px;}
+  .page-hero-content{position:relative;max-width:1400px;margin:0 auto;padding:0 4rem;padding-top:8rem;padding-bottom:4rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s ease 0.4s forwards;}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+  .breadcrumb{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+  .breadcrumb a{color:var(--gold);text-decoration:none;}
+  .page-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.1;color:var(--cream);margin-bottom:1.5rem;}
+  .page-title em{font-style:italic;color:var(--gold);}
+  .page-subtitle{max-width:600px;font-size:0.95rem;color:var(--text-light);line-height:1.8;font-weight:300;}
+  .container{max-width:1400px;margin:0 auto;padding:0 4rem;}
+  section{padding:7rem 0;}
+  .section-label{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+  .section-label-line{width:40px;height:1px;background:var(--gold);}
+  .section-label-text{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.15;color:var(--cream);margin-bottom:1.5rem;}
+  .section-title em{font-style:italic;color:var(--gold);}
+  .reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.15s;}.reveal-delay-2{transition-delay:0.3s;}.reveal-delay-3{transition-delay:0.45s;}
+
+  /* MAIN PROCESS TIMELINE */
+  #process-main{background:var(--navy-mid);}
+  .process-intro{max-width:700px;margin-bottom:5rem;}
+  .process-intro p{font-size:0.95rem;color:var(--text-light);line-height:1.9;font-weight:300;}
+
+  .timeline{position:relative;padding-left:4rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom, transparent, rgba(201,169,110,0.3) 10%, rgba(201,169,110,0.3) 90%, transparent);}
+
+  .timeline-step{position:relative;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(201,169,110,0.08);}
+  .timeline-step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+
+  .step-dot{position:absolute;left:-4.75rem;top:0;width:20px;height:20px;border:2px solid var(--gold);background:var(--navy-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .step-dot::after{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;}
+
+  .step-header{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;margin-bottom:2rem;}
+  .step-num{font-family:'Playfair Display',serif;font-size:4.5rem;color:rgba(201,169,110,0.1);font-weight:900;line-height:1;flex-shrink:0;width:80px;}
+  .step-title-group{}
+  .step-phase{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+  .step-title{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--cream);margin-bottom:0.75rem;}
+  .step-desc{font-size:0.88rem;color:var(--text-light);line-height:1.85;font-weight:300;}
+
+  .step-details{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;}
+  .step-detail{padding:1.5rem;border:1px solid rgba(201,169,110,0.1);background:rgba(201,169,110,0.02);}
+  .step-detail-icon{font-size:1.2rem;margin-bottom:0.75rem;}
+  .step-detail-title{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;font-weight:600;}
+  .step-detail-text{font-size:0.78rem;color:var(--text-light);line-height:1.7;}
+
+  /* PRACTICE SPECIFIC PROCESS */
+  #by-area{background:var(--navy);}
+  .area-tabs{display:flex;gap:0;border:1px solid rgba(201,169,110,0.2);margin-bottom:3rem;flex-wrap:wrap;}
+  .area-tab{flex:1;padding:1.2rem 2rem;text-align:center;cursor:pointer;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);border-right:1px solid rgba(201,169,110,0.15);transition:all 0.3s;background:transparent;}
+  .area-tab:last-child{border-right:none;}
+  .area-tab:hover,.area-tab.active{background:rgba(201,169,110,0.06);color:var(--gold);}
+  .area-content{display:none;}
+  .area-content.active{display:block;}
+  .area-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,169,110,0.08);}
+  .area-step{background:var(--navy);padding:2.5rem 2rem;text-align:center;position:relative;}
+  .area-step::after{content:'→';position:absolute;right:-0.5rem;top:50%;transform:translateY(-50%);color:rgba(201,169,110,0.3);font-size:1rem;z-index:1;}
+  .area-step:last-child::after{display:none;}
+  .as-num{font-family:'Playfair Display',serif;font-size:2.5rem;color:rgba(201,169,110,0.1);font-weight:900;line-height:1;margin-bottom:0.75rem;}
+  .as-title{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream);font-weight:600;margin-bottom:0.75rem;}
+  .as-text{font-size:0.75rem;color:var(--text-light);line-height:1.7;}
+
+  /* COMMITMENT SECTION */
+  #commitment{background:var(--cream);color:var(--navy);}
+  #commitment .section-title{color:var(--navy);}
+  .commitment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+  .commit-card{padding:2.5rem;border:1px solid rgba(10,22,40,0.08);transition:all 0.3s;}
+  .commit-card:hover{box-shadow:0 15px 40px rgba(10,22,40,0.08);}
+  .commit-icon{width:50px;height:50px;background:rgba(201,169,110,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.5rem;}
+  .commit-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:0.75rem;}
+  .commit-text{font-size:0.82rem;color:rgba(10,22,40,0.6);line-height:1.8;}
+
+  /* CTA BAND */
+  .cta-band{background:var(--navy-mid);padding:6rem 0;text-align:center;}
+  .cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--cream);margin-bottom:1rem;}
+  .cta-band p{font-size:0.9rem;color:var(--text-light);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;}
+  .btn-gold{background:var(--gold);color:var(--navy);padding:1rem 2.5rem;font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.3s;}
+  .btn-gold:hover{background:var(--gold-light);}
+
+  footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);padding:4rem 0 2rem;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,169,110,0.1);}
+  .footer-brand p{font-size:0.82rem;color:var(--text-light);line-height:1.8;margin-top:1rem;max-width:280px;font-weight:300;}
+  .footer-heading{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.75rem;}
+  .footer-links a{color:var(--text-light);text-decoration:none;font-size:0.82rem;transition:color 0.3s;}
+  .footer-links a:hover{color:var(--cream);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:0.7rem;color:var(--text-light);opacity:0.6;}
+  .footer-arabic{font-size:0.8rem;color:var(--gold);opacity:0.6;font-style:italic;}
+
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;} nav.scrolled{padding:0.8rem 1.5rem;}
+    .nav-links,.nav-cta{display:none;}
+    .container{padding:0 1.5rem;}
+    .page-hero-content{padding:0 1.5rem;padding-top:7rem;padding-bottom:3rem;}
+    .timeline{padding-left:2rem;}
+    .step-dot{left:-2.75rem;}
+    .step-header{grid-template-columns:1fr;}
+    .step-details{grid-template-columns:1fr;}
+    .area-steps{grid-template-columns:1fr 1fr;}
+    .area-step::after{display:none;}
+    .commitment-grid{grid-template-columns:1fr;}
+    .area-tabs{flex-direction:column;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    section{padding:5rem 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">M</div>
+    <div>
+      <div style="font-size:0.85rem;letter-spacing:0.15em;">AL MATROOD</div>
+      <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;">LAW FIRM</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="process.html" class="active">Our Process</a></li>
+    <li><a href="consultant.html">Our Team</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Free Consultation</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span style="opacity:0.4;margin:0 0.25rem;">/</span><span>Our Process</span></div>
+    <h1 class="page-title">How We <em>Work</em></h1>
+    <p class="page-subtitle">From your first consultation to the resolution of your case, we follow a rigorous, transparent process designed to deliver the best possible outcome — keeping you informed every step of the way.</p>
+  </div>
+</div>
+
+<!-- MAIN PROCESS TIMELINE -->
+<section id="process-main">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text">Step by Step</span></div>
+    <h2 class="section-title reveal">Our <em>6-Step</em> Legal Process</h2>
+    <div class="process-intro reveal">
+      <p>Every client and every case is unique — but our approach is consistent: careful, strategic, and always client-focused. Here is exactly how we work from the moment you reach out to us until your matter is fully resolved.</p>
+    </div>
+
+    <div class="timeline">
+
+      <!-- STEP 1 -->
+      <div class="timeline-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-header">
+          <div class="step-num">01</div>
+          <div class="step-title-group">
+            <div class="step-phase">Initial Contact</div>
+            <h3 class="step-title">Free Consultation & Case Assessment</h3>
+            <p class="step-desc">Your journey with us begins with a free, no-obligation consultation — available in person at our Riyadh office, by phone, or via video call. During this session, one of our senior attorneys will listen carefully to your situation, ask clarifying questions, and give you an honest, initial assessment of your legal position and options. There is no pressure and no commitment.</p>
+          </div>
+        </div>
+        <div class="step-details">
+          <div class="step-detail"><div class="step-detail-icon">🕐</div><div class="step-detail-title">Duration</div><div class="step-detail-text">60–90 minute initial session, with follow-up if needed</div></div>
+          <div class="step-detail"><div class="step-detail-icon">📍</div><div class="step-detail-title">Format</div><div class="step-detail-text">In-person (Riyadh), phone, or secure video call</div></div>
+          <div class="step-detail"><div class="step-detail-icon">💬</div><div class="step-detail-title">Language</div><div class="step-detail-text">Available fully in Arabic and English</div></div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="timeline-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-header">
+          <div class="step-num">02</div>
+          <div class="step-title-group">
+            <div class="step-phase">Engagement</div>
+            <h3 class="step-title">Scope, Fees & Engagement Agreement</h3>
+            <p class="step-desc">Once you decide to proceed, we provide a clear, written engagement letter outlining the scope of our work, the assigned attorney, the fee structure, and expected timelines. We believe complete transparency about costs eliminates surprises and builds trust from the very beginning. You'll know exactly what you're paying for and when.</p>
+          </div>
+        </div>
+        <div class="step-details">
+          <div class="step-detail"><div class="step-detail-icon">📄</div><div class="step-detail-title">Deliverable</div><div class="step-detail-text">Written engagement letter and signed service agreement</div></div>
+          <div class="step-detail"><div class="step-detail-icon">💰</div><div class="step-detail-title">Fees</div><div class="step-detail-text">Transparent fixed fees or retainer — agreed upfront</div></div>
+          <div class="step-detail"><div class="step-detail-icon">👤</div><div class="step-detail-title">Assignment</div><div class="step-detail-text">Dedicated attorney matched to your practice area</div></div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="timeline-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-header">
+          <div class="step-num">03</div>
+          <div class="step-title-group">
+            <div class="step-phase">Investigation</div>
+            <h3 class="step-title">Deep-Dive Research & Evidence Gathering</h3>
+            <p class="step-desc">Your assigned attorney conducts thorough legal research, reviews all documentation, and gathers supporting evidence. For litigation cases, this includes examining court records, interviewing witnesses, obtaining expert opinions, and preparing a comprehensive case file. We leave no stone unturned — because winning cases is built on preparation, not luck.</p>
+          </div>
+        </div>
+        <div class="step-details">
+          <div class="step-detail"><div class="step-detail-icon">🔍</div><div class="step-detail-title">Research</div><div class="step-detail-text">Saudi statutes, precedent cases, regulatory codes</div></div>
+          <div class="step-detail"><div class="step-detail-icon">📂</div><div class="step-detail-title">Documentation</div><div class="step-detail-text">Comprehensive case file and evidence catalogue</div></div>
+          <div class="step-detail"><div class="step-detail-icon">🧑‍🔬</div><div class="step-detail-title">Experts</div><div class="step-detail-text">Access to forensic, medical, and financial experts</div></div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="timeline-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-header">
+          <div class="step-num">04</div>
+          <div class="step-title-group">
+            <div class="step-phase">Strategy</div>
+            <h3 class="step-title">Legal Strategy Development & Client Briefing</h3>
+            <p class="step-desc">Based on our research, we develop a tailored legal strategy with a clear primary approach and contingency plans. We then present this strategy to you in a detailed briefing — explaining the legal landscape, your realistic options, the risks involved in each path, and our recommendation. You remain in control of every major decision.</p>
+          </div>
+        </div>
+        <div class="step-details">
+          <div class="step-detail"><div class="step-detail-icon">♟️</div><div class="step-detail-title">Strategy</div><div class="step-detail-text">Primary approach plus alternative scenarios</div></div>
+          <div class="step-detail"><div class="step-detail-icon">📊</div><div class="step-detail-title">Risk Analysis</div><div class="step-detail-text">Honest assessment of likelihood and outcomes</div></div>
+          <div class="step-detail"><div class="step-detail-icon">✅</div><div class="step-detail-title">Client Approval</div><div class="step-detail-text">Your consent before any action is taken</div></div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="timeline-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-header">
+          <div class="step-num">05</div>
+          <div class="step-title-group">
+            <div class="step-phase">Execution</div>
+            <h3 class="step-title">Legal Action, Representation & Negotiation</h3>
+            <p class="step-desc">We execute the agreed strategy with precision — filing legal documents, representing you in court hearings, conducting negotiations, and managing all communications with opposing parties, courts, and government authorities. You receive regular progress updates so you are never left wondering what is happening with your case.</p>
+          </div>
+        </div>
+        <div class="step-details">
+          <div class="step-detail"><div class="step-detail-icon">🏛️</div><div class="step-detail-title">Court Work</div><div class="step-detail-text">All filings, appearances, and oral arguments handled</div></div>
+          <div class="step-detail"><div class="step-detail-icon">🤝</div><div class="step-detail-title">Negotiation</div><div class="step-detail-text">Settlement negotiations when in your best interest</div></div>
+          <div class="step-detail"><div class="step-detail-icon">📲</div><div class="step-detail-title">Updates</div><div class="step-detail-text">Regular progress reports — no radio silence</div></div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="timeline-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-header">
+          <div class="step-num">06</div>
+          <div class="step-title-group">
+            <div class="step-phase">Resolution</div>
+            <h3 class="step-title">Case Resolution & Post-Matter Support</h3>
+            <p class="step-desc">Once your case is resolved — whether through judgment, settlement, or administrative decision — we handle all necessary follow-up actions: enforcing judgments, completing registrations, or filing appeals if required. We also conduct a case debrief with you and remain available as your long-term legal partner for any future matters that arise.</p>
+          </div>
+        </div>
+        <div class="step-details">
+          <div class="step-detail"><div class="step-detail-icon">🏆</div><div class="step-detail-title">Resolution</div><div class="step-detail-text">Judgment enforcement, settlement finalization</div></div>
+          <div class="step-detail"><div class="step-detail-icon">📋</div><div class="step-detail-title">Documentation</div><div class="step-detail-text">Final case report and all original documents returned</div></div>
+          <div class="step-detail"><div class="step-detail-icon">🔄</div><div class="step-detail-title">Ongoing</div><div class="step-detail-text">Available as your long-term legal partner</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREA PROCESS -->
+<section id="by-area">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text">Practice Specific</span></div>
+    <h2 class="section-title reveal">Process by <em>Practice Area</em></h2>
+    <p class="reveal" style="max-width:600px;font-size:0.92rem;color:var(--text-light);line-height:1.8;font-weight:300;margin-bottom:3rem;">While our core 6-step process applies to all matters, here's how it unfolds specifically in each of our practice areas.</p>
+
+    <div class="area-tabs reveal">
+      <div class="area-tab active" onclick="showArea('corporate')">Corporate</div>
+      <div class="area-tab" onclick="showArea('family')">Family Law</div>
+      <div class="area-tab" onclick="showArea('criminal')">Criminal Defense</div>
+      <div class="area-tab" onclick="showArea('injury')">Personal Injury</div>
+    </div>
+
+    <div id="corporate" class="area-content active">
+      <div class="area-steps">
+        <div class="area-step"><div class="as-num">01</div><div class="as-title">Business Review</div><div class="as-text">Understand your corporate structure, objectives, and legal exposure</div></div>
+        <div class="area-step"><div class="as-num">02</div><div class="as-title">Risk Assessment</div><div class="as-text">Identify regulatory, contractual, and operational legal risks</div></div>
+        <div class="area-step"><div class="as-num">03</div><div class="as-title">Strategy & Drafting</div><div class="as-text">Draft agreements, file registrations, structure transactions</div></div>
+        <div class="area-step"><div class="as-num">04</div><div class="as-title">Close & Protect</div><div class="as-text">Execute, register, and provide ongoing advisory support</div></div>
+      </div>
+    </div>
+    <div id="family" class="area-content">
+      <div class="area-steps">
+        <div class="area-step"><div class="as-num">01</div><div class="as-title">Confidential Meeting</div><div class="as-text">Private discussion of your family situation and desired outcomes</div></div>
+        <div class="area-step"><div class="as-num">02</div><div class="as-title">Legal Position</div><div class="as-text">Assess rights under Saudi Personal Status Law and Islamic law</div></div>
+        <div class="area-step"><div class="as-num">03</div><div class="as-title">Mediation / Filing</div><div class="as-text">Attempt settlement first; if unresolved, file court proceedings</div></div>
+        <div class="area-step"><div class="as-num">04</div><div class="as-title">Court & Resolution</div><div class="as-text">Represent before family court; enforce judgment and follow up</div></div>
+      </div>
+    </div>
+    <div id="criminal" class="area-content">
+      <div class="area-steps">
+        <div class="area-step"><div class="as-num">01</div><div class="as-title">Emergency Response</div><div class="as-text">Immediate advice on rights; attend police station if arrested</div></div>
+        <div class="area-step"><div class="as-num">02</div><div class="as-title">Case Analysis</div><div class="as-text">Review prosecution evidence, identify weaknesses and defenses</div></div>
+        <div class="area-step"><div class="as-num">03</div><div class="as-title">Defense Strategy</div><div class="as-text">Build comprehensive defense; challenge evidence; brief witnesses</div></div>
+        <div class="area-step"><div class="as-num">04</div><div class="as-title">Trial & Appeal</div><div class="as-text">Full courtroom representation; appeal if verdict is unjust</div></div>
+      </div>
+    </div>
+    <div id="injury" class="area-content">
+      <div class="area-steps">
+        <div class="area-step"><div class="as-num">01</div><div class="as-title">Incident Review</div><div class="as-text">Document injuries, evidence, and gather witness statements</div></div>
+        <div class="area-step"><div class="as-num">02</div><div class="as-title">Liability Assessment</div><div class="as-text">Establish liability and quantify full damages owed</div></div>
+        <div class="area-step"><div class="as-num">03</div><div class="as-title">Negotiation</div><div class="as-text">Pursue settlement with insurers and liable parties</div></div>
+        <div class="area-step"><div class="as-num">04</div><div class="as-title">Litigation</div><div class="as-text">Take to court if fair compensation is refused; enforce award</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENTS -->
+<section id="commitment">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line" style="background:var(--navy);"></div><span class="section-label-text" style="color:var(--navy);">Our Promises</span></div>
+    <h2 class="section-title reveal">What You Can <em style="color:var(--gold-dark);">Always Expect</em></h2>
+    <div class="commitment-grid">
+      <div class="commit-card reveal">
+        <div class="commit-icon">📞</div>
+        <h3 class="commit-title">24-Hour Response</h3>
+        <p class="commit-text">We guarantee a response to all client communications within 24 hours — and within 2 hours for urgent and emergency matters.</p>
+      </div>
+      <div class="commit-card reveal reveal-delay-1">
+        <div class="commit-icon">📊</div>
+        <h3 class="commit-title">Monthly Case Updates</h3>
+        <p class="commit-text">Formal written updates on your case progress every month, in addition to ad-hoc updates whenever there are significant developments.</p>
+      </div>
+      <div class="commit-card reveal reveal-delay-2">
+        <div class="commit-icon">💡</div>
+        <h3 class="commit-title">Honest Counsel</h3>
+        <p class="commit-text">We will always give you our genuine legal assessment — including when the news is not what you hoped to hear. Honest advice protects you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to <em style="font-style:italic;color:var(--gold);">Get Started?</em></h2>
+  <p>Book your free consultation today and take the first step toward resolving your legal matter.</p>
+  <a href="contact.html" class="btn-gold">Book Free Consultation</a>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark">M</div>
+          <div>
+            <div style="font-size:0.85rem;letter-spacing:0.15em;font-family:'Playfair Display',serif;color:var(--gold);">AL MATROOD</div>
+            <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;">LAW FIRM</div>
+          </div>
+        </a>
+        <p>A trusted legal partner in the Kingdom of Saudi Arabia.</p>
+      </div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="services.html">Corporate Law</a></li><li><a href="services.html">Family Law</a></li><li><a href="services.html">Criminal Defense</a></li><li><a href="services.html">Personal Injury</a></li></ul></div>
+      <div><div class="footer-heading">The Firm</div><ul class="footer-links"><li><a href="why-us.html">Why Choose Us</a></li><li><a href="process.html">Our Process</a></li><li><a href="consultant.html">Our Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="contact.html">Book Consultation</a></li><li><a href="mailto:info@almatroodlaw.sa">info@almatroodlaw.sa</a></li><li><a href="#">+966 11 XXX XXXX</a></li><li><a href="#">Riyadh, Saudi Arabia</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Al Matrood Law Firm. All rights reserved.</div>
+      <div class="footer-arabic">مكتب المطرود للمحاماة</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  function showArea(id) {
+    document.querySelectorAll('.area-tab').forEach((t,i) => t.classList.toggle('active', ['corporate','family','criminal','injury'][i] === id));
+    document.querySelectorAll('.area-content').forEach(c => c.classList.toggle('active', c.id === id));
+  }
+</script>
+</body>
+</html>

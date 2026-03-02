@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Al Matrood Law Firm</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A96E; --gold-light: #E8D5A3; --gold-dark: #9A7A45;
+    --navy: #0A1628; --navy-mid: #122040; --navy-light: #1A2F55;
+    --cream: #F8F4EE; --cream-dark: #EDE5D8; --text-light: #A8B4C8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Montserrat',sans-serif; background:var(--navy); color:var(--cream); overflow-x:hidden; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:1.5rem 4rem; display:flex; align-items:center; justify-content:space-between; transition:all 0.4s ease; background:transparent; }
+  nav.scrolled { background:rgba(10,22,40,0.97); backdrop-filter:blur(10px); padding:1rem 4rem; border-bottom:1px solid rgba(201,169,110,0.2); }
+  .nav-logo { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--gold); letter-spacing:0.1em; text-decoration:none; display:flex; align-items:center; gap:0.75rem; }
+  .logo-mark { width:40px; height:40px; border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:1rem; position:relative; }
+  .logo-mark::before { content:''; position:absolute; inset:3px; border:1px solid rgba(201,169,110,0.3); }
+  .nav-links { display:flex; gap:2.5rem; list-style:none; }
+  .nav-links a { color:var(--cream); text-decoration:none; font-size:0.7rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; transition:color 0.3s; position:relative; }
+  .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:1px; background:var(--gold); transform:scaleX(0); transition:transform 0.3s ease; }
+  .nav-links a:hover, .nav-links a.active { color:var(--gold); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform:scaleX(1); }
+  .nav-cta { background:transparent; border:1px solid var(--gold); color:var(--gold); padding:0.6rem 1.5rem; font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; transition:all 0.3s ease; text-decoration:none; }
+  .nav-cta:hover { background:var(--gold); color:var(--navy); }
+
+  /* PAGE HERO */
+  .page-hero { min-height:55vh; position:relative; display:flex; align-items:center; overflow:hidden; }
+  .page-hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse at 60% 50%, rgba(201,169,110,0.07) 0%, transparent 60%), linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); }
+  .page-hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px); background-size:60px 60px; }
+  .page-hero-content { position:relative; max-width:1400px; margin:0 auto; padding:0 4rem; padding-top:8rem; padding-bottom:4rem; opacity:0; transform:translateY(20px); animation:fadeUp 0.9s ease 0.4s forwards; }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  .breadcrumb { display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-light); }
+  .breadcrumb a { color:var(--gold); text-decoration:none; }
+  .breadcrumb-sep { color:var(--text-light); opacity:0.4; }
+  .page-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,6vw,5rem); font-weight:700; line-height:1.1; color:var(--cream); margin-bottom:1.5rem; }
+  .page-title em { font-style:italic; color:var(--gold); }
+  .page-subtitle { max-width:600px; font-size:0.95rem; color:var(--text-light); line-height:1.8; font-weight:300; }
+
+  /* COMMON */
+  .container { max-width:1400px; margin:0 auto; padding:0 4rem; }
+  section { padding:7rem 0; }
+  .section-label { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+  .section-label-line { width:40px; height:1px; background:var(--gold); }
+  .section-label-text { font-size:0.6rem; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); }
+  .section-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:600; line-height:1.15; color:var(--cream); margin-bottom:1.5rem; }
+  .section-title em { font-style:italic; color:var(--gold); }
+  .reveal { opacity:0; transform:translateY(25px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1 { transition-delay:0.1s; } .reveal-delay-2 { transition-delay:0.2s; } .reveal-delay-3 { transition-delay:0.3s; }
+
+  /* SERVICES OVERVIEW */
+  #overview { background:var(--navy-mid); }
+  .overview-intro { max-width:800px; margin:0 auto; text-align:center; margin-bottom:5rem; }
+  .overview-intro p { font-size:1rem; color:var(--text-light); line-height:1.9; font-weight:300; }
+
+  /* MAIN SERVICE CARDS */
+  .service-block { margin-bottom:2px; background:var(--navy); }
+  .service-expand { display:grid; grid-template-columns:1fr 2fr; overflow:hidden; transition:all 0.4s; }
+  .service-sidebar { padding:4rem; background:rgba(201,169,110,0.04); border-right:1px solid rgba(201,169,110,0.12); display:flex; flex-direction:column; justify-content:space-between; }
+  .service-number { font-family:'Playfair Display',serif; font-size:5rem; color:rgba(201,169,110,0.12); font-weight:900; line-height:1; }
+  .service-icon-box { width:60px; height:60px; border:1px solid rgba(201,169,110,0.3); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:1.5rem 0; }
+  .service-main-title { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--cream); margin-bottom:0.5rem; }
+  .service-tagline { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); }
+  .service-body { padding:4rem; }
+  .service-desc { font-size:0.95rem; color:var(--text-light); line-height:1.9; font-weight:300; margin-bottom:2.5rem; }
+  .service-sub-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; }
+  .service-sub { padding:1.5rem; border:1px solid rgba(201,169,110,0.12); background:rgba(201,169,110,0.02); transition:border-color 0.3s; }
+  .service-sub:hover { border-color:rgba(201,169,110,0.35); }
+  .service-sub-title { font-size:0.78rem; font-weight:600; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem; }
+  .service-sub-desc { font-size:0.78rem; color:var(--text-light); line-height:1.7; }
+  .service-cta { display:inline-flex; align-items:center; gap:0.75rem; margin-top:2rem; color:var(--gold); text-decoration:none; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; border:1px solid rgba(201,169,110,0.3); padding:0.75rem 1.5rem; transition:all 0.3s; }
+  .service-cta:hover { background:var(--gold); color:var(--navy); }
+
+  /* RETAINER SECTION */
+  #retainer { background:var(--navy); }
+  .retainer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:4rem; }
+  .retainer-card { padding:3rem 2.5rem; border:1px solid rgba(201,169,110,0.15); position:relative; transition:all 0.3s; }
+  .retainer-card:hover { border-color:rgba(201,169,110,0.4); background:rgba(201,169,110,0.02); }
+  .retainer-card.featured { border-color:var(--gold); background:rgba(201,169,110,0.04); }
+  .featured-badge { position:absolute; top:-1px; left:50%; transform:translateX(-50%); background:var(--gold); color:var(--navy); font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; padding:0.3rem 1rem; font-weight:600; }
+  .plan-name { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--cream); margin-bottom:0.5rem; }
+  .plan-desc { font-size:0.78rem; color:var(--text-light); margin-bottom:2rem; line-height:1.6; }
+  .plan-features { list-style:none; margin-bottom:2rem; display:flex; flex-direction:column; gap:0.8rem; }
+  .plan-features li { font-size:0.8rem; color:var(--text-light); display:flex; align-items:center; gap:0.75rem; }
+  .plan-features li::before { content:''; width:6px; height:1px; background:var(--gold); flex-shrink:0; }
+  .plan-btn { width:100%; padding:0.9rem; border:1px solid var(--gold); background:transparent; color:var(--gold); font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; transition:all 0.3s; }
+  .plan-btn:hover, .retainer-card.featured .plan-btn { background:var(--gold); color:var(--navy); }
+
+  /* MARQUEE */
+  .marquee-section { border-top:1px solid rgba(201,169,110,0.15); border-bottom:1px solid rgba(201,169,110,0.15); padding:1rem 0; overflow:hidden; background:rgba(201,169,110,0.03); }
+  .marquee-track { display:flex; animation:marquee 20s linear infinite; white-space:nowrap; }
+  .marquee-item { font-size:0.6rem; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); padding:0 3rem; opacity:0.6; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* FOOTER */
+  footer { background:var(--navy); border-top:1px solid rgba(201,169,110,0.15); padding:4rem 0 2rem; }
+  .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:4rem; margin-bottom:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(201,169,110,0.1); }
+  .footer-brand p { font-size:0.82rem; color:var(--text-light); line-height:1.8; margin-top:1rem; max-width:280px; font-weight:300; }
+  .footer-heading { font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; }
+  .footer-links { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
+  .footer-links a { color:var(--text-light); text-decoration:none; font-size:0.82rem; transition:color 0.3s; }
+  .footer-links a:hover { color:var(--cream); }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; }
+  .footer-copy { font-size:0.7rem; color:var(--text-light); opacity:0.6; }
+  .footer-arabic { font-size:0.8rem; color:var(--gold); opacity:0.6; font-style:italic; }
+
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;} nav.scrolled{padding:0.8rem 1.5rem;}
+    .nav-links,.nav-cta{display:none;}
+    .container{padding:0 1.5rem;}
+    .page-hero-content{padding:0 1.5rem; padding-top:7rem; padding-bottom:3rem;}
+    .service-expand{grid-template-columns:1fr;}
+    .service-sidebar{padding:2.5rem;}
+    .service-body{padding:2.5rem;}
+    .service-sub-grid{grid-template-columns:1fr;}
+    .retainer-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    section{padding:5rem 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">M</div>
+    <div>
+      <div style="font-size:0.85rem;letter-spacing:0.15em;">AL MATROOD</div>
+      <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;">LAW FIRM</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="process.html">Our Process</a></li>
+    <li><a href="consultant.html">Our Team</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Free Consultation</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Services</span>
+    </div>
+    <h1 class="page-title">Our Legal <em>Services</em></h1>
+    <p class="page-subtitle">Comprehensive legal solutions across four core practice areas, delivered with precision, integrity, and a commitment to results in Saudi Arabia and beyond.</p>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Corporate Law</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Family Law</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Criminal Defense</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Personal Injury</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Litigation</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Contract Drafting</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Arbitration</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Legal Consultation</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Corporate Law</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Family Law</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Criminal Defense</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Personal Injury</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Litigation</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Contract Drafting</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Arbitration</span><span class="marquee-item">◆</span>
+    <span class="marquee-item">Legal Consultation</span><span class="marquee-item">◆</span>
+  </div>
+</div>
+
+<!-- OVERVIEW INTRO -->
+<section id="overview">
+  <div class="container">
+    <div class="overview-intro reveal">
+      <div class="section-label" style="justify-content:center;">
+        <div class="section-label-line"></div>
+        <span class="section-label-text">What We Offer</span>
+        <div class="section-label-line"></div>
+      </div>
+      <h2 class="section-title" style="text-align:center;">Four Practice Areas. <em>One Trusted Firm.</em></h2>
+      <p>At Al Matrood Law Firm, we believe every client deserves dedicated, expert legal representation. Our attorneys combine deep knowledge of Saudi and Islamic law with a strategic, client-first approach — ensuring your legal matters are handled with the seriousness and skill they deserve.</p>
+    </div>
+
+    <!-- SERVICE 01: CORPORATE -->
+    <div class="service-block reveal">
+      <div class="service-expand">
+        <div class="service-sidebar">
+          <div>
+            <div class="service-number">01</div>
+            <div class="service-icon-box">🏢</div>
+            <h2 class="service-main-title">Business &amp; Corporate Law</h2>
+            <div class="service-tagline">Commercial Excellence</div>
+          </div>
+          <a href="contact.html" class="service-cta">Get Advice →</a>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Whether you're launching a startup, managing a growing enterprise, or navigating complex international business transactions, Al Matrood Law Firm provides the comprehensive corporate legal support you need. We understand the Saudi regulatory landscape inside-out and work proactively to protect your commercial interests at every turn.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub">
+              <div class="service-sub-title">Company Formation</div>
+              <div class="service-sub-desc">End-to-end support for incorporating businesses in Saudi Arabia, including LLC, joint-stock, and branch office registrations with MISA.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Contract Drafting</div>
+              <div class="service-sub-desc">Drafting, reviewing, and negotiating commercial contracts, joint ventures, shareholder agreements, and MoUs that protect your interests.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Mergers & Acquisitions</div>
+              <div class="service-sub-desc">Legal due diligence, deal structuring, and transaction management for mergers, acquisitions, and business sales in the Kingdom.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Regulatory Compliance</div>
+              <div class="service-sub-desc">Guidance on Vision 2030 reforms, ZATCA regulations, SAMA licensing, and sector-specific compliance requirements.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Dispute Resolution</div>
+              <div class="service-sub-desc">Representation in commercial disputes before Saudi courts, the SCCA, and international arbitration bodies.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Employment Law</div>
+              <div class="service-sub-desc">Advising on Saudi Labor Law, employment contracts, Saudization (Nitaqat), and workforce restructuring matters.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE 02: FAMILY -->
+    <div class="service-block reveal" style="margin-top:2px;">
+      <div class="service-expand">
+        <div class="service-sidebar">
+          <div>
+            <div class="service-number">02</div>
+            <div class="service-icon-box">👨‍👩‍👧</div>
+            <h2 class="service-main-title">Family Law</h2>
+            <div class="service-tagline">Compassionate Counsel</div>
+          </div>
+          <a href="contact.html" class="service-cta">Get Advice →</a>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Family legal matters require not only legal expertise but also sensitivity, discretion, and genuine care. Our family law attorneys handle every case with compassion, guided by both Islamic principles and Saudi Personal Status Law. We work to achieve the best possible outcomes for you and your family while minimizing conflict and stress.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub">
+              <div class="service-sub-title">Marriage Contracts</div>
+              <div class="service-sub-desc">Drafting and reviewing marriage contracts, prenuptial agreements, and mahr arrangements in accordance with Islamic and Saudi law.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Divorce Proceedings</div>
+              <div class="service-sub-desc">Representing clients in all types of divorce — talaq, khul', faskh — and negotiating favorable terms for settlement and division of assets.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Child Custody</div>
+              <div class="service-sub-desc">Fighting for the best interests of your children in custody, visitation rights, and guardianship proceedings before Saudi family courts.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Inheritance & Wills</div>
+              <div class="service-sub-desc">Estate planning, will drafting, and resolving inheritance disputes in accordance with Islamic inheritance law (fara'id).</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Alimony & Support</div>
+              <div class="service-sub-desc">Legal advice and representation on nafaqa (spousal support), child maintenance, and financial settlements post-divorce.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Guardianship</div>
+              <div class="service-sub-desc">Assistance with legal guardianship applications, wali al-amr appointments, and related documentation for minors and dependents.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE 03: CRIMINAL -->
+    <div class="service-block reveal" style="margin-top:2px;">
+      <div class="service-expand">
+        <div class="service-sidebar">
+          <div>
+            <div class="service-number">03</div>
+            <div class="service-icon-box">🛡️</div>
+            <h2 class="service-main-title">Criminal Defense</h2>
+            <div class="service-tagline">Vigorous Advocacy</div>
+          </div>
+          <a href="contact.html" class="service-cta">Get Advice →</a>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">When your freedom is at stake, you need experienced, fearless legal representation. Our criminal defense team has appeared before Saudi criminal courts at all levels — from investigative hearings to appellate tribunals. We are dedicated to protecting your rights at every stage of the process, ensuring due process is upheld.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub">
+              <div class="service-sub-title">Pre-Arrest Advice</div>
+              <div class="service-sub-desc">Immediate legal guidance if you are under investigation, including advice on your rights during questioning and police interviews.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Bail Applications</div>
+              <div class="service-sub-desc">Urgent applications for release, bail conditions, and detainee rights before the Public Prosecution and criminal courts.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Trial Representation</div>
+              <div class="service-sub-desc">Expert courtroom advocacy in criminal trials covering financial crimes, fraud, assault, drug offenses, and cybercrime.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Appeals</div>
+              <div class="service-sub-desc">Filing and arguing appeals before the Court of Appeal and the Supreme Court to challenge convictions or reduce sentences.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">White-Collar Crime</div>
+              <div class="service-sub-desc">Specialized defense for corporate fraud, embezzlement, money laundering, bribery, and economic crimes under Saudi law.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Victim Representation</div>
+              <div class="service-sub-desc">Representing crime victims in pursuing criminal complaints, qisas (retribution), and diyya (blood money) claims in Saudi courts.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE 04: PERSONAL INJURY -->
+    <div class="service-block reveal" style="margin-top:2px; margin-bottom:0;">
+      <div class="service-expand">
+        <div class="service-sidebar">
+          <div>
+            <div class="service-number">04</div>
+            <div class="service-icon-box">⚕️</div>
+            <h2 class="service-main-title">Personal Injury</h2>
+            <div class="service-tagline">Fighting for Compensation</div>
+          </div>
+          <a href="contact.html" class="service-cta">Get Advice →</a>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Suffering an injury due to someone else's negligence is devastating. Our personal injury attorneys pursue maximum compensation on your behalf — covering medical expenses, lost income, and the pain and suffering you've endured. We work on a results-focused basis, ensuring accountability for those responsible.</p>
+          <div class="service-sub-grid">
+            <div class="service-sub">
+              <div class="service-sub-title">Traffic Accidents</div>
+              <div class="service-sub-desc">Claims against negligent drivers, insurance companies, and transport operators for road traffic accident injuries and fatalities.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Workplace Injuries</div>
+              <div class="service-sub-desc">Pursuing GOSI claims and employer liability cases for workplace accidents, occupational diseases, and unsafe working conditions.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Medical Negligence</div>
+              <div class="service-sub-desc">Complex claims against hospitals, clinics, and healthcare professionals for misdiagnosis, surgical errors, and substandard care.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Slip & Fall</div>
+              <div class="service-sub-desc">Premises liability claims against property owners, businesses, and municipalities for injuries caused by dangerous conditions.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Product Liability</div>
+              <div class="service-sub-desc">Claims against manufacturers and distributors of defective products that have caused injury or financial harm to consumers.</div>
+            </div>
+            <div class="service-sub">
+              <div class="service-sub-title">Insurance Disputes</div>
+              <div class="service-sub-desc">Representing policyholders in disputes with insurance companies over denied or underpaid injury and liability claims.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETAINER / SERVICE PLANS -->
+<section id="retainer">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Legal Plans</span>
+    </div>
+    <h2 class="section-title reveal">Service <em>Plans</em></h2>
+    <p class="reveal" style="max-width:600px; font-size:0.92rem; color:var(--text-light); line-height:1.8; font-weight:300;">We offer flexible legal service plans to suit individuals, startups, and established corporations alike. All plans include access to our full team of specialist attorneys.</p>
+
+    <div class="retainer-grid">
+      <div class="retainer-card reveal">
+        <div class="plan-name">Individual</div>
+        <div class="plan-desc">Ideal for personal legal matters and one-time consultations.</div>
+        <ul class="plan-features">
+          <li>Initial 1-hour consultation</li>
+          <li>Family &amp; personal injury cases</li>
+          <li>Criminal defense representation</li>
+          <li>Court document preparation</li>
+          <li>Bilingual Arabic/English service</li>
+        </ul>
+        <button class="plan-btn" onclick="location.href='contact.html'">Request Consultation</button>
+      </div>
+      <div class="retainer-card featured reveal reveal-delay-1">
+        <div class="featured-badge">Most Popular</div>
+        <div class="plan-name">Business Retainer</div>
+        <div class="plan-desc">Ongoing legal support for SMEs and growing businesses.</div>
+        <ul class="plan-features">
+          <li>Monthly retainer with priority access</li>
+          <li>Contract review &amp; drafting</li>
+          <li>Regulatory compliance advisory</li>
+          <li>Employment law guidance</li>
+          <li>Commercial dispute management</li>
+          <li>Dedicated account attorney</li>
+        </ul>
+        <button class="plan-btn" onclick="location.href='contact.html'">Get Started</button>
+      </div>
+      <div class="retainer-card reveal reveal-delay-2">
+        <div class="plan-name">Corporate</div>
+        <div class="plan-desc">Full-service legal partnership for large corporations.</div>
+        <ul class="plan-features">
+          <li>Unlimited legal consultations</li>
+          <li>M&amp;A and transaction support</li>
+          <li>Board &amp; governance advisory</li>
+          <li>Multi-jurisdiction matters</li>
+          <li>International arbitration</li>
+          <li>24/7 emergency legal access</li>
+        </ul>
+        <button class="plan-btn" onclick="location.href='contact.html'">Contact Us</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-mark">M</div>
+          <div>
+            <div style="font-size:0.85rem;letter-spacing:0.15em;font-family:'Playfair Display',serif;color:var(--gold);">AL MATROOD</div>
+            <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;">LAW FIRM</div>
+          </div>
+        </a>
+        <p>A trusted legal partner in the Kingdom of Saudi Arabia. Delivering justice with integrity, precision, and dedication.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Corporate Law</a></li>
+          <li><a href="services.html">Family Law</a></li>
+          <li><a href="services.html">Criminal Defense</a></li>
+          <li><a href="services.html">Personal Injury</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">The Firm</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="why-us.html">Why Choose Us</a></li>
+          <li><a href="process.html">Our Process</a></li>
+          <li><a href="consultant.html">Our Team</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Book Consultation</a></li>
+          <li><a href="mailto:info@almatroodlaw.sa">info@almatroodlaw.sa</a></li>
+          <li><a href="tel:+96611XXXXXXX">+966 11 XXX XXXX</a></li>
+          <li><a href="#">Riyadh, Saudi Arabia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Al Matrood Law Firm. All rights reserved.</div>
+      <div class="footer-arabic">مكتب المطرود للمحاماة</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
+  revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
