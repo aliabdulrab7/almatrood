@@ -184,14 +184,17 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
 <link rel="stylesheet" href="global-enhancements.css">
 </head>
 <body>
-<nav id="navbar">
-  <a href="index.html" class="nav-logo"><div class="logo-mark">س</div><div><div style="font-size:0.9rem;" data-ar="سليمان المطرود" data-en="SULAIMAN AL MATROOD">سليمان المطرود</div><div style="font-size:0.6rem;color:var(--text-light);" data-ar="للاستشارات القانونية" data-en="LEGAL CONSULTATIONS">للاستشارات القانونية</div></div></a>
-  <ul class="nav-links">
+<a href="#main-content" id="skip-link" style="position:absolute;top:-100px;left:1rem;z-index:10000;background:#C9A96E;color:#0A1628;padding:0.5rem 1rem;font-weight:700;text-decoration:none;font-size:0.8rem;transition:top 0.2s;" onfocus="this.style.top='1rem'" onblur="this.style.top='-100px'" data-ar="تخطى إلى المحتوى" data-en="Skip to content">تخطى إلى المحتوى</a>
+<nav id="navbar" role="banner">
+  <a href="index.html" class="nav-logo" aria-label="سليمان المطرود للاستشارات القانونية — الرئيسية"><div class="logo-mark" aria-hidden="true">س</div><div><div style="font-size:0.9rem;" data-ar="سليمان المطرود" data-en="SULAIMAN AL MATROOD">سليمان المطرود</div><div style="font-size:0.6rem;color:var(--text-light);" data-ar="للاستشارات القانونية" data-en="LEGAL CONSULTATIONS">للاستشارات القانونية</div></div></a>
+  <ul class="nav-links" role="list">
     <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
     <li><a href="services.html" class="active" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
     <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
     <li><a href="process.html" data-ar="آلية العمل" data-en="Process">آلية العمل</a></li>
     <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+    <li><a href="blog.html" data-ar="مقالات" data-en="Blog">مقالات</a></li>
+    <li><a href="pricing.html" data-ar="الأتعاب" data-en="Pricing">الأتعاب</a></li>
     <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
   </ul>
   <div class="nav-right">
@@ -199,17 +202,19 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
     <a href="contact.html" class="nav-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
   </div>
 
-  <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+  <button class="hamburger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
-  <a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
-  <a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a>
-  <a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a>
-  <a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a>
-  <a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="القائمة الرئيسية">
+  <a href="index.html" data-ar="الرئيسية" data-en="Home" onclick="closeMobileMenu()">الرئيسية</a>
+  <a href="services.html" data-ar="خدماتنا" data-en="Services" onclick="closeMobileMenu()">خدماتنا</a>
+  <a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us" onclick="closeMobileMenu()">لماذا نحن</a>
+  <a href="process.html" data-ar="آلية العمل" data-en="Our Process" onclick="closeMobileMenu()">آلية العمل</a>
+  <a href="consultant.html" data-ar="فريقنا" data-en="Our Team" onclick="closeMobileMenu()">فريقنا</a>
+  <a href="blog.html" data-ar="مقالات قانونية" data-en="Legal Blog" onclick="closeMobileMenu()">مقالات قانونية</a>
+  <a href="pricing.html" data-ar="الأتعاب" data-en="Pricing" onclick="closeMobileMenu()">الأتعاب</a>
+  <a href="contact.html" data-ar="تواصل معنا" data-en="Contact" onclick="closeMobileMenu()">تواصل معنا</a>
   <a href="contact.html" class="mobile-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
   <div class="mobile-lang">
     <button class="lang-btn active" onclick="setLang('ar')">العربية</button>

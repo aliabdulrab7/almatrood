@@ -487,3 +487,85 @@ nav:not(.scrolled) { background: linear-gradient(to bottom, rgba(10,22,40,0.35) 
 @media (min-width: 901px) {
   footer { padding-bottom: 2rem; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   A4 — COOKIE CONSENT BANNER
+   ══════════════════════════════════════════════════════════════ */
+#cookie-consent-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9900;
+  background: rgba(8, 16, 30, 0.98);
+  border-top: 1px solid rgba(201, 169, 110, 0.28);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 1.1rem 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#cookie-consent-banner.cb-visible { transform: translateY(0); }
+
+/* Raise above mobile sticky bar on small screens */
+@media (max-width: 900px) {
+  #cookie-consent-banner { bottom: 72px; }
+}
+
+.cb-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center;
+  gap: 1.75rem; flex-wrap: wrap;
+}
+.cb-text {
+  display: flex; align-items: flex-start;
+  gap: 0.9rem; flex: 1; min-width: 240px;
+}
+.cb-icon {
+  width: 26px; height: 26px;
+  fill: var(--gold, #C9A96E);
+  flex-shrink: 0; margin-top: 0.1rem;
+}
+.cb-title {
+  display: block;
+  font-size: 0.82rem; font-weight: 700;
+  color: var(--cream, #F8F4EE);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-body, 'Tajawal', sans-serif);
+}
+.cb-desc {
+  font-size: 0.72rem; margin: 0;
+  color: var(--text-light, #A8B4C8);
+  line-height: 1.65;
+  font-family: var(--font-body, 'Tajawal', sans-serif);
+}
+.cb-actions {
+  display: flex; gap: 0.65rem; flex-shrink: 0; align-items: center;
+}
+.cb-btn {
+  padding: 0.55rem 1.4rem;
+  font-family: var(--font-body, 'Tajawal', sans-serif);
+  font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; border: none;
+  transition: all 0.2s ease;
+  min-height: 44px; min-width: 80px;
+  white-space: nowrap;
+}
+.cb-btn-accept {
+  background: var(--gold, #C9A96E);
+  color: var(--navy, #0A1628);
+}
+.cb-btn-accept:hover { background: var(--gold-light, #E8D5A3); }
+.cb-btn-decline {
+  background: transparent;
+  color: var(--text-light, #A8B4C8);
+  border: 1px solid rgba(168, 180, 200, 0.3);
+}
+.cb-btn-decline:hover {
+  color: var(--cream, #F8F4EE);
+  border-color: rgba(168, 180, 200, 0.55);
+}
+
+@media (max-width: 600px) {
+  .cb-inner { flex-direction: column; gap: 0.85rem; }
+  .cb-actions { width: 100%; }
+  .cb-btn { flex: 1; }
+}

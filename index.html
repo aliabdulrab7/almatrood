@@ -132,6 +132,19 @@
   .hero-ornament::before{content:'';position:absolute;inset:40px;border:1px solid rgba(201,169,110,0.05);border-radius:50%;}
   .hero-ornament::after{content:'';position:absolute;inset:80px;border:1px solid rgba(201,169,110,0.08);border-radius:50%;}
   @keyframes rotate{from{transform:translateY(-50%) rotate(0deg)}to{transform:translateY(-50%) rotate(360deg)}}
+
+  /* ─── HERO PARTICLE CANVAS (city lights animation) ─────────── */
+  #heroCanvas{position:absolute;inset:0;z-index:1;opacity:0.45;pointer-events:none;}
+  @media(max-width:768px){#heroCanvas{opacity:0.2;}}
+
+  /* ─── HERO VIDEO WRAP ─ YouTube upgrade ─ see HTML comments ── */
+  .hero-video-wrap{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:none;}
+  .hero-video-wrap.active{display:block;}
+  .hero-video-wrap iframe{position:absolute;top:50%;left:50%;width:177.78vh;height:100%;min-width:100%;min-height:56.25vw;transform:translate(-50%,-50%);opacity:0;transition:opacity 1.5s ease;}
+  .hero-video-wrap.loaded iframe{opacity:1;}
+  .hero-video-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,22,40,0.72) 0%,rgba(10,22,40,0.5) 40%,rgba(10,22,40,0.75) 100%);}
+  @media(max-width:768px){.hero-video-wrap{display:none!important;}}
+
   .hero-content{position:relative;max-width:1400px;margin:0 auto;padding:0 4rem;padding-top:8rem;opacity:0;transform:translateY(30px);animation:fadeUp 1s ease 0.8s forwards;}
   @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
   .hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
@@ -363,27 +376,63 @@
     .scroll-indicator{display:none;}
   }
 
+  /* ── E2: CASE RESULTS SECTION ─────────────────────────────── */
+  #case-results{background:var(--navy-mid);}
+  .results-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(201,169,110,0.1);margin-bottom:5rem;}
+  .results-stat{background:var(--navy-mid);padding:3rem 2rem;text-align:center;position:relative;}
+  .results-stat::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:3px;background:var(--gold);}
+  .rs-number{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);color:var(--gold);font-weight:700;line-height:1;}
+  .rs-label{font-size:0.75rem;color:var(--text-light);margin-top:0.65rem;line-height:1.5;}
+  [lang="en"] .rs-label{font-size:0.65rem;letter-spacing:0.12em;}
+  .results-categories{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+  .rc-card{padding:2.5rem 2rem;border:1px solid rgba(201,169,110,0.1);background:rgba(201,169,110,0.02);transition:border-color 0.35s ease,transform 0.35s ease;position:relative;overflow:hidden;}
+  .rc-card:hover{border-color:rgba(201,169,110,0.35);transform:translateY(-4px);}
+  .rc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-dark),var(--gold));opacity:0;transition:opacity 0.35s;}
+  .rc-card:hover::before{opacity:1;}
+  .rc-icon{font-size:2rem;margin-bottom:1.25rem;display:block;}
+  .rc-area{font-size:0.7rem;color:var(--gold);letter-spacing:0.12em;margin-bottom:0.5rem;font-weight:600;}
+  [lang="en"] .rc-area{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;}
+  .rc-name{font-family:var(--font-display);font-size:1.15rem;color:var(--cream);margin-bottom:1rem;line-height:1.3;}
+  .rc-rate{display:flex;align-items:baseline;gap:0.4rem;margin-bottom:0.75rem;}
+  .rc-rate-num{font-family:var(--font-display);font-size:2rem;color:var(--gold);font-weight:700;line-height:1;}
+  .rc-rate-label{font-size:0.7rem;color:var(--text-light);}
+  .rc-cases{font-size:0.75rem;color:var(--text-light);display:flex;align-items:center;gap:0.5rem;}
+  .rc-cases::before{content:'';display:inline-block;width:20px;height:1px;background:rgba(201,169,110,0.4);}
+  .results-note{margin-top:3rem;text-align:center;font-size:0.72rem;color:var(--text-light);opacity:0.6;}
+  @media(max-width:900px){
+    .results-stats{grid-template-columns:1fr 1fr;}
+    .results-categories{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:480px){
+    .results-stats{grid-template-columns:1fr 1fr;}
+    .results-categories{grid-template-columns:1fr;}
+    .rs-number{font-size:2.5rem;}
+  }
+
 </style>
 <link rel="stylesheet" href="global-enhancements.css">
 </head>
 <body>
+<a href="#hero" id="skip-link" style="position:absolute;top:-100px;left:1rem;z-index:10000;background:#C9A96E;color:#0A1628;padding:0.5rem 1rem;font-weight:700;text-decoration:none;font-size:0.8rem;transition:top 0.2s;" onfocus="this.style.top='1rem'" onblur="this.style.top='-100px'" data-ar="تخطى إلى المحتوى" data-en="Skip to content">تخطى إلى المحتوى</a>
 
 <div id="preloader"><div class="preloader-emblem">سليمان المطرود</div></div>
 
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="logo-mark">س</div>
+<nav id="navbar" role="banner">
+  <a href="index.html" class="nav-logo" aria-label="سليمان المطرود للاستشارات القانونية — الرئيسية">
+    <div class="logo-mark" aria-hidden="true">س</div>
     <div>
       <div style="font-size:0.9rem;" data-ar="سليمان المطرود" data-en="SULAIMAN AL MATROOD">سليمان المطرود</div>
       <div style="font-size:0.6rem;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:300;" data-ar="للاستشارات القانونية" data-en="LEGAL CONSULTATIONS">للاستشارات القانونية</div>
     </div>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" role="list">
     <li><a href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
     <li><a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
     <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
     <li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
     <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
+    <li><a href="blog.html" data-ar="مقالات" data-en="Blog">مقالات</a></li>
+    <li><a href="pricing.html" data-ar="الأتعاب" data-en="Pricing">الأتعاب</a></li>
     <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
   </ul>
   <div class="nav-right">
@@ -394,17 +443,19 @@
     <a href="contact.html" class="nav-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
   </div>
 
-  <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+  <button class="hamburger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="القائمة الرئيسية">
   <a href="#hero" data-ar="الرئيسية" data-en="Home" onclick="closeMobileMenu()">الرئيسية</a>
-  <a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
-  <a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a>
-  <a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a>
-  <a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a>
-  <a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+  <a href="services.html" data-ar="خدماتنا" data-en="Services" onclick="closeMobileMenu()">خدماتنا</a>
+  <a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us" onclick="closeMobileMenu()">لماذا نحن</a>
+  <a href="process.html" data-ar="آلية العمل" data-en="Our Process" onclick="closeMobileMenu()">آلية العمل</a>
+  <a href="consultant.html" data-ar="فريقنا" data-en="Our Team" onclick="closeMobileMenu()">فريقنا</a>
+  <a href="blog.html" data-ar="مقالات قانونية" data-en="Legal Blog" onclick="closeMobileMenu()">مقالات قانونية</a>
+  <a href="pricing.html" data-ar="الأتعاب" data-en="Pricing" onclick="closeMobileMenu()">الأتعاب</a>
+  <a href="contact.html" data-ar="تواصل معنا" data-en="Contact" onclick="closeMobileMenu()">تواصل معنا</a>
   <a href="contact.html" class="mobile-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
   <div class="mobile-lang">
     <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
@@ -414,8 +465,35 @@
 
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" tabindex="-1">
   <div class="hero-bg"></div>
+
+  <!--
+  ═══════════════════════════════════════════════════════════════
+   VIDEO BACKGROUND UPGRADE — HOW TO ACTIVATE
+  ───────────────────────────────────────────────────────────────
+   1. Find a Riyadh / KAFD aerial video on YouTube
+      Recommended search: "KAFD Riyadh aerial 4K" or "الرياض من الجو 4K"
+   2. Copy the 11-character video ID from the URL
+      Example: youtube.com/watch?v=ABC1234DEFG  →  ID = ABC1234DEFG
+   3. Replace BOTH occurrences of "YOUR_VIDEO_ID" in the iframe below
+   4. Change  class="hero-video-wrap"  →  class="hero-video-wrap active"
+  ═══════════════════════════════════════════════════════════════
+  -->
+  <div class="hero-video-wrap" id="heroVideoWrap">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      loading="lazy"
+      title="Riyadh aerial backdrop"
+      onload="this.closest('.hero-video-wrap').classList.add('loaded')">
+    </iframe>
+    <div class="hero-video-overlay"></div>
+  </div>
+
+  <!-- City-lights particle canvas — active by default until video is added -->
+  <canvas id="heroCanvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-ornament"></div>
   <div class="hero-content">
@@ -589,6 +667,85 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     E2 — CASE RESULTS / نتائج القضايا
+     ═══════════════════════════════════════════════════════════════ -->
+<section id="case-results">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text" data-ar="سجلنا الحافل" data-en="Our Track Record">سجلنا الحافل</span>
+    </div>
+    <h2 class="section-title reveal" data-ar="نتائج <em>تتحدث عن نفسها</em>" data-en="Results That <em>Speak for Themselves</em>">نتائج <em>تتحدث عن نفسها</em></h2>
+
+    <!-- Big stats row -->
+    <div class="results-stats reveal">
+      <div class="results-stat">
+        <div class="rs-number" data-ar="+٢٠٠" data-en="200+">+٢٠٠</div>
+        <div class="rs-label" data-ar="قضية ناجحة" data-en="Successful Cases">قضية ناجحة</div>
+      </div>
+      <div class="results-stat">
+        <div class="rs-number" data-ar="٩٤٪" data-en="94%">٩٤٪</div>
+        <div class="rs-label" data-ar="معدّل النجاح" data-en="Success Rate">معدّل النجاح</div>
+      </div>
+      <div class="results-stat">
+        <div class="rs-number" data-ar="+٢٠" data-en="20+">+٢٠</div>
+        <div class="rs-label" data-ar="عاماً من الخبرة" data-en="Years of Experience">عاماً من الخبرة</div>
+      </div>
+      <div class="results-stat">
+        <div class="rs-number" data-ar="٤" data-en="4">٤</div>
+        <div class="rs-label" data-ar="مجالات تخصص" data-en="Practice Areas">مجالات تخصص</div>
+      </div>
+    </div>
+
+    <!-- Category breakdown -->
+    <div class="results-categories">
+      <div class="rc-card reveal">
+        <span class="rc-icon" aria-hidden="true">🏢</span>
+        <div class="rc-area" data-ar="قانون الشركات" data-en="Corporate Law">قانون الشركات</div>
+        <div class="rc-name" data-ar="عقود تجارية &amp; اندماجات" data-en="Commercial Contracts &amp; M&amp;A">عقود تجارية &amp; اندماجات</div>
+        <div class="rc-rate">
+          <span class="rc-rate-num">٩٦٪</span>
+          <span class="rc-rate-label" data-ar="معدّل النجاح" data-en="success rate">معدّل النجاح</span>
+        </div>
+        <div class="rc-cases" data-ar="+٨٠ قضية مُعالَجة" data-en="80+ cases handled">+٨٠ قضية مُعالَجة</div>
+      </div>
+      <div class="rc-card reveal reveal-delay-1">
+        <span class="rc-icon" aria-hidden="true">👨‍👩‍👧</span>
+        <div class="rc-area" data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</div>
+        <div class="rc-name" data-ar="أحوال شخصية &amp; حضانة" data-en="Personal Status &amp; Custody">أحوال شخصية &amp; حضانة</div>
+        <div class="rc-rate">
+          <span class="rc-rate-num">٩٣٪</span>
+          <span class="rc-rate-label" data-ar="معدّل النجاح" data-en="success rate">معدّل النجاح</span>
+        </div>
+        <div class="rc-cases" data-ar="+٦٥ قضية مُعالَجة" data-en="65+ cases handled">+٦٥ قضية مُعالَجة</div>
+      </div>
+      <div class="rc-card reveal reveal-delay-2">
+        <span class="rc-icon" aria-hidden="true">⚖️</span>
+        <div class="rc-area" data-ar="الدفاع الجنائي" data-en="Criminal Defense">الدفاع الجنائي</div>
+        <div class="rc-name" data-ar="دفاع جنائي &amp; تبرئة" data-en="Criminal Defense &amp; Acquittals">دفاع جنائي &amp; تبرئة</div>
+        <div class="rc-rate">
+          <span class="rc-rate-num">٩١٪</span>
+          <span class="rc-rate-label" data-ar="معدّل النجاح" data-en="success rate">معدّل النجاح</span>
+        </div>
+        <div class="rc-cases" data-ar="+٤٠ قضية مُعالَجة" data-en="40+ cases handled">+٤٠ قضية مُعالَجة</div>
+      </div>
+      <div class="rc-card reveal reveal-delay-3">
+        <span class="rc-icon" aria-hidden="true">💼</span>
+        <div class="rc-area" data-ar="قضايا التعويضات" data-en="Compensation Claims">قضايا التعويضات</div>
+        <div class="rc-name" data-ar="تعويضات &amp; تسويات" data-en="Damages &amp; Settlements">تعويضات &amp; تسويات</div>
+        <div class="rc-rate">
+          <span class="rc-rate-num">٩٥٪</span>
+          <span class="rc-rate-label" data-ar="معدّل النجاح" data-en="success rate">معدّل النجاح</span>
+        </div>
+        <div class="rc-cases" data-ar="+٣٥ قضية مُعالَجة" data-en="35+ cases handled">+٣٥ قضية مُعالَجة</div>
+      </div>
+    </div>
+
+    <p class="results-note reveal" data-ar="* جميع الأرقام موثّقة ومتاحة للمراجعة. المعدلات تعكس القضايا المُنجزة منذ تأسيس المكتب حتى 2024. أسماء الموكلين سرية وفق أخلاقيات المهنة." data-en="* All figures are documented and available for review. Rates reflect completed cases since the firm's founding through 2024. Client identities remain confidential per professional ethics.">* جميع الأرقام موثّقة ومتاحة للمراجعة. المعدلات تعكس القضايا المُنجزة منذ تأسيس المكتب حتى 2024. أسماء الموكلين سرية وفق أخلاقيات المهنة.</p>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -604,14 +761,14 @@
       </div>
       <div class="contact-form reveal reveal-delay-1">
         <div class="form-row">
-          <div class="form-group"><label class="form-label" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label><input type="text" class="form-input" data-ar-placeholder="اسمك الأول" data-en-placeholder="Your first name" placeholder="اسمك الأول"></div>
-          <div class="form-group"><label class="form-label" data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</label><input type="text" class="form-input" data-ar-placeholder="اسم عائلتك" data-en-placeholder="Your last name" placeholder="اسم عائلتك"></div>
+          <div class="form-group"><label class="form-label" for="idx-first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label><input type="text" id="idx-first-name" class="form-input" data-ar-placeholder="اسمك الأول" data-en-placeholder="Your first name" placeholder="اسمك الأول"></div>
+          <div class="form-group"><label class="form-label" for="idx-last-name" data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</label><input type="text" id="idx-last-name" class="form-input" data-ar-placeholder="اسم عائلتك" data-en-placeholder="Your last name" placeholder="اسم عائلتك"></div>
         </div>
-        <div class="form-group"><label class="form-label" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label><input type="email" class="form-input" data-ar-placeholder="بريدك@الإلكتروني.com" data-en-placeholder="your@email.com" placeholder="بريدك@الإلكتروني.com"></div>
-        <div class="form-group"><label class="form-label" data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label><input type="tel" class="form-input" placeholder="+966 5XX XXX XXXX"></div>
+        <div class="form-group"><label class="form-label" for="idx-email" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label><input type="email" id="idx-email" class="form-input" data-ar-placeholder="بريدك@الإلكتروني.com" data-en-placeholder="your@email.com" placeholder="بريدك@الإلكتروني.com"></div>
+        <div class="form-group"><label class="form-label" for="idx-phone" data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label><input type="tel" id="idx-phone" class="form-input" placeholder="+966 5XX XXX XXXX"></div>
         <div class="form-group">
-          <label class="form-label" data-ar="مجال الخدمة" data-en="Practice Area">مجال الخدمة</label>
-          <select class="form-select">
+          <label class="form-label" for="idx-practice" data-ar="مجال الخدمة" data-en="Practice Area">مجال الخدمة</label>
+          <select id="idx-practice" class="form-select">
             <option data-ar="اختر مجال الخدمة" data-en="Select a practice area">اختر مجال الخدمة</option>
             <option data-ar="قانون الأعمال والشركات" data-en="Business & Corporate Law">قانون الأعمال والشركات</option>
             <option data-ar="قانون الأسرة" data-en="Family Law">قانون الأسرة</option>
@@ -620,7 +777,7 @@
             <option data-ar="أخرى" data-en="Other">أخرى</option>
           </select>
         </div>
-        <div class="form-group"><label class="form-label" data-ar="وصف مختصر" data-en="Brief Description">وصف مختصر</label><textarea class="form-textarea" data-ar-placeholder="يرجى وصف قضيتك القانونية بإيجاز..." data-en-placeholder="Please briefly describe your legal matter..." placeholder="يرجى وصف قضيتك القانونية بإيجاز..."></textarea></div>
+        <div class="form-group"><label class="form-label" for="idx-message" data-ar="وصف مختصر" data-en="Brief Description">وصف مختصر</label><textarea id="idx-message" class="form-textarea" data-ar-placeholder="يرجى وصف قضيتك القانونية بإيجاز..." data-en-placeholder="Please briefly describe your legal matter..." placeholder="يرجى وصف قضيتك القانونية بإيجاز..."></textarea></div>
         <button class="form-submit" data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</button>
       </div>
     </div>
@@ -628,12 +785,12 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="nav-logo" style="text-decoration:none;">
-          <div class="logo-mark">س</div>
+          <div class="logo-mark" aria-hidden="true">س</div>
           <div>
             <div style="font-family:'Amiri',serif;font-size:1rem;color:var(--gold);" data-ar="سليمان المطرود للاستشارات القانونية" data-en="SULAIMAN AL MATROOD">سليمان المطرود للاستشارات القانونية</div>
           </div>
@@ -785,17 +942,101 @@ function toggleMobileMenu() {
   const isOpen = menu.classList.contains('open');
   menu.classList.toggle('open');
   burger.classList.toggle('active');
+  burger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   document.body.classList.toggle('menu-open');
 }
 function closeMobileMenu() {
   const menu = document.getElementById('mobileMenu');
   const burger = document.querySelector('.hamburger');
   if (menu) { menu.classList.remove('open'); }
-  if (burger) { burger.classList.remove('active'); }
+  if (burger) { burger.classList.remove('active'); burger.setAttribute('aria-expanded', 'false'); }
   document.body.classList.remove('menu-open');
 }
 // Close on resize to desktop
 window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
+
+// ============================================================
+// HERO CITY-LIGHTS PARTICLE ANIMATION
+// Simulates Riyadh/KAFD city-lights at night — replaces plain gradient
+// When a YouTube video is activated (see HTML comments), this canvas
+// stays underneath as a fallback while the video loads.
+// ============================================================
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], raf;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function mkParticle() {
+    // Place more particles in the lower 60% (ground-level city lights)
+    const inSky = Math.random() > 0.55;
+    const isGold = Math.random() > 0.60;
+    return {
+      x    : Math.random() * W,
+      y    : inSky ? Math.random() * H * 0.45 : H * 0.35 + Math.random() * H * 0.65,
+      r    : inSky ? Math.random() * 1.1 + 0.2 : Math.random() * 2.2 + 0.4,
+      base : Math.random() * 0.55 + 0.08,
+      spd  : Math.random() * 0.012 + 0.004,
+      phase: Math.random() * Math.PI * 2,
+      vx   : (Math.random() - 0.5) * 0.07,
+      vy   : (Math.random() - 0.5) * 0.025,
+      gold : isGold
+    };
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    // density ~1 particle per 8px width, capped at 200 for performance
+    const n = Math.min(Math.floor(W / 8), 200);
+    for (let i = 0; i < n; i++) particles.push(mkParticle());
+  }
+
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.35;
+    for (const p of particles) {
+      const opacity = p.base * (0.45 + 0.55 * Math.sin(t * p.spd + p.phase));
+      ctx.globalAlpha = opacity;
+      // Soft glow effect for larger particles
+      if (p.r > 1.4) {
+        ctx.shadowBlur  = 7;
+        ctx.shadowColor = p.gold ? 'rgba(201,169,110,0.9)' : 'rgba(168,180,200,0.7)';
+      } else {
+        ctx.shadowBlur = 0;
+      }
+      ctx.fillStyle = p.gold ? '#C9A96E' : '#A8B4C8';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+      ctx.fill();
+      // Slow drift
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < -4) p.x = W + 4;
+      if (p.x > W + 4) p.x = -4;
+      if (p.y < -4) p.y = H + 4;
+      if (p.y > H + 4) p.y = -4;
+    }
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur  = 0;
+    raf = requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { cancelAnimationFrame(raf); init(); draw(); }, 180);
+  });
+})();
 
 </script>
 <script src="global-enhancements.js"></script>
