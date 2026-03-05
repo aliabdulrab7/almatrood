@@ -480,9 +480,10 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
             <!-- ── STEP 2: Practice Area ── -->
             <div class="wiz-step" id="wiz-step-2">
               <div class="wiz-step-label" data-ar="الخطوة ٢ من ٤" data-en="Step 2 of 4">الخطوة ٢ من ٤</div>
-              <h3 class="wiz-step-title" data-ar="ما طبيعة قضيتك؟" data-en="What's Your Matter?">ما طبيعة قضيتك؟</h3>
-              <p class="wiz-step-sub" data-ar="ساعدنا في توجيه طلبك للمحامي المناسب" data-en="Help us direct your request to the right attorney">ساعدنا في توجيه طلبك للمحامي المناسب</p>
-              <div class="area-cards-grid">
+              <h3 class="wiz-step-title" id="step2-title" data-ar="ما طبيعة قضيتك؟" data-en="What's Your Matter?">ما طبيعة قضيتك؟</h3>
+              <p class="wiz-step-sub" id="step2-sub" data-ar="ساعدنا في توجيه طلبك للمحامي المناسب" data-en="Help us direct your request to the right attorney">ساعدنا في توجيه طلبك للمحامي المناسب</p>
+              <!-- Individual areas -->
+              <div class="area-cards-grid" id="area-grid-individual">
                 <button class="area-card" onclick="wizSelectArea('corporate',this)">
                   <div class="area-card-icon">⚖️</div>
                   <div class="area-card-title" data-ar="أعمال وشركات" data-en="Business & Corporate">أعمال وشركات</div>
@@ -498,6 +499,25 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
                 <button class="area-card" onclick="wizSelectArea('injury',this)">
                   <div class="area-card-icon">💼</div>
                   <div class="area-card-title" data-ar="قضايا التعويضات" data-en="Personal Injury">قضايا التعويضات</div>
+                </button>
+              </div>
+              <!-- Business areas -->
+              <div class="area-cards-grid" id="area-grid-business" style="display:none;">
+                <button class="area-card" onclick="wizSelectArea('corporate',this)">
+                  <div class="area-card-icon">🏢</div>
+                  <div class="area-card-title" data-ar="قانون الشركات والتجاري" data-en="Corporate & Commercial Law">قانون الشركات والتجاري</div>
+                </button>
+                <button class="area-card" onclick="wizSelectArea('contracts',this)">
+                  <div class="area-card-icon">📋</div>
+                  <div class="area-card-title" data-ar="العقود والصفقات التجارية" data-en="Contracts & Commercial Deals">العقود والصفقات التجارية</div>
+                </button>
+                <button class="area-card" onclick="wizSelectArea('employment',this)">
+                  <div class="area-card-icon">👔</div>
+                  <div class="area-card-title" data-ar="شؤون العمالة والموارد البشرية" data-en="Employment & HR">شؤون العمالة والموارد البشرية</div>
+                </button>
+                <button class="area-card" onclick="wizSelectArea('disputes',this)">
+                  <div class="area-card-icon">⚔️</div>
+                  <div class="area-card-title" data-ar="النزاعات والتحكيم التجاري" data-en="Commercial Disputes & Arbitration">النزاعات والتحكيم التجاري</div>
                 </button>
               </div>
               <!-- Sub-issue dropdown — appears after area selected -->
@@ -743,6 +763,30 @@ const WIZ_SUB = {
     {ar:'خسائر مالية وتعويضات',          en:'Financial Loss & Compensation'},
     {ar:'تعويض من جهة حكومية',           en:'Government Compensation'},
     {ar:'أخرى',                          en:'Other'}
+  ],
+  contracts: [
+    {ar:'عقد توريد أو شراء',             en:'Supply / Purchase Contract'},
+    {ar:'عقد خدمات أو مقاولة',           en:'Service / Contracting Agreement'},
+    {ar:'عقد امتياز تجاري',              en:'Franchise Agreement'},
+    {ar:'عقد شراكة تجارية',              en:'Business Partnership Agreement'},
+    {ar:'مراجعة وتدقيق عقود',            en:'Contract Review & Audit'},
+    {ar:'أخرى',                          en:'Other'}
+  ],
+  employment: [
+    {ar:'فصل تعسفي أو نزاع عمالي',       en:'Wrongful Termination / Labor Dispute'},
+    {ar:'سياسات الموارد البشرية والامتثال', en:'HR Policies & Compliance'},
+    {ar:'استقدام عمالة وتأشيرات عمل',    en:'Recruitment & Work Visas'},
+    {ar:'اتفاقيات عدم منافسة وسرية',     en:'Non-Compete & Confidentiality Agreements'},
+    {ar:'نزاعات مع موظفين أو مقاولين',   en:'Employee / Contractor Disputes'},
+    {ar:'أخرى',                          en:'Other'}
+  ],
+  disputes: [
+    {ar:'نزاع بين شركاء أو مساهمين',     en:'Partner / Shareholder Dispute'},
+    {ar:'مطالبات مالية وتحصيل ديون',     en:'Financial Claims & Debt Recovery'},
+    {ar:'تحكيم تجاري',                   en:'Commercial Arbitration'},
+    {ar:'نزاع على عقد تجاري',            en:'Commercial Contract Dispute'},
+    {ar:'نزاع عقار تجاري',               en:'Commercial Real Estate Dispute'},
+    {ar:'أخرى',                          en:'Other'}
   ]
 };
 
@@ -813,6 +857,49 @@ function wizSelectType(type, el) {
   wiz.clientType = type;
   document.querySelectorAll('.type-card').forEach(function(c){ c.classList.remove('selected'); });
   el.classList.add('selected');
+
+  // Reset step 2 area selection
+  document.querySelectorAll('.area-card').forEach(function(c){ c.classList.remove('selected'); });
+  var subWrap = document.getElementById('subissue-wrap');
+  if (subWrap) subWrap.style.display = 'none';
+  wiz.practiceArea = null;
+  wiz.subIssue = '';
+
+  // Show the right area grid and update headings
+  var isAr = (document.documentElement.getAttribute('lang') || 'ar') === 'ar';
+  var indGrid = document.getElementById('area-grid-individual');
+  var bizGrid = document.getElementById('area-grid-business');
+  var step2Title = document.getElementById('step2-title');
+  var step2Sub   = document.getElementById('step2-sub');
+
+  if (type === 'business') {
+    if (indGrid) indGrid.style.display = 'none';
+    if (bizGrid) bizGrid.style.display = '';
+    if (step2Title) {
+      step2Title.setAttribute('data-ar', 'ما طبيعة نشاط شركتك القانوني؟');
+      step2Title.setAttribute('data-en', "What's Your Business Legal Matter?");
+      step2Title.textContent = isAr ? 'ما طبيعة نشاط شركتك القانوني؟' : "What's Your Business Legal Matter?";
+    }
+    if (step2Sub) {
+      step2Sub.setAttribute('data-ar', 'حدد نوع الخدمة القانونية التي تحتاجها شركتك');
+      step2Sub.setAttribute('data-en', 'Select the legal service your business requires');
+      step2Sub.textContent = isAr ? 'حدد نوع الخدمة القانونية التي تحتاجها شركتك' : 'Select the legal service your business requires';
+    }
+  } else {
+    if (bizGrid) bizGrid.style.display = 'none';
+    if (indGrid) indGrid.style.display = '';
+    if (step2Title) {
+      step2Title.setAttribute('data-ar', 'ما طبيعة قضيتك؟');
+      step2Title.setAttribute('data-en', "What's Your Matter?");
+      step2Title.textContent = isAr ? 'ما طبيعة قضيتك؟' : "What's Your Matter?";
+    }
+    if (step2Sub) {
+      step2Sub.setAttribute('data-ar', 'ساعدنا في توجيه طلبك للمحامي المناسب');
+      step2Sub.setAttribute('data-en', 'Help us direct your request to the right attorney');
+      step2Sub.textContent = isAr ? 'ساعدنا في توجيه طلبك للمحامي المناسب' : 'Help us direct your request to the right attorney';
+    }
+  }
+
   setTimeout(function(){ wizGoToStep(2); }, 300);
 }
 
@@ -820,7 +907,11 @@ function wizSelectType(type, el) {
 function wizSelectArea(area, el) {
   wiz.practiceArea = area;
   wiz.subIssue = '';
-  document.querySelectorAll('.area-card').forEach(function(c){ c.classList.remove('selected'); });
+  // Only deselect cards within the same grid as the clicked card
+  var grid = el.closest('.area-cards-grid');
+  if (grid) {
+    grid.querySelectorAll('.area-card').forEach(function(c){ c.classList.remove('selected'); });
+  }
   el.classList.add('selected');
 
   var lang = document.documentElement.getAttribute('lang') || 'ar';
@@ -852,11 +943,11 @@ function wizRenderDynamicFields() {
   if (!container) return;
 
   var html = '';
-  if (area === 'criminal')                               html = wizTplCriminal(ar);
-  else if (area === 'family')                            html = wizTplFamily(ar);
-  else if (area === 'corporate' || wiz.clientType === 'business') html = wizTplCorporate(ar);
-  else if (area === 'injury')                            html = wizTplInjury(ar);
-  else                                                   html = wizTplGeneral(ar);
+  if (area === 'criminal')                                                         html = wizTplCriminal(ar);
+  else if (area === 'family')                                                      html = wizTplFamily(ar);
+  else if (area === 'corporate' || area === 'contracts' || area === 'employment' || area === 'disputes' || wiz.clientType === 'business') html = wizTplCorporate(ar);
+  else if (area === 'injury')                                                      html = wizTplInjury(ar);
+  else                                                                             html = wizTplGeneral(ar);
 
   container.innerHTML = html;
   applyLang(lang);    // sync any data-ar/data-en in injected html
@@ -1281,7 +1372,7 @@ function wizBuildWAMessage(name, phone, email, urgency, reqId) {
   var urgEmoji = {urgent:'🔴',important:'🟡',normal:'🟢'};
   var urgLabel = {urgent:'أولوية قصوى — رد خلال ساعة',important:'مهم — رد خلال ٤ ساعات',normal:'عادي — رد خلال ٢٤ ساعة'};
 
-  var areaAR = {corporate:'أعمال وشركات',family:'قانون الأسرة',criminal:'الدفاع الجنائي',injury:'قضايا التعويضات'};
+  var areaAR = {corporate:'أعمال وشركات',family:'قانون الأسرة',criminal:'الدفاع الجنائي',injury:'قضايا التعويضات',contracts:'العقود والصفقات التجارية',employment:'شؤون العمالة والموارد البشرية',disputes:'النزاعات والتحكيم التجاري'};
   var typeAR = {individual:'فرد / شخصي',business:'شركة / مؤسسة'};
 
   var branchEl = document.getElementById('wiz-branch');

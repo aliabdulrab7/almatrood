@@ -247,20 +247,6 @@
   .why-title{font-family:var(--font-display);font-size:1.1rem;color:var(--navy);margin-bottom:0.75rem;}
   .why-desc{font-size:0.82rem;color:rgba(10,22,40,0.6);line-height:1.9;}
 
-  /* TEAM */
-  #team{background:var(--navy-mid);}
-  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
-  .team-card{cursor:pointer;}
-  .team-img{aspect-ratio:3/4;background:linear-gradient(135deg,var(--navy-light),var(--navy));border:1px solid rgba(201,169,110,0.15);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s;}
-  .team-card:hover .team-img{border-color:rgba(201,169,110,0.4);}
-  .team-initials{font-family:var(--font-display);font-size:4rem;color:rgba(201,169,110,0.15);font-weight:700;}
-  .team-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,0.92) 0%,transparent 60%);opacity:0;transition:opacity 0.4s;display:flex;align-items:flex-end;padding:2rem;}
-  .team-card:hover .team-overlay{opacity:1;}
-  .team-bio{font-size:0.78rem;color:var(--cream);line-height:1.7;}
-  .team-info{margin-top:1.25rem;}
-  .team-name{font-family:var(--font-display);font-size:1.1rem;color:var(--cream);}
-  .team-role{font-size:0.72rem;color:var(--gold);margin-top:0.25rem;}
-
   /* TESTIMONIALS */
   #testimonials{background:var(--navy);}
   .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
@@ -318,7 +304,7 @@
     .hero-stats{gap:1.5rem;flex-wrap:wrap;}
     .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem;}
     .practice-grid,.practice-header{grid-template-columns:1fr;}
-    .team-grid,.testimonials-grid{grid-template-columns:1fr 1fr;}
+    .testimonials-grid{grid-template-columns:1fr 1fr;}
     .why-grid{grid-template-columns:1fr 1fr;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     .form-row{grid-template-columns:1fr;}
@@ -364,7 +350,7 @@
     .hero-body{font-size:0.9rem;}
     .hero-actions{flex-direction:column;align-items:stretch;}
     .btn-primary{text-align:center;}
-    .team-grid,.testimonials-grid,.support-grid,.why-grid,.footer-grid{grid-template-columns:1fr !important;}
+    .testimonials-grid,.support-grid,.why-grid,.footer-grid{grid-template-columns:1fr !important;}
     .footer-bottom{flex-direction:column;gap:0.8rem;text-align:center;}
     .stats-inner{grid-template-columns:1fr !important;}
     .area-steps{grid-template-columns:1fr !important;}
@@ -430,9 +416,6 @@
     <li><a href="services.html" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
     <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
     <li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
-    <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
-    <li><a href="blog.html" data-ar="مقالات" data-en="Blog">مقالات</a></li>
-    <li><a href="pricing.html" data-ar="الأتعاب" data-en="Pricing">الأتعاب</a></li>
     <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
   </ul>
   <div class="nav-right">
@@ -452,9 +435,6 @@
   <a href="services.html" data-ar="خدماتنا" data-en="Services" onclick="closeMobileMenu()">خدماتنا</a>
   <a href="why-us.html" data-ar="لماذا نحن" data-en="Why Us" onclick="closeMobileMenu()">لماذا نحن</a>
   <a href="process.html" data-ar="آلية العمل" data-en="Our Process" onclick="closeMobileMenu()">آلية العمل</a>
-  <a href="consultant.html" data-ar="فريقنا" data-en="Our Team" onclick="closeMobileMenu()">فريقنا</a>
-  <a href="blog.html" data-ar="مقالات قانونية" data-en="Legal Blog" onclick="closeMobileMenu()">مقالات قانونية</a>
-  <a href="pricing.html" data-ar="الأتعاب" data-en="Pricing" onclick="closeMobileMenu()">الأتعاب</a>
   <a href="contact.html" data-ar="تواصل معنا" data-en="Contact" onclick="closeMobileMenu()">تواصل معنا</a>
   <a href="contact.html" class="mobile-cta" data-ar="استشارة مجانية" data-en="Free Consultation">استشارة مجانية</a>
   <div class="mobile-lang">
@@ -512,8 +492,8 @@
       <a href="services.html" class="btn-secondary"><span></span><span data-ar="خدماتنا القانونية" data-en="Our Practice Areas">خدماتنا القانونية</span></a>
     </div>
     <div class="hero-stats">
-      <div><div class="stat-number">+500</div><div class="stat-label" data-ar="قضية ناجحة" data-en="Cases Won">قضية ناجحة</div></div>
-      <div><div class="stat-number">+20</div><div class="stat-label" data-ar="سنة خبرة" data-en="Years Experience">سنة خبرة</div></div>
+      <div><div class="stat-number">+800</div><div class="stat-label" data-ar="قضية ناجحة" data-en="Cases Won">قضية ناجحة</div></div>
+      <div><div class="stat-number">+15</div><div class="stat-label" data-ar="سنة خبرة" data-en="Years Experience">سنة خبرة</div></div>
       <div><div class="stat-number">98%</div><div class="stat-label" data-ar="رضا العملاء" data-en="Client Satisfaction">رضا العملاء</div></div>
       <div><div class="stat-number">4</div><div class="stat-label" data-ar="تخصصات قانونية" data-en="Practice Areas">تخصصات قانونية</div></div>
     </div>
@@ -553,7 +533,7 @@
           <div class="about-frame-inner"><div class="about-emblem">س</div></div>
         </div>
         <div class="about-badge">
-          <div class="badge-year">+20</div>
+          <div class="badge-year">+15</div>
           <div class="badge-text" data-ar="عاماً من التميز القانوني" data-en="Years of Legal Excellence">عاماً من التميز القانوني</div>
         </div>
       </div>
@@ -628,28 +608,6 @@
       <div class="why-item reveal"><div class="why-number">٠٤</div><div class="why-title" data-ar="نهج استراتيجي" data-en="Strategic Approach">نهج استراتيجي</div><div class="why-desc" data-ar="لا نكتفي بردود الفعل — بل نضع الاستراتيجيات. كل قضية تحظى بخطة قانونية مُصممة خصيصاً لتحقيق أفضل النتائج." data-en="We don't just react — we strategize. Every case receives a tailored legal strategy designed to achieve the optimal outcome.">لا نكتفي بردود الفعل — بل نضع الاستراتيجيات. كل قضية تحظى بخطة قانونية مُصممة خصيصاً لتحقيق أفضل النتائج.</div></div>
       <div class="why-item reveal reveal-delay-1"><div class="why-number">٠٥</div><div class="why-title" data-ar="سرية تامة" data-en="Strict Confidentiality">سرية تامة</div><div class="why-desc" data-ar="خصوصيتك أولويتنا. جميع الاستشارات وملفات القضايا تُعامَل بأعلى درجات السرية المهنية." data-en="Your privacy is paramount. All consultations and case details are handled with the strictest professional confidentiality.">خصوصيتك أولويتنا. جميع الاستشارات وملفات القضايا تُعامَل بأعلى درجات السرية المهنية.</div></div>
       <div class="why-item reveal reveal-delay-2"><div class="why-number">٠٦</div><div class="why-title" data-ar="استجابة سريعة" data-en="Responsive Service">استجابة سريعة</div><div class="why-desc" data-ar="المسائل القانونية لا تنتظر. نفخر بسرعة استجابتنا والتزامنا بالتواصل الفعّال، حتى لا تشعر أبداً أنك مجرد رقم في ملف." data-en="Legal matters are time-sensitive. We prioritize prompt communication and swift action so you never feel like just a case number.">المسائل القانونية لا تنتظر. نفخر بسرعة استجابتنا والتزامنا بالتواصل الفعّال، حتى لا تشعر أبداً أنك مجرد رقم في ملف.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="container">
-    <div class="section-label reveal"><div class="section-label-line"></div><span class="section-label-text" data-ar="الفريق" data-en="The Team">الفريق</span></div>
-    <h2 class="section-title reveal" data-ar="تعرّف على <em>محامينا</em>" data-en="Meet Our <em>Attorneys</em>">تعرّف على <em>محامينا</em></h2>
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <div class="team-img"><div class="team-initials">س.م</div><div class="team-overlay"><p class="team-bio" data-ar="أكثر من 20 عاماً من الخبرة في قانون الشركات والقانون التجاري في المملكة العربية السعودية ومنطقة الخليج." data-en="Over 20 years of experience in corporate and commercial law across Saudi Arabia and the GCC region.">أكثر من 20 عاماً من الخبرة في قانون الشركات والقانون التجاري في المملكة العربية السعودية ومنطقة الخليج.</p></div></div>
-        <div class="team-info"><div class="team-name" data-ar="سليمان بن منصور المطرود" data-en="Sulaiman bin Mansour Al Matrood">سليمان بن منصور المطرود</div><div class="team-role" data-ar="المؤسس والشريك المؤسس · قانون الشركات" data-en="Founder & Managing Partner · Corporate Law">المؤسس والشريك المؤسس · قانون الشركات</div></div>
-      </div>
-      <div class="team-card reveal reveal-delay-1">
-        <div class="team-img"><div class="team-initials">س.م</div><div class="team-overlay"><p class="team-bio" data-ar="متخصصة في قانون الأسرة والأحوال الشخصية مع خبرة راسخة في الفقه الإسلامي والقانون السعودي." data-en="Specializing in family law and personal status matters with deep expertise in Islamic jurisprudence and Saudi law.">متخصصة في قانون الأسرة والأحوال الشخصية مع خبرة راسخة في الفقه الإسلامي والقانون السعودي.</p></div></div>
-        <div class="team-info"><div class="team-name" data-ar="سارة المطرود" data-en="Sara Al Matrood">سارة المطرود</div><div class="team-role" data-ar="شريك أول · قانون الأسرة" data-en="Senior Partner · Family Law">شريك أول · قانون الأسرة</div></div>
-      </div>
-      <div class="team-card reveal reveal-delay-2">
-        <div class="team-img"><div class="team-initials">خ.ر</div><div class="team-overlay"><p class="team-bio" data-ar="محامي دفاع جنائي بخبرة واسعة في المحاكم الجنائية السعودية على مختلف درجاتها." data-en="Criminal defense attorney with extensive courtroom experience in Saudi criminal courts and tribunals.">محامي دفاع جنائي بخبرة واسعة في المحاكم الجنائية السعودية على مختلف درجاتها.</p></div></div>
-        <div class="team-info"><div class="team-name" data-ar="خالد الرشيدي" data-en="Khalid Al Rashidi">خالد الرشيدي</div><div class="team-role" data-ar="شريك · الدفاع الجنائي" data-en="Partner · Criminal Defense">شريك · الدفاع الجنائي</div></div>
-      </div>
     </div>
   </div>
 </section>
@@ -792,7 +750,7 @@
         <a href="index.html" class="nav-logo" style="text-decoration:none;">
           <div class="logo-mark" aria-hidden="true">س</div>
           <div>
-            <div style="font-family:'Amiri',serif;font-size:1rem;color:var(--gold);" data-ar="سليمان المطرود للاستشارات القانونية" data-en="SULAIMAN AL MATROOD">سليمان المطرود للاستشارات القانونية</div>
+            <div style="font-family:'TheYearofHandicrafts',serif;font-size:1rem;color:var(--gold);" data-ar="سليمان المطرود للاستشارات القانونية" data-en="SULAIMAN AL MATROOD">سليمان المطرود للاستشارات القانونية</div>
           </div>
         </a>
         <p data-ar="شريككم القانوني الموثوق في الرياض والقصيم والمملكة العربية السعودية. نُقدّم العدالة بنزاهة ودقة وتفانٍ لا حدود له." data-en="Your trusted legal partner in Riyadh, Al Qasim, and the Kingdom of Saudi Arabia. Delivering justice with integrity, precision, and dedication.">شريككم القانوني الموثوق في الرياض والقصيم والمملكة العربية السعودية. نُقدّم العدالة بنزاهة ودقة وتفانٍ لا حدود له.</p>
@@ -812,7 +770,6 @@
           <li><a href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
           <li><a href="why-us.html" data-ar="لماذا نحن" data-en="Why Choose Us">لماذا نحن</a></li>
           <li><a href="process.html" data-ar="آلية العمل" data-en="Our Process">آلية العمل</a></li>
-          <li><a href="consultant.html" data-ar="فريقنا" data-en="Our Team">فريقنا</a></li>
         </ul>
       </div>
       <div>
