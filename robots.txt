@@ -4,6 +4,11 @@ Allow: /
 # Sitemap
 Sitemap: https://www.almatroodlaw.sa/sitemap.xml
 
-# Block unnecessary files
+# Block removed/unlisted pages
+Disallow: /consultant.html
+Disallow: /blog.html
+Disallow: /pricing.html
+
+# Block asset files
 Disallow: /global-enhancements.js
 Disallow: /global-enhancements.css

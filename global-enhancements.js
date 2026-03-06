@@ -352,3 +352,36 @@
   if (heroStats) statsObs.observe(heroStats);
 
 })();
+
+// ── M5: Tawk.to Live Chat ────────────────────────────────────────
+// Sign up free at https://tawk.to → Dashboard → Your Widget URL
+// Replace TAWK_PROPERTY_ID and TAWK_WIDGET_ID with your values
+(function() {
+  var TAWK_PROPERTY_ID = 'YOUR_PROPERTY_ID';  // e.g. '64abc123def456'
+  var TAWK_WIDGET_ID   = 'default';            // usually '1hbxxxxxx' or 'default'
+
+  if (TAWK_PROPERTY_ID === 'YOUR_PROPERTY_ID') return; // not configured
+
+  // Arabic widget label
+  window.Tawk_API = window.Tawk_API || {};
+  window.Tawk_LoadStart = new Date();
+
+  // Auto-open on contact page after 30 seconds
+  window.Tawk_API.onLoad = function() {
+    if (window.location.pathname.indexOf('contact') !== -1) {
+      setTimeout(function() {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+          window.Tawk_API.maximize();
+        }
+      }, 30000);
+    }
+  };
+
+  var s1 = document.createElement('script');
+  var s0 = document.getElementsByTagName('script')[0];
+  s1.async = true;
+  s1.src = 'https://embed.tawk.to/' + TAWK_PROPERTY_ID + '/' + TAWK_WIDGET_ID;
+  s1.charset = 'UTF-8';
+  s1.setAttribute('crossorigin', '*');
+  s0.parentNode.insertBefore(s1, s0);
+})();
