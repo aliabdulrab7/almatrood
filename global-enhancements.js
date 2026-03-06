@@ -27,7 +27,7 @@
   /* ══════════════════════════════════════════════════════════════
      B3 — MICROSOFT CLARITY (no consent required in KSA)
      ══════════════════════════════════════════════════════════════ */
-  if (CLARITY_ID !== 'xxxxxxxxxx') {
+  if (CLARITY_ID !== 'vrbck39c0g') {
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
       t = l.createElement(r); t.async = 1;
@@ -41,7 +41,7 @@
      B1 — GOOGLE ANALYTICS 4 (consent-gated)
      ══════════════════════════════════════════════════════════════ */
   function initGA4() {
-    if (GA4_ID === 'G-XXXXXXXXXX') return; // placeholder — skip
+    if (GA4_ID === 'G-FLZWBNYDX8') return; // placeholder — skip
     if (typeof window.gtag === 'function') return; // already loaded
     var s = document.createElement('script');
     s.async = true;
@@ -57,39 +57,35 @@
     });
   }
 
-  /* GA4 event helper */
+  /* GA4 event helper — also exposed globally for use in contact.html */
   function trackEvent(eventName, params) {
     if (typeof window.gtag !== 'function') return;
     window.gtag('event', eventName, params || {});
   }
-
-  /* Track language toggle events */
-  function trackLangToggle(lang) {
+  window._amTrack     = trackEvent;         // general tracking
+  window._amTrackLang = function (lang) {   // language toggle
     trackEvent('language_toggle', { event_category: 'UX', event_label: lang });
-  }
+  };
 
-  /* Expose for inline onclick handlers */
-  window._amTrackLang = trackLangToggle;
-
-  /* Track CTA clicks (WhatsApp, phone, form submit) */
+  /* Track CTA clicks (WhatsApp, phone, consultation buttons) */
   document.addEventListener('click', function (e) {
-    var target = e.target.closest('a');
-    if (!target) return;
-    var href = target.href || '';
+    var a = e.target.closest('a, button');
+    if (!a) return;
+    var href = a.href || '';
     if (href.indexOf('wa.me') !== -1) {
-      trackEvent('whatsapp_click', { event_category: 'CTA', event_label: window.location.pathname });
+      trackEvent('whatsapp_click', { event_category: 'CTA', page: window.location.pathname });
     } else if (href.indexOf('tel:') === 0) {
-      trackEvent('phone_click', { event_category: 'CTA', event_label: window.location.pathname });
-    }
-  });
-
-  /* Track form submissions */
-  document.addEventListener('submit', function (e) {
-    var form = e.target;
-    if (form && form.tagName === 'FORM') {
-      trackEvent('form_submit', {
-        event_category: 'Conversion',
-        event_label: form.id || 'contact_form',
+      trackEvent('phone_click', { event_category: 'CTA', page: window.location.pathname });
+    } else if (
+      a.classList.contains('nav-cta') ||
+      a.classList.contains('btn-primary') ||
+      a.classList.contains('mobile-cta') ||
+      a.classList.contains('mobile-sticky-primary') ||
+      a.classList.contains('mobile-sticky-btn')
+    ) {
+      trackEvent('cta_click', {
+        event_category: 'CTA',
+        event_label: (a.dataset.en || a.textContent || '').trim().slice(0, 40),
         page: window.location.pathname
       });
     }
