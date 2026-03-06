@@ -339,7 +339,7 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
 <!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  emailjs.init('U4ahk1ilTXp5-q7ym'); // ← Replace with your EmailJS Public Key
+  emailjs.init({ publicKey: 'U4ahk1ilTXp5-q7ym' });
 </script>
 </head>
 <body>
@@ -1349,21 +1349,48 @@ function wizSubmit() {
     // Send email via EmailJS to both recipients
     var branchEl = document.getElementById('wiz-branch');
     var methodEl = document.getElementById('wiz-contact-method');
+    var areaLabels = {corporate:'أعمال وشركات',family:'قانون الأسرة',criminal:'الدفاع الجنائي',injury:'قضايا التعويضات',contracts:'العقود والصفقات التجارية',employment:'شؤون العمالة والموارد البشرية',disputes:'النزاعات والتحكيم التجاري'};
+    var typeLabels = {individual:'فرد / شخصي',business:'شركة / مؤسسة'};
+    var urgLabels  = {urgent:'عاجل - خلال ساعة',important:'مهم - خلال 4 ساعات',normal:'عادي - خلال 24 ساعة'};
+    var d = wiz.dynamicData || {};
+    var lines = [
+      'رقم الطلب: ' + reqId,
+      'التاريخ: ' + new Date().toLocaleString('ar-SA', {timeZone:'Asia/Riyadh'}),
+      '',
+      'الاسم: ' + name,
+      'الجوال: ' + phone,
+      'البريد: ' + (email || 'لم يُدخل'),
+      '',
+      'نوع الموكل: ' + (typeLabels[wiz.clientType] || wiz.clientType || ''),
+      'مجال القضية: ' + (areaLabels[wiz.practiceArea] || wiz.practiceArea || ''),
+      'نوع المسالة: ' + (wiz.subIssue || ''),
+      'الاولوية: ' + (urgLabels[effectiveUrgency] || effectiveUrgency),
+      '',
+      'الفرع: ' + (branchEl ? branchEl.value : ''),
+      'طريقة التواصل: ' + (methodEl ? methodEl.value : '')
+    ];
+    if (d['d-company'])   lines.push('الشركة: ' + d['d-company']);
+    if (d['d-sector'])    lines.push('القطاع: ' + d['d-sector']);
+    if (d['d-employees']) lines.push('عدد الموظفين: ' + d['d-employees']);
+    if (d['d-details'])   lines.push('', 'تفاصيل القضية:', d['d-details']);
+
     emailjs.send(
-      'service_0j2neld',   // ← Replace with your EmailJS Service ID
-      'template_o3244uj',  // ← Replace with your EmailJS Template ID
+      'service_0j2neld',
+      'template_o3244uj',
       {
-        req_id:         reqId,
-        client_name:    name,
-        phone:          phone,
-        reply_to:       email || '—',
-        message:        waMsg,
-        timestamp:      new Date().toLocaleString('ar-SA', {timeZone:'Asia/Riyadh', dateStyle:'short', timeStyle:'short'}),
-        urgency:        effectiveUrgency,
-        branch:         branchEl ? branchEl.value : '',
-        contact_method: methodEl ? methodEl.value : ''
+        req_id:      reqId,
+        client_name: name,
+        phone:       phone,
+        reply_to:    email || '',
+        urgency:     urgLabels[effectiveUrgency] || effectiveUrgency,
+        message:     lines.join('\n')
       }
-    ).catch(function(err){ console.warn('EmailJS error:', err); });
+    ).then(function() {
+      console.log('Email sent: ' + reqId);
+    }).catch(function(err) {
+      console.error('EmailJS failed:', err);
+      alert('تعذّر إرسال البريد الإلكتروني. يرجى التواصل عبر واتساب.');
+    });
   }, 800);
 }
 
