@@ -336,6 +336,11 @@ footer{background:var(--navy);border-top:1px solid rgba(201,169,110,0.15);paddin
 
 </style>
 <link rel="stylesheet" href="global-enhancements.css">
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init('U4ahk1ilTXp5-q7ym'); // ← Replace with your EmailJS Public Key
+</script>
 </head>
 <body>
 
@@ -1341,27 +1346,24 @@ function wizSubmit() {
     wizGoToStep(5);
     applyLang(lang);
 
-    // Fire to Google Script (non-blocking, best-effort)
-    var GS = 'https://script.google.com/macros/s/AKfycbw_PX74dlipZlzPrqpJzyRe8neqA_DL5aAw6_0sIbgntCJEGWiX0_T76o30y2JEWE_e-Q/exec';
-    var branchEl  = document.getElementById('wiz-branch');
-    var methodEl  = document.getElementById('wiz-contact-method');
-    var payload = {
-      timestamp:      new Date().toLocaleString('en-US',{timeZone:'Asia/Riyadh'}),
-      requestId:      reqId,
-      fullName:       name,
-      phone:          phone,
-      email:          email,
-      clientType:     wiz.clientType,
-      practiceArea:   wiz.practiceArea,
-      subIssue:       wiz.subIssue,
-      urgencyLevel:   effectiveUrgency,
-      urgencyScore:   wiz.urgencyScore,
-      contactMethod:  methodEl ? methodEl.value : '',
-      branch:         branchEl ? branchEl.value : '',
-      dynamicData:    JSON.stringify(wiz.dynamicData),
-      language:       lang
-    };
-    fetch(GS, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+    // Send email via EmailJS to both recipients
+    var branchEl = document.getElementById('wiz-branch');
+    var methodEl = document.getElementById('wiz-contact-method');
+    emailjs.send(
+      'service_qc97yli',   // ← Replace with your EmailJS Service ID
+      'template_8flqjvq',  // ← Replace with your EmailJS Template ID
+      {
+        req_id:         reqId,
+        client_name:    name,
+        phone:          phone,
+        reply_to:       email || '—',
+        message:        waMsg,
+        timestamp:      new Date().toLocaleString('ar-SA', {timeZone:'Asia/Riyadh', dateStyle:'short', timeStyle:'short'}),
+        urgency:        effectiveUrgency,
+        branch:         branchEl ? branchEl.value : '',
+        contact_method: methodEl ? methodEl.value : ''
+      }
+    ).catch(function(err){ console.warn('EmailJS error:', err); });
   }, 800);
 }
 
