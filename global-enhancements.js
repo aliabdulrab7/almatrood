@@ -385,3 +385,199 @@
   s1.setAttribute('crossorigin', '*');
   s0.parentNode.insertBefore(s1, s0);
 })();
+
+/* ══════════════════════════════════════════════════════════════════
+   M1 — DARK MODE TOGGLE
+   Sun/moon button in nav · persists in localStorage · OLED-black variant
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  var DARK_KEY = 'almatrood_dark';
+  var isDark   = localStorage.getItem(DARK_KEY) === '1';
+  var html     = document.documentElement;
+
+  /* Apply theme immediately — preloader covers any flash */
+  html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+
+  /* SVG icons */
+  var MOON_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>';
+  var SUN_SVG  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>';
+
+  /* Create button */
+  var btn = document.createElement('button');
+  btn.id  = 'dark-mode-btn';
+
+  function refreshBtn(dark) {
+    btn.innerHTML = dark ? SUN_SVG : MOON_SVG;
+    btn.setAttribute('aria-label', dark ? 'وضع الإضاءة' : 'الوضع الداكن');
+    btn.title = dark ? 'Light mode' : 'Dark mode';
+  }
+
+  function applyDark(dark) {
+    isDark = dark;
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem(DARK_KEY, dark ? '1' : '0');
+    refreshBtn(dark);
+  }
+
+  refreshBtn(isDark);
+  btn.addEventListener('click', function () { applyDark(!isDark); });
+
+  /* Inject button into .nav-right (before lang-toggle) */
+  function injectDarkBtn() {
+    var navRight = document.querySelector('.nav-right');
+    if (!navRight || document.getElementById('dark-mode-btn')) return;
+    var langToggle = navRight.querySelector('.lang-toggle');
+    if (langToggle) {
+      navRight.insertBefore(btn, langToggle);
+    } else {
+      navRight.prepend(btn);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectDarkBtn);
+  } else {
+    injectDarkBtn();
+  }
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+   M2 — HERO GEOMETRIC PARALLAX
+   Mouse-driven parallax on hero canvas + floating geometric SVG layers
+   Only activates on pages containing #hero and #heroCanvas
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  var heroEl = document.getElementById('hero');
+  if (!heroEl) return;
+
+  /* ── Floating geometric SVG accents ── */
+  var geos = [
+    /* Hexagon (large, slow spin) */
+    { cls: 'hero-geo hero-geo-a', svg: '<svg viewBox="0 0 100 100" fill="none" stroke="rgba(201,169,110,0.13)" stroke-width="1"><polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5"/><polygon points="50,18 82,35 82,65 50,82 18,65 18,35"/></svg>' },
+    /* Circle (medium, reverse spin) */
+    { cls: 'hero-geo hero-geo-b', svg: '<svg viewBox="0 0 100 100" fill="none" stroke="rgba(201,169,110,0.15)" stroke-width="1.2"><circle cx="50" cy="50" r="45"/><circle cx="50" cy="50" r="32"/><circle cx="50" cy="50" r="18"/></svg>' },
+    /* Diamond (small, pulse) */
+    { cls: 'hero-geo hero-geo-c', svg: '<svg viewBox="0 0 100 100" fill="none" stroke="rgba(201,169,110,0.22)" stroke-width="1.5"><polygon points="50,5 95,50 50,95 5,50"/></svg>' }
+  ];
+
+  geos.forEach(function (g) {
+    var el = document.createElement('div');
+    el.className = g.cls;
+    el.innerHTML = g.svg;
+    heroEl.appendChild(el);
+  });
+
+  /* ── Mouse parallax (lerped for smoothness) ── */
+  var canvas  = document.getElementById('heroCanvas');
+  var tX = 0, tY = 0, cX = 0, cY = 0;
+  var rafId   = null;
+
+  /* Track mouse only when not touch device */
+  var isTouch = ('ontouchstart' in window);
+  if (!isTouch) {
+    heroEl.addEventListener('mousemove', function (e) {
+      var rect = heroEl.getBoundingClientRect();
+      tX = ((e.clientX - rect.left) / rect.width  - 0.5) * 28;
+      tY = ((e.clientY - rect.top)  / rect.height - 0.5) * 14;
+    }, { passive: true });
+
+    heroEl.addEventListener('mouseleave', function () {
+      tX = 0; tY = 0;
+    });
+
+    function tick() {
+      cX += (tX - cX) * 0.055;
+      cY += (tY - cY) * 0.055;
+      if (canvas) {
+        canvas.style.transform = 'translate(' + cX + 'px,' + cY + 'px) scale(1.07)';
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+   M3 — PAGE TRANSITION ANIMATIONS
+   Fade overlay: navy → transparent on load, transparent → navy on navigate
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  /* Create overlay */
+  var overlay = document.createElement('div');
+  overlay.id = 'pt-overlay';
+  document.body.appendChild(overlay);
+
+  /* Page load: start opaque, fade to invisible */
+  overlay.classList.add('pt-in');
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      overlay.classList.remove('pt-in');
+    });
+  });
+
+  /* Intercept in-page link clicks → fade out then navigate */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+
+    var href = a.getAttribute('href');
+    if (!href) return;
+
+    /* Skip: anchors, external, tel, mailto, WhatsApp, new-tab */
+    if (
+      href.charAt(0) === '#' ||
+      href.indexOf('http') === 0 ||
+      href.indexOf('tel:')    === 0 ||
+      href.indexOf('mailto:') === 0 ||
+      href.indexOf('wa.me')   !== -1 ||
+      a.target === '_blank'
+    ) return;
+
+    e.preventDefault();
+    var dest = href;
+
+    overlay.style.transition = 'opacity 0.28s ease, visibility 0.28s ease';
+    overlay.classList.add('pt-in');
+
+    setTimeout(function () {
+      window.location.href = dest;
+    }, 295);
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+   M4 — MICRO-INTERACTIONS POLISH
+   3D card tilt on mousemove (CSS handles ripple, underline, letter-spacing)
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  var TILT_SEL = '.practice-card, .reason-card, .why-item, .team-card, .retainer-card';
+  var MAX_TILT = 7; /* degrees */
+
+  function attachTilt(card) {
+    card.addEventListener('mousemove', function (e) {
+      var r  = card.getBoundingClientRect();
+      var dx = (e.clientX - r.left  - r.width  / 2) / (r.width  / 2); /* -1 → 1 */
+      var dy = (e.clientY - r.top   - r.height / 2) / (r.height / 2);
+      var rX = -dy * MAX_TILT;
+      var rY =  dx * MAX_TILT;
+      card.style.transition = 'transform 0.08s ease';
+      card.style.transform  =
+        'perspective(900px) rotateX(' + rX + 'deg) rotateY(' + rY + 'deg) translateZ(6px)';
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', function () {
+      card.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+      card.style.transform  = '';
+    });
+  }
+
+  function initTilts() {
+    document.querySelectorAll(TILT_SEL).forEach(attachTilt);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTilts);
+  } else {
+    initTilts();
+  }
+})();

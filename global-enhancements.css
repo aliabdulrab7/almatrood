@@ -621,3 +621,183 @@ nav:not(.scrolled) { background: linear-gradient(to bottom, rgba(10,22,40,0.35) 
   .cb-actions { width: 100%; }
   .cb-btn { flex: 1; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   M1 — DARK MODE TOGGLE (OLED-black deep variant)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Override CSS variables — cascades through every var() reference */
+html[data-theme="dark"] {
+  --navy:       #020912;
+  --navy-mid:   #060f1e;
+  --navy-light: #0d1c38;
+}
+
+/* Explicit overrides for elements with hardcoded/cream backgrounds */
+html[data-theme="dark"] body            { background: #020912; }
+html[data-theme="dark"] #preloader      { background: #020912 !important; }
+html[data-theme="dark"] nav.scrolled    { background: rgba(2,9,18,0.98) !important; }
+html[data-theme="dark"] .mobile-menu   { background: rgba(2,9,18,0.98) !important; }
+html[data-theme="dark"] #mobile-sticky { background: rgba(2,9,18,0.97) !important; }
+html[data-theme="dark"] footer          { background: #020912 !important; }
+html[data-theme="dark"] #back-to-top   { background: rgba(2,9,18,0.95) !important; }
+html[data-theme="dark"] #cookie-consent-banner { background: rgba(1,5,12,0.99) !important; }
+
+/* Cream-background sections — convert to deep navy in dark mode */
+html[data-theme="dark"] #why                   { background: var(--navy-mid) !important; }
+html[data-theme="dark"] #why .section-label-line { background: rgba(201,169,110,0.4) !important; }
+html[data-theme="dark"] #why .section-label-text { color: rgba(201,169,110,0.55) !important; }
+html[data-theme="dark"] #why h3,
+html[data-theme="dark"] #why .section-title    { color: var(--cream,#F8F4EE) !important; }
+html[data-theme="dark"] #why .why-desc,
+html[data-theme="dark"] #why p                 { color: rgba(168,180,200,0.9) !important; }
+
+/* Dark mode toggle button */
+#dark-mode-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(201,169,110,0.4);
+  color: var(--gold, #C9A96E);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.4s ease;
+  min-height: 36px; min-width: 36px;
+}
+#dark-mode-btn:hover {
+  background: rgba(201,169,110,0.1);
+  border-color: var(--gold, #C9A96E);
+  transform: rotate(30deg);
+}
+#dark-mode-btn svg {
+  width: 16px; height: 16px;
+  fill: currentColor;
+  display: block;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   M2 — HERO GEOMETRIC PARALLAX LAYERS
+   ══════════════════════════════════════════════════════════════ */
+
+/* Canvas needs room to parallax without clipping */
+#hero { overflow: hidden; }
+#heroCanvas { will-change: transform; }
+
+/* Floating geometric SVG accents injected by JS */
+.hero-geo {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+.hero-geo-a {
+  top: 12%; right: 14%;
+  width: 200px; height: 200px;
+  animation: geoSpin 35s linear infinite;
+}
+.hero-geo-b {
+  bottom: 22%; right: 8%;
+  width: 110px; height: 110px;
+  animation: geoSpin 22s linear infinite reverse;
+}
+.hero-geo-c {
+  top: 55%; right: 28%;
+  width: 64px; height: 64px;
+  animation: geoPulse 6s ease-in-out infinite;
+}
+[dir="rtl"] .hero-geo-a { right: auto; left: 14%; }
+[dir="rtl"] .hero-geo-b { right: auto; left: 8%;  }
+[dir="rtl"] .hero-geo-c { right: auto; left: 28%; }
+[lang="en"] .hero-geo-a { right: 14%; left: auto; }
+[lang="en"] .hero-geo-b { right: 8%;  left: auto; }
+[lang="en"] .hero-geo-c { right: 28%; left: auto; }
+
+@keyframes geoSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes geoPulse {
+  0%, 100% { transform: rotate(45deg) scale(1);    opacity: 0.5; }
+  50%       { transform: rotate(45deg) scale(1.2); opacity: 0.9; }
+}
+@media (max-width: 768px) { .hero-geo { display: none; } }
+
+/* ══════════════════════════════════════════════════════════════
+   M3 — PAGE TRANSITION OVERLAY
+   ══════════════════════════════════════════════════════════════ */
+
+#pt-overlay {
+  position: fixed; inset: 0;
+  background: var(--navy, #0A1628);
+  z-index: 99997;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#pt-overlay.pt-in { opacity: 1; visibility: visible; }
+
+/* ══════════════════════════════════════════════════════════════
+   M4 — MICRO-INTERACTIONS POLISH
+   ══════════════════════════════════════════════════════════════ */
+
+/* — Input: gold underline expands on focus — */
+.form-group, .wizard-field, .ws-field { position: relative; }
+.form-group::after,
+.wizard-field::after,
+.ws-field::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark,#9A7A45), var(--gold,#C9A96E), var(--gold-dark,#9A7A45));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+  border-radius: 0 0 1px 1px;
+}
+.form-group:focus-within::after,
+.wizard-field:focus-within::after,
+.ws-field:focus-within::after { transform: scaleX(1); }
+
+/* — Buttons: CSS ripple on click — */
+.btn-primary, .nav-cta, .plan-btn, .service-cta,
+.mobile-sticky-primary, .btn-gold {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before, .nav-cta::before, .plan-btn::before,
+.service-cta::before, .mobile-sticky-primary::before, .btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.22);
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.btn-primary:active::before, .nav-cta:active::before, .plan-btn:active::before,
+.service-cta:active::before, .mobile-sticky-primary:active::before, .btn-gold:active::before {
+  animation: m4Ripple 0.55s ease-out forwards;
+}
+@keyframes m4Ripple {
+  from { width: 0;     height: 0;     opacity: 1; }
+  to   { width: 220px; height: 220px; opacity: 0; }
+}
+
+/* — Nav links: letter-spacing breathe on hover (EN only, RTL skip) — */
+[lang="en"] .nav-links a {
+  transition: color 0.3s ease, letter-spacing 0.35s ease !important;
+}
+[lang="en"] .nav-links a:hover { letter-spacing: 0.22em !important; }
+
+/* — Cards: smooth cubic reset for 3D tilt applied via JS — */
+.practice-card, .reason-card, .why-item, .team-card, .retainer-card {
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.45s ease !important;
+}
